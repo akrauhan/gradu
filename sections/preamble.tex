@@ -1,0 +1,62 @@
+\documentclass[12pt,oneside,a4paper]{amsbook} % yksipuoleinen tulostus
+%\documentclass[12pt,twoside,a4paper]{amsbook} % kaksipuoleinen tulostus
+%\usepackage[leqno]{amsmath}
+%\usepackage{amsthm}
+\usepackage{amssymb}
+%
+\setlength{\textheight}{9in} % amsbook default: 632pt
+\setlength{\textwidth}{6in}  % amsbook default: 360pt
+\setlength{\topmargin}{0in}
+\setlength{\oddsidemargin}{0.4cm}
+\setlength{\evensidemargin}{0.4cm}
+%
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage[english,finnish]{babel}
+
+%% Input encoding: valitse tekstieditorisi käyttämä
+%% vaihda my\"os dokumentin ensimmäinen rivi vastaavasti
+%\usepackage[utf8]{inputenc}           % !TeX encoding = utf8
+%\usepackage[latin1]{inputenc}        % !TeX encoding = latin1
+%\usepackage[applemac]{inputenc}    % !TeX encoding = appleroman
+%
+%\usepackage[dvips]{graphicx}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+
+\usepackage{subfiles}
+
+\renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+\renewcommand\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\renewcommand\thesubsubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+%
+%% AMS-LaTeX -määrityksiä
+%
+\theoremstyle{plain}
+\newtheorem{theorem}{Lause}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Seuraus}
+%
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Määritelmä}
+\newtheorem{example}[theorem]{Esimerkki}
+%
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Huomautus}
+%
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+%
+%% Uusia komentoja, macroja
+%
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dt}{\text{d}t}
+\newcommand{\Borel}{\mathcal{B}}
+\newcommand{\what}[1]{\textbf{??}#1\textbf{??}}
+
+%
+%% Uusia komentoja, päällekirjoitetut
+%
+\renewcommand{\P}{\mathbf{P}}
+\renewcommand{\d}{\text{d}}

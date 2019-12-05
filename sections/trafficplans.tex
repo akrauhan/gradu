@@ -1,0 +1,98 @@
+\begin{document}
+%%%% Liikennesuunnitelmat
+
+\hrule
+Merkitään 
+\begin{itemize}
+    \item{$X\subset \R^n$ konveksia n-ulotteista joukkoa}
+    \item $\mathcal{B}$ Borelin $\sigma$-algebra joukossa $K$
+    \item $\Omega = [0,|\Omega|]$, kaikkien säikeiden indeksijoukko, \textit{rekursiivinen?} Johdannossa valittu [0,1].
+\end{itemize}
+\hrule
+
+\begin{definition}
+    Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. Määritellään etäisyys joukossa $K$ siten että
+    \[d(\gamma, \gamma') = \sup \frac{1}{k}||\gamma - \gamma||_{L^\infty([0,k])}\]
+\end{definition}
+
+\begin{definition}
+    Määritellään polun $\gamma \in K$ pysähtymisajaksi 
+    \begin{equation*}
+        T(\gamma) = \inf\{t\ge0:\gamma \text{ vakio välillä } [0,\infty[ \}
+    \end{equation*}
+    ja pituudeksi $L(\gamma)$ polun pituus välillä $[0, T(\gamma)[$ eli
+     \begin{equation*}
+         L(\gamma) = \int_0^{T(\gamma)}|\gamma'(t)|\, \dt.
+     \end{equation*}
+    
+\end{definition}
+
+\begin{definition}
+    Mitta $\P: K \to \R^+$ avaruudessa  $(K, \Borel)$ on \textbf{liikennesuunnitelma}, jos
+    \begin{equation*}
+     \int_K T(\gamma) \, \d \P (\gamma) < \infty.   
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Olkoon $\P$ liikennesuunnitelma. Merkitään joukon $X$ kaikkia liikennesuunnitelmia $TP = TP(X)$, ja $TP_C = TP_C(X)$ kaikkia joukon $X$ liikennesuunitelmia $\P$ joille
+    \begin{equation*}
+        \int_K T(\gamma) \d \P(\gamma) \le C.
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Olkoon $\pi_0, \pi_\infty: K\to X$ ja $\pi:K\to X \times X$ kuvauksia, jotka määritellään polulle $\gamma \in K$ siten, että 
+    \begin{align*}
+        \pi_0(\gamma) &= \gamma(0) &&\Big| \text{ Polun lähtöpiste. }\\
+        \pi_\infty(\gamma) &= \gamma(T(\gamma)) &&\Big| \text{ Polun päätepiste. }\\
+        \pi(\gamma) &= (\gamma(0), \gamma(T(\gamma)) &&\Big| \text{ Polun lähtöpiste ja päätepiste. }
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Määritellään mitat $\mu^+, \mu^- : X \to \mathbf{R}_+$ ja $\pi: X\times X \to \mathbf{R}_+$ siten, että
+    \begin{align*}
+        \mu^+(\P) &= \pi_{0\#} \P  &&\Big| \text{ Irrigoiva mitta, \textit{irrigating measure} }\\
+        \mu^-(\P) &= \pi_{\infty \#} \P  &&\Big| \text{ Irrigoitu mitta, \textit{irrigating measure} }\\
+        \pi(\P) &= \pi_\# \P  &&\Big| \text{ Siirtosuunnitelma liikennesuunnitelmalle $\P$,}\\ 
+        & &&\Big| \text{ \textit{transference plan of $\P$}}
+    \end{align*}
+\end{definition}
+
+\begin{remark}
+    Kaikille Borelin joukoille $A, B \subset K$ pätee
+    \begin{align*}
+        \mu^+(\P)(A) &= \P(\pi_0^{-1}(A)) = \P(\{\gamma \in K : \gamma(0) \in A\}) \\
+        \mu^-(\P)(B) &= \P(\pi_0^{-1}(B)) = \P(\{\gamma \in K : \gamma(\infty) \in B\}) \\
+        \pi(\P)(A\times B) &= \P(\pi(A\times B)) = \P(\{\gamma \in K: \gamma(0) \in A\text{ ja } \gamma(\infty) \in B)\}
+    \end{align*}
+\end{remark}
+
+Liikennesuunnitelman irrigoiva mitta kuvastaa mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma rajoittaa asetelmaa siten, että jokaiselle lähetettävälle massalle määrätään paikka, mihin se lähetetään.
+
+\subsection{Parametrisoidut liikennesuunnitelmat}
+\what{Skorohkodin} lauseen mukaan mikä tahansa liikennesuunnitelma $\P$ voidaan \what{parametrisoida} mitallisella funktiolla $\chi: [0, |\Omega|] \to K$ s. e. $\P = \chi_\# \lambda$, missä $\lambda$ on Lebesguen mitta välille $[0, |\Omega|]$. 
+
+Asetetaan $\chi(\omega, t) = \chi(\omega)(t)$ ja käsitellään sitä muuttujaparin $(\omega, t)$ funktiona.
+
+Borelin joukon $A\subset K$ liikennesuunnitelma on tällöin \what{kirjoitettavissa muodossa}
+$$ P(A) = \chi_\# \lambda (A) = \lambda(\chi^{-1}(A))$$
+
+\begin{definition}
+    Jos $\chi: \Omega \times \R^+ \to X$ on mitallinen, niin sen pysähdysaika on
+    \[T_\chi (\omega) = \inf\{t : \chi(\omega) \text{ on vakio välillä } [t,\infty[\}\]
+\end{definition}
+
+\begin{definition}
+    Olkoon $\Omega \subset \R$ Lebesgue-mitallinen ja Lebesgue-mitaltaan äärellismittainen. Mitallinen kuvaus $\chi: \Omega \times \R^+ \to X$ on \textbf{parametrisoitu liikennesuunnitelma}, jos $t\to \chi(w,t)$ on 1-Lipschitz kaikille $\omega \in \Omega$ ja
+    \[\int_\Omega T_\chi (\omega) \, \d \omega < \infty .\]
+\end{definition}
+
+\begin{definition}
+    Olkoon $\chi:\Omega \times \R^+ \to X$ parametrisoitu liikennesuunnitelma. Merkitään $|\chi| = |\Omega|$. Olkoon $\P_\chi : K \to \R^+$
+    \[\P_\chi (E) = |\chi^{-1}(E)|  \] jokaiselle Borelin joukolle $E\subset K$. Tällöin $\P_\chi$ on liikennesuunnitelma.
+\end{definition}
+
+
+\end{document}
