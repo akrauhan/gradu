@@ -1,17 +1,20 @@
 \begin{document}
 %%%% Liikennesuunnitelmat
 
-\hrule
+\hrule $\color{white}{.}$ \\
 Merkitään 
 \begin{itemize}
-    \item{$X\subset \R^n$ konveksia n-ulotteista joukkoa}
     \item $\mathcal{B}$ Borelin $\sigma$-algebra joukossa $K$
-    \item $\Omega = [0,|\Omega|]$, kaikkien säikeiden indeksijoukko, \textit{rekursiivinen?} Johdannossa valittu [0,1].
+    \item $\Omega = [0,|\Omega|]$, kaikkien säikeiden indeksijoukko. (Kirjan johdannossa valittu [0,1])
+    \item $X$ kompakti, konveksi $R^n$ osajoukko, $X \subset R^n$.
+    \item $|A|$ Mitallisen joukon $A\subset \R$ Lebesgue-mitta.
+    \item $K$ Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. 
 \end{itemize}
 \hrule
 
+
 \begin{definition}
-    Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. Määritellään etäisyys joukossa $K$ siten että
+    Määritellään etäisyys joukossa $K$ siten, että
     \[d(\gamma, \gamma') = \sup \frac{1}{k}||\gamma - \gamma||_{L^\infty([0,k])}\]
 \end{definition}
 
@@ -20,14 +23,14 @@ Merkitään
     \begin{equation*}
         T(\gamma) = \inf\{t\ge0:\gamma \text{ vakio välillä } [0,\infty[ \}
     \end{equation*}
-    ja pituudeksi $L(\gamma)$ polun pituus välillä $[0, T(\gamma)[$ eli
+    ja pituudeksi $L(\gamma)$ polun pituus välillä $[0, T(\gamma)]$ eli
      \begin{equation*}
          L(\gamma) = \int_0^{T(\gamma)}|\gamma'(t)|\, \dt.
      \end{equation*}
     
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:liikennesuunnitelma}
     Mitta $\P: K \to \R^+$ avaruudessa  $(K, \Borel)$ on \textbf{liikennesuunnitelma}, jos
     \begin{equation*}
      \int_K T(\gamma) \, \d \P (\gamma) < \infty.   
@@ -56,7 +59,7 @@ Merkitään
         \mu^+(\P) &= \pi_{0\#} \P  &&\Big| \text{ Irrigoiva mitta, \textit{irrigating measure} }\\
         \mu^-(\P) &= \pi_{\infty \#} \P  &&\Big| \text{ Irrigoitu mitta, \textit{irrigating measure} }\\
         \pi(\P) &= \pi_\# \P  &&\Big| \text{ Siirtosuunnitelma liikennesuunnitelmalle $\P$,}\\ 
-        & &&\Big| \text{ \textit{transference plan of $\P$}}
+        & &&\hphantom{\Big|} \text{ \textit{transference plan of $\P$}}
     \end{align*}
 \end{definition}
 
@@ -69,19 +72,33 @@ Merkitään
     \end{align*}
 \end{remark}
 
-Liikennesuunnitelman irrigoiva mitta kuvastaa mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma rajoittaa asetelmaa siten, että jokaiselle lähetettävälle massalle määrätään paikka, mihin se lähetetään.
+Liikennesuunnitelman irrigoiva mitta kuvastaa mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma sisältää tiedon siitä minne mikäkin massa lähetetään.
 
 \subsection{Parametrisoidut liikennesuunnitelmat}
-\what{Skorohkodin} lauseen mukaan mikä tahansa liikennesuunnitelma $\P$ voidaan \what{parametrisoida} mitallisella funktiolla $\chi: [0, |\Omega|] \to K$ s. e. $\P = \chi_\# \lambda$, missä $\lambda$ on Lebesguen mitta välille $[0, |\Omega|]$. 
+ 
+\begin{theorem}
+    Olkoon $\P: K \to \R^+$ liikennesuunnitelma. Tällöin on olemassa mitallinen funktio $\chi: [0, c] \to K$ siten, että liikennesuunnitelma voidaan kirjoittaa muodossa $$\P =\chi_\# \lambda.$$
+\end{theorem}
+\begin{proof}
+    Lause seuraa Skorohkodin lauseesta.
+\end{proof}
+Skorohkodin lauseen mukaan mikä tahansa liikennesuunnitelma $\P$ voidaan parametrisoida mitallisella funktiolla $ \chi: [0, c] \to K$ s. e. $\P = \chi_\# \lambda$, missä $\lambda$ on Lebesguen mitta välille $[0,c]$. 
 
-Asetetaan $\chi(\omega, t) = \chi(\omega)(t)$ ja käsitellään sitä muuttujaparin $(\omega, t)$ funktiona.
+Funktio $ \chi:[0, c] \to K$ antaa siis jokaiselle välin $[0, c]$ luvulle 1-Lipschitz-polun joukosta $K$. 
+Merkitään jatkossa $\Omega = [0,c]$ ja kutsutaan väliä indeksijoukoksi. Polku $ \chi(\omega)$ vastaa siis indeksin $\omega$ hiukkasen reittiä.
 
-Borelin joukon $A\subset K$ liikennesuunnitelma on tällöin \what{kirjoitettavissa muodossa}
-$$ P(A) = \chi_\# \lambda (A) = \lambda(\chi^{-1}(A))$$
+Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omega$ ja $t \in \R^+$. Jatkossa, kun käytetään merkintää $\chi(\omega, t)$, tarkoitetaan siis funktiota $\chi : \Omega \times \R^+ \to X$. Osoitetaan seuraavaksi, että myös näin määriteltynä $\chi$ on mitallinen funktio.
 
+\begin{theorem}
+    Funktio $\chi: \Omega \times \R^+ \to X $ on mitallinen jos funktio $ \chi: \Omega \to K$ on mitallinen.
+\end{theorem}
+\begin{proof}
+Bernot, Caselles: Optimal transportation networks s.27 (joss.-versio)
+\end{proof}
+Funktion $\chi$ pysähdysaika määritellään vastaavasti, kuten liikennesuunnitelman $\P$ pysähdysaika.
 \begin{definition}
-    Jos $\chi: \Omega \times \R^+ \to X$ on mitallinen, niin sen pysähdysaika on
-    \[T_\chi (\omega) = \inf\{t : \chi(\omega) \text{ on vakio välillä } [t,\infty[\}\]
+    Jos $\chi: \Omega \times \R^+ \to X$ on mitallinen, niin sen \textit{pysähdysaika} $T_\chi$ on
+    \[T_\chi (\omega) = \inf\{t : \chi(\omega, t) \text{ on vakio välillä } [t,\infty[\}\]
 \end{definition}
 
 \begin{definition}
@@ -90,9 +107,42 @@ $$ P(A) = \chi_\# \lambda (A) = \lambda(\chi^{-1}(A))$$
 \end{definition}
 
 \begin{definition}
-    Olkoon $\chi:\Omega \times \R^+ \to X$ parametrisoitu liikennesuunnitelma. Merkitään $|\chi| = |\Omega|$. Olkoon $\P_\chi : K \to \R^+$
-    \[\P_\chi (E) = |\chi^{-1}(E)|  \] jokaiselle Borelin joukolle $E\subset K$. Tällöin $\P_\chi$ on liikennesuunnitelma.
+    Olkoon $\Omega\subset \R$ mitallinen ja äärellismittainen. 
+    \begin{itemize}
+        \item Funktio $\chi:\Omega \times \R^+ \to X$ on tällöin \textit{parametrisoitu liikennesuunnitelma}. \item Polkua $\chi(\omega, \cdot)$ kutsutaan \textit{säikeeksi}.
+        \item Polun $\chi(\omega, \cdot)$ kuvajoukkoa kutsutaan myös \textit{säikeeksi}.
+    \end{itemize}
 \end{definition}
 
+\begin{theorem}
+    Olkoon $\chi : \Omega \times \R^+ \to X$ parametrisoitu liikennesuunnitelma.
+    Määritellään mitta $\P_\chi : K \to \Omega$ siten, että \[\P_\chi (E) = \lambda(\chi^{-1}(E)|)\] jokaiselle Borelin joukolle $E\subset K$. 
+    Tällöin $\P_\chi$ on \textit{liikennesuunnitelma}. 
+\end{theorem}
 
+\begin{proof}
+Osoitetaan, että $P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma}.
+\begin{align*}
+    \int_K T(\gamma)\, d\P_\chi(\gamma) &= \int_K T(\chi(\omega))\, d\P_\chi(\chi(\omega)) \\
+    &= \int_K T_\chi(\omega) \, d(\chi_\# \lambda(\omega)) \\
+    &= \int_\Omega T_\chi(\omega)(\chi) \, d\lambda(\omega) \\
+    &= \int_\Omega T_\chi(\omega)(\chi) \, d\omega \\
+\end{align*}
+
+\end{proof}
+
+\subsection{Liikennesuunnitelmien \what{stabiliteetti}}
+\begin{definition}
+    Olkoon $\P_n$ jono liikennesuunnitelmia. Sanotaan, että jono $\P_n$ suppenee kohti liikennesuunnitelmaa $\P$, jos 
+    $$\P_n \rightharpoonup \P \text{ (suppenee heikosti)},$$
+    $$ \chi_n (\omega) \to  \chi (\omega) \text{ joukossa } K \text{ melkein kaikille } \omega
+    \in \Omega,$$
+    missä $ \chi_n$ ja $ \chi$ ovat lauseen 2.19 mitalliset funktiot liikennesuunnitelmille $\P_n$ ja $\P$ vastaavassa järjestyksessä.
+\end{definition}
+
+\subsubsection{Pituuden, pysähdysajan, keskipituuden ja keskipysähdymisajan alhaalta puolijatkuvuus}
+
+\begin{lemma}
+    Jokainen puolijatkuva funktio $f$ kompaktissa metrisessä avaruudessa on jatkuvien funktioiden kasvavan jonon raja-arvo.
+\end{lemma}
 \end{document}

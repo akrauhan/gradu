@@ -2,46 +2,154 @@
 
 % Määritelmiä ja lauseita (luonnos)
 
-\subsection{Hallussa:}
+\subsection{HALLUSSA:}
 \begin{definition}
-    konveksi joukko
+    \textbf{konveksi joukko:} Olkoon $S$ vektoriavaruus. Joukko $C \subset S$ on \textit{konveksi}, jos kaikille $x, y \in C$ pätee $l(x,y) \subset C$, kun merkitään $l(x,y)$ janan pisteitä pisteestä $x$ pisteeseen $y$.
 \end{definition}
 \begin{definition}
-    etäisyys
+    \textbf{etäisyys:} Joukon $X$ funktio $d: X\times X \to \R^+$ on \textit{etäisyys}, jos kaikilla $x, y, z \in X$ pätee
+    \begin{enumerate}
+        \item $d(x,y) \ge 0$
+        \item $d(x,y) = 0 \iff x = y$
+        \item $d(x,y) = d(y,x)$
+        \item $d(x,y) \ge d(x,z) + d(z,y)$
+    \end{enumerate}
 \end{definition}
+
 \begin{definition}
-    push-forward: $f_\#\mu$
+    \textbf{Sigma-algebra. } Olkoon $X$ joukko. Tällöin $\Gamma \subset \mathcal P(X)$ on \textit{sigma-algebra}, joukossa $X$, jos $\Gamma$ toteuttaa seuraavat ominaisuudet:
+    \begin{enumerate}
+        \item $\emptyset \in \Gamma$ 
+        \item jos $A \in \Gamma$, niin $A^c \in \Gamma$
+        \item jos $A_1, A_2, ... \in \Gamma$, niin $\bigcup_{j=1}^\infty A_j \in \Gamma$ 
+    \end{enumerate}
+    (Lehrbäck, MII, s. 86)
 \end{definition}
+
+\begin{definition}
+    \textbf{Joukkoperheen virittämä sigma-algebra. } Olkoon $X$ joukko ja olkoon $\Delta \subset \mathcal P (X)$. Tällöin 
+        $$ \Gamma_\Delta = \bigcap \{\Gamma : \Gamma \text{ on sigma-algebra joukossa } X \text{ ja }  \Delta \subset \Gamma \}$$ 
+    on joukkoperheen $\Delta$ \textit{virittämä} sigma-algebra joukossa $X$.
+    (Lehrbäck, MII, s. 86)
+\end{definition}
+
+\begin{definition}
+    \textbf{Borelin joukko. }
+    Olkoon
+    \[\Delta = \{A \subset \R^n : A \text{ on avoin joukko}\} \subset \mathcal{P}(\R^n) \]
+    Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $\R^n$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
+    (Lehrbäck, MII, s.87)
+\end{definition}
+
+Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{suppein} avoimista joukoista koostuva joukon $X$ sigma-algebra, joka sisältää joukkoperheen $\Delta$.
+
+
+
+\begin{definition}
+    \textbf{Borelin avaruus } Olkoon $X\subset \R^n$ joukko ja $\mathcal A$ sigma-algebra joukossa $X$. Tällöin pari $(X, A)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}. LÄHDE?
+\end{definition}
+
+\begin{definition}
+    \textbf{push-forward:} Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, merkitään
+    $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
+\end{definition}
+
+\begin{definition}
+    \textbf{alhaalta puolijatkuvuus} Olkoon $X\subset \R^n$. Funktio $f: X \to \R \cup\{-\infty, \infty\}$ on \textit{alhaalta puolijatkuva} pisteessä $x_0$ jos 
+    $$\lim_{x\to x_0} \inf f(x) \ge f(x_0).$$
+\end{definition}
+
+\begin{definition}
+    \textbf{1-Lipschitz-kuvaus} Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
+    $$d_Y(f(x_1),f(x_2)) \le Kd_Y(x_1,x_2).$$
+    Funktio on \textit{1-Lipschitz}, jos funktio on Lipschitz-jatkuva vakiolla $K=1$.
+\end{definition}
+
+\begin{definition}
+    \textbf{Mitta} Oletetaan, että $X$ on joukko ja $\Gamma$ on $\sigma$-algebra joukossa $X$. Funktio $\mu : \Gamma \to [0, \infty]$ on \textit{mitta} (joukossa X tai $\sigma$-algebrassa $\Gamma$), jos 
+    \begin{enumerate}
+        \item $\mu(\emptyset) = 0$, \\
+        ja
+        \item Jos $A_1, A_2, ... \in \Gamma$ ovat erillisiä eli $A_i \cap A_j = \emptyset$ aina, kun $i \ne i$, niin
+        $$\mu\left(\bigcup_{j=1}^\infty A_j \right) = \sum_{j=1}^\infty \mu(A_j).$$
+    \end{enumerate}
+    
+    Kolmikkoa $(X,\Gamma, \mu)$ sanotaan \textit{mitta-avaruudeksi} ja joukkoja $A\in \Gamma$ sanotaan $\Gamma$-mitallisiksi.
+    
+    (Lehrbäck, MII, s. 88)
+\end{definition}
+
+\begin{definition}
+    \textbf{Lebesguen ulkomitta} Funktio $m^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
+    $$m^*(A) = \inf\left\{\sum_{i=1}^\infty v(I_i) : I_i \in \mathcal K_n \text{ ja } A \subset \bigcup_{i=1}^{\infty}I_i\right\} \text{ kaikille } A \subset \R^n$$
+\end{definition}
+
+\begin{definition}
+    \textbf{Lebesgue-mitalliset joukot} Joukko $A\subset \R^n$ on \textit{Lebesgue-mitallinen}, jos kaikille $E\subset \R^n$ pätee
+    $$m^*(E) = m^*(E \backslash A) + m^*(E\cap A)$$
+    Kaikkien avaruuden $\R^n$ Lebesgue-mitallisten joukkojen kokoelmaa merkitään 
+    $$\mathcal M = \mathcal M_n = \left\{A\subset \R^n \colon A \text{ on Lebesgue-mitallinen} \right\}.$$
+    (Lehrbäck, MII, s. 27)
+\end{definition}
+
+\begin{definition}
+    \textbf{Lebesguen mitta} Funktio $m : \mathcal M \to \R^+$ on \textit{Lebesguen mitta} kun määritellään
+    $$m(A) = m^*(A) \text{ kaikille } A\subset \mathcal M.$$
+\end{definition}
+
+\subsection{HATARALLA POHJALLA:}
+\begin{definition}
+L-ääretön, L-infinity:
+    \[L^\infty (A) = \{f:A\to X | ||f||_\infty < \infty\}\] 
+    \[||f||_\infty = \sup_{x\in A} ||f(x)||_{\R^n}\]
+\end{definition}
+
+
 
 \begin{definition}
     todennäköisyysmitta
 \end{definition}
 
-\subsection{Hataralla pohjalla:}
+
 \begin{definition}
-L-ääretön, L-infinity:
-    \[L^\infty (A) = \{f:A\to X: ||f||_\infty < \infty\}\] 
-    \[||f||_\infty = \sup_{x\in A} ||f(x)||_{\R^n}\]
-\end{definition}
-\begin{definition}
-    1-Lipschitz-kuvaus
+    Caratheodoryn funktio
 \end{definition}
 
 
+
 \begin{definition}
-    Borelin $\sigma$-algebra
+    funktion mitallisuus
 \end{definition}
 
 \begin{definition}
-    metrinen avaruus
+    heikko suppeneminen
 \end{definition}
 
+
+\begin{definition}
+    \textbf{metrinen avaruus} Olkoon $M$ joukko ja $d$ etäisyys joukossa $M$. Tällöin pari $(M, d)$ on \textit{metrinen avaruus}, merkitään $M = (M, d)$.
+\end{definition}
+
+\begin{definition}
+    \textbf{peite, osapeite} Olkoon $I$ indeksijoukko. Avointen joukkojen kokoelma $\{U_i \colon i \in I\}$ metrisessä avaruudessa $M$ on 
+\end{definition}
+
+\begin{definition}
+    \textbf{kompakti metrinen avaruus} Metrinen avaruus $M$ on \textit{kompakti}, jos jokaisella avaruuden $M$ avoimella peitteellä on äärellinen osapeite.
+\end{definition}
 \begin{definition}
     todennäköisyysavaruus
 \end{definition}
 
+
+\begin{definition}
+    esikompakti
+\end{definition}
+
 \begin{theorem}
-    Skorokhodin lause: Olkoon (K, d) \what{esikompakti} metrinen avaruus ja $\mu$ todennäköisyysmitta joukossa $K$. Tällöin on olemassa parametrisaatio $\chi$ mitalle $\mu$.
+    Skorokhodin lause: Olkoon (K, d) esikompakti metrinen avaruus ja $\mu$ todennäköisyysmitta joukossa $K$. Tällöin on olemassa mitta $\chi$ jolla  $\mu$ voidaan kirjoittaa muodossa
+    $$ \mu = \chi_\# \lambda. $$
+    Sanotaan, että $\chi$ on mitan $\mu$ parametrisaatio.
 \end{theorem}
 \begin{proof}
 Bernot, Caselles: Optimal transportation networks s.185
