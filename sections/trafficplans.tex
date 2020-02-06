@@ -9,26 +9,28 @@ Merkitään
     \item $X$ kompakti, konveksi $R^n$ osajoukko, $X \subset R^n$.
     \item $|A|$ Mitallisen joukon $A\subset \R$ Lebesgue-mitta.
     \item $K$ Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. 
+    \item $\mathcal{P}(E)$ joukon $E$ osajoukkojen kokoelmaa
 \end{itemize}
 \hrule
 
 
 \begin{definition}
     Määritellään etäisyys joukossa $K$ siten, että
-    \[d(\gamma, \gamma') = \sup \frac{1}{k}||\gamma - \gamma||_{L^\infty([0,k])}\]
+    \[d(\gamma, \gamma') = \sup_k \frac{1}{k}||\gamma - \gamma||_{L^\infty([0,k])}\]
 \end{definition}
 
 \begin{definition}
     Määritellään polun $\gamma \in K$ pysähtymisajaksi 
     \begin{equation*}
-        T(\gamma) = \inf\{t\ge0:\gamma \text{ vakio välillä } [0,\infty[ \}
+        T(\gamma) = \inf\{t\ge0:\gamma \text{ vakio välillä } [t,\infty[ \}
     \end{equation*}
     ja pituudeksi $L(\gamma)$ polun pituus välillä $[0, T(\gamma)]$ eli
      \begin{equation*}
          L(\gamma) = \int_0^{T(\gamma)}|\gamma'(t)|\, \dt.
      \end{equation*}
-    
 \end{definition}
+
+Pysähtymisajalla kuvastetaan luonnollisesti sitä, mistä parametrin arvosta $t$ lähtien polku $\gamma$ pysyy paikoillaan. 
 
 \begin{definition}\label{def:liikennesuunnitelma}
     Mitta $\P: K \to \R^+$ avaruudessa  $(K, \Borel)$ on \textbf{liikennesuunnitelma}, jos
@@ -67,12 +69,12 @@ Merkitään
     Kaikille Borelin joukoille $A, B \subset K$ pätee
     \begin{align*}
         \mu^+(\P)(A) &= \P(\pi_0^{-1}(A)) = \P(\{\gamma \in K : \gamma(0) \in A\}) \\
-        \mu^-(\P)(B) &= \P(\pi_0^{-1}(B)) = \P(\{\gamma \in K : \gamma(\infty) \in B\}) \\
+        \mu^-(\P)(B) &= \P(\pi_\infty^{-1}(B)) = \P(\{\gamma \in K : \gamma(\infty) \in B\}) \\
         \pi(\P)(A\times B) &= \P(\pi(A\times B)) = \P(\{\gamma \in K: \gamma(0) \in A\text{ ja } \gamma(\infty) \in B)\}
     \end{align*}
 \end{remark}
 
-Liikennesuunnitelman irrigoiva mitta kuvastaa mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma sisältää tiedon siitä minne mikäkin massa lähetetään.
+Liikennesuunnitelman irrigoiva mitta on mitta sille joukolle, mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma sisältää tiedon siitä minne mikäkin massa lähetetään.
 
 \subsection{Parametrisoidut liikennesuunnitelmat}
  
@@ -114,22 +116,35 @@ Funktion $\chi$ pysähdysaika määritellään vastaavasti, kuten liikennesuunni
     \end{itemize}
 \end{definition}
 
+\begin{theorem}\label{thm:push-cov}
+    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen kuvaus $f: X_1 \to X_2$ ja mitta $\mu:\Sigma_1 \to [0, \infty]$. \what{Mikä on g?} Tällöin
+    
+    \begin{equation*}
+        \int_{X_2} g \, d(f_{\#} \mu) = \int_{X_1} g \circ f \, d\mu.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+LÄHDE?
+\end{proof}
+
 \begin{theorem}
     Olkoon $\chi : \Omega \times \R^+ \to X$ parametrisoitu liikennesuunnitelma.
-    Määritellään mitta $\P_\chi : K \to \Omega$ siten, että \[\P_\chi (E) = \lambda(\chi^{-1}(E)|)\] jokaiselle Borelin joukolle $E\subset K$. 
+    Määritellään mitta $\P_\chi : K \to \Omega$ siten, että \[\P_\chi (E) = \lambda(\chi^{-1}(E))\] jokaiselle Borelin joukolle $E\subset K$. 
     Tällöin $\P_\chi$ on \textit{liikennesuunnitelma}. 
 \end{theorem}
 
 \begin{proof}
 Osoitetaan, että $P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma}.
 \begin{align*}
-    \int_K T(\gamma)\, d\P_\chi(\gamma) &= \int_K T(\chi(\omega))\, d\P_\chi(\chi(\omega)) \\
-    &= \int_K T_\chi(\omega) \, d(\chi_\# \lambda(\omega)) \\
-    &= \int_\Omega T_\chi(\omega)(\chi) \, d\lambda(\omega) \\
-    &= \int_\Omega T_\chi(\omega)(\chi) \, d\omega \\
+    \int_K T(\gamma)\, d\P_\chi(\gamma) = &\int_K T(\chi(\omega))\, d\P_\chi(\chi(\omega)) \\
+    =& \int_K T_\chi(\omega) \, d(\chi_\# \lambda(\omega)) \\
+    \stackrel{\ref{thm:push-cov}}{=}& \int_\Omega T_\chi(\omega)(\chi) \, d\lambda(\omega) \\
+    =& \int_\Omega T_\chi(\omega)(\chi) \, d\omega. 
 \end{align*}
 
 \end{proof}
+
+
 
 \subsection{Liikennesuunnitelmien \what{stabiliteetti}}
 \begin{definition}
@@ -137,7 +152,7 @@ Osoitetaan, että $P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma
     $$\P_n \rightharpoonup \P \text{ (suppenee heikosti)},$$
     $$ \chi_n (\omega) \to  \chi (\omega) \text{ joukossa } K \text{ melkein kaikille } \omega
     \in \Omega,$$
-    missä $ \chi_n$ ja $ \chi$ ovat lauseen 2.19 mitalliset funktiot liikennesuunnitelmille $\P_n$ ja $\P$ vastaavassa järjestyksessä.
+    missä $ \chi_n$ ja $ \chi$ ovat Lauseen 2.19 mitalliset funktiot liikennesuunnitelmille $\P_n$ ja $\P$ vastaavassa järjestyksessä.
 \end{definition}
 
 \subsubsection{Pituuden, pysähdysajan, keskipituuden ja keskipysähdymisajan alhaalta puolijatkuvuus}
@@ -145,4 +160,81 @@ Osoitetaan, että $P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma
 \begin{lemma}
     Jokainen puolijatkuva funktio $f$ kompaktissa metrisessä avaruudessa on jatkuvien funktioiden kasvavan jonon raja-arvo.
 \end{lemma}
+
+\begin{lemma}
+    Olkoon $(\P_n)$ jono positiivisia mittoja kompaktissa metrisessä avaruudessa $K$ siten, että $\P_n \rightharpoonup \P$. Olkoon $\gamma \mapsto f(\gamma)$ alhaalta puolijatkuva funktio avaruudessa $K$. Tällöin
+    \begin{equation*}
+        \int_K f(\gamma) \, d\P(\gamma) \le \liminf_n \int_K f(\gamma) \, d\P_n(\gamma).
+    \end{equation*}
+\end{lemma}
+
+\begin{lemma}
+    Olkoon jono polkuja $\gamma_n \in K$ Jos jono $(\gamma_n)$ suppenee polkuun $\gamma \in K$ etäisyyden $d$ suhteen, niin
+    \begin{equation*}
+        T(\gamma) \le \liminf_n T(\gamma_n),
+    \end{equation*}
+    ja 
+    \begin{equation*}
+        L(\gamma) \le \liminf_n L(\gamma_n).
+    \end{equation*}
+\end{lemma}
+
+\begin{lemma}
+    Jos jono liikennesuunnitelmia $\P_n$ suppenee liikennesuunnitelmaan $\P$, niin 
+    \begin{equation*}
+        \int_K T(\gamma) \, d\P(\gamma) \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma),
+    \end{equation*}
+    ja
+    \begin{equation*}
+        \int_K L(\gamma) \, d\P(\gamma) \le \liminf_n \int_K L(\gamma) \, d\P_n(\gamma).
+    \end{equation*}
+\end{lemma}
+
+\subsection{Liikennesuunnitelman kertaluku ja liikennesuunnitelman ylhäältä puolijatkuvuus}
+
+\begin{definition}
+Olkoon $\chi : \Omega \times \R^+ \to X$ liikennesuunnitelman $\P$ parametrisaatio. Määritellään polkuluokka alkiolle $x\in \R^n$ liikennesuunnitelmassa $\chi$ joukkona
+\begin{equation*}
+    \Omega_x^\chi = \{\omega : x \in \chi(\omega, \R)\}.
+\end{equation*}
+ja alkion $x$ kertaluvuksi
+    \begin{equation*}
+        |x|_\chi = |\Omega_x^\chi| = |\P(\{\gamma : \exists t, \gamma(t) = x\}) = |x|_\P.
+    \end{equation*}
+\end{definition}
+
+Alkion $x\in \R^n$ polkuluokka sisältää ne kaikki säikeiden $\chi$ indeksit $\omega$, jotka kulkevat alkion $x$ kautta. Kertaluku kuvastaa taas sitä, kuinka useasti säie $\chi$ kulkee alkion $x$ kautta.
+
+\begin{theorem}
+    Olkoon $(\chi_n)$ jono liikennesuunnitelmia, jotka suppenevat liikennesuunnitelmaan $\chi$. Oletetaan, että $\int_\Omega T(\chi_n(\omega))\, d\omega \le C$ jollekin $C$. Tällöin melkein-kaikille $\omega$ pätee
+    \begin{equation*}
+        \limsup |\chi_n(\omega, t)|_{\chi_n} \le |\chi(\omega, t)|_\chi.
+    \end{equation*}
+\end{theorem}
+\begin{lemma}
+    Olkoon $\chi$ parametrisaatio liikennesuunnitelmalle $\P$. Tällöin funktio $x \mapsto |x|_\chi$ on ylhäältä puolijatkuva.
+\end{lemma}
+
+\begin{corollary}
+    Olkoon $\chi$ parametrisaatio liikennesuunnitelmalle $\P$. Tällöin funktio $(\omega, t) \mapsto |\chi(\omega, t)|_\chi$ on mitallinen.
+\end{corollary}
+
+\subsection{Liikennesuunnitelmien \what{sekventiaalinen} kompaktisuus}
+
+\begin{theorem}
+    Jos $(\P_n)$ on jono joukossa $TP_C$ siten että $\P_n \rightharpoonup \P$, niin $\pi_{\P_n} \to \pi_\P$.
+\end{theorem}
+
+\begin{theorem}
+Olkoon $(\P_n)$ rajoitettu jono liikennesuunnitelmia joukossa $TP_c$. Tällöin
+\begin{equation*}
+    \mu^+(\P_n) \rightharpoonup \mu^+(\P), \ \mu^-(\P_n) \rightharpoonup \mu^-(\P) \text{ ja } \pi_{\P_n} \rightharpoonup \pi_\P.
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}
+    Olkoon $\pi$ mitta joukossa $X \times X$. Tällöin on olemassa liikennesuunnitelma $\P$ siten, että $\pi_\P = \pi$.
+\end{corollary}
+
+\section{Soveltaminen Monge-Kantorovich-ongelmaan}
 \end{document}

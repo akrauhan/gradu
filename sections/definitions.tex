@@ -34,7 +34,7 @@
 \end{definition}
 
 \begin{definition}
-    \textbf{Borelin joukko. }
+    \textbf{Borelin joukko:}
     Olkoon
     \[\Delta = \{A \subset \R^n : A \text{ on avoin joukko}\} \subset \mathcal{P}(\R^n) \]
     Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $\R^n$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
@@ -46,22 +46,22 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 
 
 \begin{definition}
-    \textbf{Borelin avaruus } Olkoon $X\subset \R^n$ joukko ja $\mathcal A$ sigma-algebra joukossa $X$. Tällöin pari $(X, A)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}. LÄHDE?
+    \textbf{Borelin avaruus:} Olkoon $X\subset \R^n$ joukko ja $\mathcal A$ sigma-algebra joukossa $X$. Tällöin pari $(X, A)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}. LÄHDE?
 \end{definition}
 
 \begin{definition}
-    \textbf{push-forward:} Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, merkitään
+    \textbf{Push-forward:} Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, merkitään
     $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
 \end{definition}
 
 \begin{definition}
-    \textbf{alhaalta puolijatkuvuus} Olkoon $X\subset \R^n$. Funktio $f: X \to \R \cup\{-\infty, \infty\}$ on \textit{alhaalta puolijatkuva} pisteessä $x_0$ jos 
-    $$\lim_{x\to x_0} \inf f(x) \ge f(x_0).$$
+    \textbf{Alhaalta puolijatkuvuus:} Olkoon $X\subset \R^n$. Funktio $f: X \to \R \cup\{-\infty, \infty\}$ on \textit{alhaalta puolijatkuva} pisteessä $x_0$ jos 
+    $$\liminf_{x\to x_0}  f(x) \ge f(x_0).$$
 \end{definition}
 
 \begin{definition}
-    \textbf{1-Lipschitz-kuvaus} Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
-    $$d_Y(f(x_1),f(x_2)) \le Kd_Y(x_1,x_2).$$
+    \textbf{1-Lipschitz-kuvaus:} Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
+    $$d_y(f(x_1),f(x_2)) \le Kd_x(x_1,x_2).$$
     Funktio on \textit{1-Lipschitz}, jos funktio on Lipschitz-jatkuva vakiolla $K=1$.
 \end{definition}
 
@@ -80,12 +80,19 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 \end{definition}
 
 \begin{definition}
-    \textbf{Lebesguen ulkomitta} Funktio $m^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
+    \textbf{Funktion mitallisuus:} Olkoon $X$ joukko ja $\Gamma \subset \mathcal P (X)$ sigma-algebra. Olkoon $A\in \Gamma$. Funktio $f: A \to \R \bigcup\{-\infty, \infty\}$ on \textit{$\Gamma$-mitallinen}, jos kaikille $a \in \R$ pätee, että
+    \begin{equation*}
+        \{x \in A : f(x) > a\} = f^{-1}(]a, \infty]) \in \Gamma.
+    \end{equation*} (Lehrbäck MII, s. 110)
+\end{definition}
+
+\begin{definition}
+    \textbf{Lebesguen ulkomitta:} Funktio $m^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
     $$m^*(A) = \inf\left\{\sum_{i=1}^\infty v(I_i) : I_i \in \mathcal K_n \text{ ja } A \subset \bigcup_{i=1}^{\infty}I_i\right\} \text{ kaikille } A \subset \R^n$$
 \end{definition}
 
 \begin{definition}
-    \textbf{Lebesgue-mitalliset joukot} Joukko $A\subset \R^n$ on \textit{Lebesgue-mitallinen}, jos kaikille $E\subset \R^n$ pätee
+    \textbf{Lebesgue-mitalliset joukot:} Joukko $A\subset \R^n$ on \textit{Lebesgue-mitallinen}, jos kaikille $E\subset \R^n$ pätee
     $$m^*(E) = m^*(E \backslash A) + m^*(E\cap A)$$
     Kaikkien avaruuden $\R^n$ Lebesgue-mitallisten joukkojen kokoelmaa merkitään 
     $$\mathcal M = \mathcal M_n = \left\{A\subset \R^n \colon A \text{ on Lebesgue-mitallinen} \right\}.$$
@@ -100,8 +107,8 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 \subsection{HATARALLA POHJALLA:}
 \begin{definition}
 L-ääretön, L-infinity:
-    \[L^\infty (A) = \{f:A\to X | ||f||_\infty < \infty\}\] 
-    \[||f||_\infty = \sup_{x\in A} ||f(x)||_{\R^n}\]
+    \[L^\infty (A) = \{f:A\to X ;  ||f||_\infty < \infty\}\] 
+    \[||f||_\infty = \esssup_{x\in A} ||f(x)||_{\R^n}\]
 \end{definition}
 
 
@@ -117,9 +124,7 @@ L-ääretön, L-infinity:
 
 
 
-\begin{definition}
-    funktion mitallisuus
-\end{definition}
+
 
 \begin{definition}
     heikko suppeneminen
