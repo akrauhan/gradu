@@ -1,13 +1,9 @@
-\documentclass[12pt,oneside,a4paper]{amsbook} % yksipuoleinen tulostus
-%\documentclass[12pt,twoside,a4paper]{amsbook} % kaksipuoleinen tulostus
-\input{sections/preamble.tex}
 \begin{document}
-\subfile{sections/coverpage} % Kansilehti ym. coverpagen sisällä
-\pagebreak
-%%%% Esitiedot
-\chapter{Esitiedot}
 
-\section{Metriset avaruudet}
+%%%% Esitiedot
+\section{esitiedot}
+
+\subsection{Metriset avaruudet}
 \begin{definition}
     \textbf{konveksi joukko:} Olkoon $S$ vektoriavaruus. Joukko $C \subset S$ on \textit{konveksi}, jos kaikille $x, y \in C$ pätee $l(x,y) \subset C$, kun merkitään $l(x,y)$ janan pisteitä pisteestä $x$ pisteeseen $y$.
 \end{definition}
@@ -35,19 +31,7 @@
     (Lehrbäck, MII, s. 86)
 \end{definition}
 
-\begin{definition}
-    \textbf{peite, osapeite} Olkoon $I$ indeksijoukko. Avointen joukkojen kokoelma $\{U_i \colon i \in I\}$ metrisessä avaruudessa $M$ on 
-\end{definition}
-
-\begin{definition}
-    \textbf{kompakti metrinen avaruus} Metrinen avaruus $M$ on \textit{kompakti}, jos jokaisella avaruuden $M$ avoimella peitteellä on äärellinen osapeite.
-\end{definition}
-
-\begin{definition}
-    esikompakti
-\end{definition}
-
-\section{Mittateoriaa}
+\subsection{Mittateoriaa}
 
 \begin{definition}
     \textbf{Joukkoperheen virittämä sigma-algebra. } Olkoon $X$ joukko ja olkoon $\Delta \subset 2^X$. Tällöin 
@@ -141,7 +125,7 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
     $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
 \end{definition}
 
-\section{Puolijatkuvuus ja Lipschitz-jatkuvuus}
+\subsection{Puolijatkuvuus ja Lipschitz-jatkuvuus}
 
 \begin{definition}
     \textbf{Alhaalta puolijatkuvuus:} Olkoon $X\subset \R^n$. Funktio $f: X \to \R \cup\{-\infty, \infty\}$ on \textit{alhaalta puolijatkuva} pisteessä $x_0$ jos 
@@ -161,7 +145,7 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 
 
 
-\section{HATARALLA POHJALLA:}
+\subsection{HATARALLA POHJALLA:}
 \begin{definition}
 L-ääretön, L-infinity:
     \[L^\infty (A) = \{f:A\to X ;  ||f||_\infty < \infty\}\] 
@@ -179,6 +163,17 @@ L-ääretön, L-infinity:
 
 
 
+\begin{definition}
+    \textbf{peite, osapeite} Olkoon $I$ indeksijoukko. Avointen joukkojen kokoelma $\{U_i \colon i \in I\}$ metrisessä avaruudessa $M$ on 
+\end{definition}
+
+\begin{definition}
+    \textbf{kompakti metrinen avaruus} Metrinen avaruus $M$ on \textit{kompakti}, jos jokaisella avaruuden $M$ avoimella peitteellä on äärellinen osapeite.
+\end{definition}
+
+\begin{definition}
+    esikompakti
+\end{definition}
 
 \begin{theorem}
     Skorokhodin lause: Olkoon (K, d) esikompakti metrinen avaruus ja $\mu$ todennäköisyysmitta joukossa $K$. Tällöin on olemassa mitta $\chi$ jolla  $\mu$ voidaan kirjoittaa muodossa
@@ -190,7 +185,7 @@ Bernot, Caselles: Optimal transportation networks s.185
 \end{proof}
 
 %%%% Liikennesuunnitelmat
-\chapter{Liikennesuunnitelmat}
+\section{Liikennesuunnitelmat}
 
 \hrule $\color{white}{.}$ \\
 Merkitään 
@@ -288,7 +283,7 @@ Testaamalla näiden mittojen määritelmää sopiville joukoille, saadaan niist�
 Edellistä huomautusta tullaan käyttämään myöhemmin siirtymään joukkojen $X$ ja $K$ muodostamien metristen avaruuksien välillä.
 
 
-\section{Parametrisoidut liikennesuunnitelmat}
+\subsection{Parametrisoidut liikennesuunnitelmat}
 
 
  
@@ -364,7 +359,7 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
 
 
 
-\section{Liikennesuunnitelmien {stabiliteetti}}
+\subsection{Liikennesuunnitelmien {stabiliteetti}}
 Tässä kappaleessa perehdytään liikennesuunnitelmien heikkoon suppenemiseen, ja pysähtymisajan sekä pituuden puolijatkuvuuteen. Sovitaan ensin merkintä jatkuville funktioille, joiden kantaja on kompakti.
 \begin{definition}
     Olkoon funktio $f: A \to \R$, missä $A\subset \R^n$ Jos funktio $f$ on jatkuva joukossa $A$, niin merkitään $f \in C(A)$ tai $f \in C(A, \R)$. Jos lisäksi funktion $f$ kantaja on kompakti, merkitään $f \in C_c(A)$.
@@ -452,7 +447,7 @@ Lemmat \ref{le:fdPLeLiminf} ja \ref{le:pysahtymisajan&pituudenLSC} yhdistämäll
     \end{equation*}
 \end{corollary}
 
-\section{Liikennesuunnitelman kertaluku ja liikennesuunnitelman ylhäältä puolijatkuvuus}
+\subsection{Liikennesuunnitelman kertaluku ja liikennesuunnitelman ylhäältä puolijatkuvuus}
 
 \begin{definition}
 Olkoon $\chi : \Omega \times \R^+ \to X$ liikennesuunnitelman $\P$ parametrisaatio. Määritellään polkuluokka alkiolle $x\in \R^n$ liikennesuunnitelmassa $\chi$ joukkona
@@ -513,7 +508,7 @@ Alkion $x\in \R^n$ polkuluokka sisältää ne kaikki säikeiden $\chi$ indeksit 
     Olkoon $\chi$ parametrisaatio liikennesuunnitelmalle $\P$. Tällöin funktio $(\omega, t) \mapsto |\chi(\omega, t)|_\chi$ on mitallinen.
 \end{corollary}
 
-\section{Liikennesuunnitelmien jonokompaktisuus}
+\subsection{Liikennesuunnitelmien jonokompaktisuus}
 
 \begin{theorem}\label{le:tfPlanWeakConv}
     Jos $(\P_n)$ on jono joukossa $TP_C$ siten että $\P_n \rightharpoonup \P$, niin $\pi(\P_n) \rightharpoonup \pi(\P)$. Lisäksi 
@@ -597,7 +592,7 @@ Koska $\phi$ on mielivaltainen funktio ja $\varepsilon > 0$, niin $\pi_{\P_n} \r
     Olkoon $\pi$ mitta joukossa $X \times X$. Tällöin on olemassa liikennesuunnitelma $\P$ siten, että $\pi_\P = \pi$.
 \end{corollary}
 
-\chapter{Liikennesuunnitelman energia ja sen minimoijan olemassaolo}
+\section{Liikennesuunnitelman energia ja sen minimoijan olemassaolo}
  Sovitaan, että $0^{\alpha - 1} = \infty$, kun $\alpha \in [0, 1]$.
 
 \begin{definition}\label{def:energyOfP}
@@ -817,11 +812,4 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     joten liikennesuunnitelma $\P$ on energian $\E^\alpha$ minimoija.
 \end{proof}
 
-
-
-\subfile{sections/references}
 \end{document}
-
-%\chapter{Liikennesuunnitelmat}
-%\subfile{sections/definitions} 
-%\subfile{sections/trafficplans}

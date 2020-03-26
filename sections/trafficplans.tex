@@ -9,20 +9,28 @@ Merkitään
     \item $X$ kompakti, konveksi $R^n$ osajoukko, $X \subset R^n$.
     \item $|A|$ Mitallisen joukon $A\subset \R$ Lebesgue-mitta.
     \item $K$ Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. 
-    \item $\mathcal{P}(E)$ joukon $E$ osajoukkojen kokoelmaa, VAIHDA
+    \item $2^E$ joukon $E$ osajoukkojen kokoelmaa
 \end{itemize}
 \hrule
 
+\begin{definition}
+    Olkoon funktio $f:A \to \R$, missä $A\subset \R^n$. Funktion $f$ kantaja $\supp(f)$ on funktion $f$ määrittelyjoukon osajoukko, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
+    \begin{equation*}
+        \supp(f) = \{x \in X | f(x) \ne 0\}.
+    \end{equation*}
+\end{definition}
+
+Tässä tutkielmassa rajoitettaan tarkasteltavien polkujen joukon 1-Lipschitz-kuvauksiin, jotka kuvautuvat johonkin konveksiin $\R^n$ osajoukkoon $X$.\whytho{miksi?} Merkitään kaikkien tällaisten 1-Lipschitz kuvauksien $\gamma: \Rp \to X$  joukkoa $K$. 
 
 \begin{definition}
     Määritellään etäisyys joukossa $K$ siten, että
-    \[d(\gamma, \gamma') = \sup_k \frac{1}{k}||\gamma - \gamma||_{L^\infty([0,k])}\]
+    \[d(\gamma, \gamma') = \sup_k \frac{1}{k}||\gamma - \gamma'||_{L^\infty([0,k])}\]
 \end{definition}
 
 \begin{definition}
     Määritellään polun $\gamma \in K$ pysähtymisajaksi 
     \begin{equation*}
-        T(\gamma) = \inf\{t\ge0:\gamma \text{ vakio välillä } [t,\infty[ \}
+        T(\gamma) = \inf\{t\ge0:\gamma(t) \text{ vakio välillä } [t,\infty[ \}
     \end{equation*}
     ja pituudeksi $L(\gamma)$ polun pituus välillä $[0, T(\gamma)]$ eli
      \begin{equation*}
@@ -30,16 +38,18 @@ Merkitään
      \end{equation*}
 \end{definition}
 
-Polun pysähtymisaika kuvastaa sitä, mistä parametrin arvosta $t$ lähtien polun $\gamma$ pisteet pysyvät paikallaan. On järkevää rajoittaa tarkastelu sellaisiin polkuihin, jotka päättyvät jossakin kohtaa.
+Polun pysähtymisaika kuvastaa sitä, mistä parametrin arvosta $t$ lähtien polun $\gamma$ pisteet pysyvät paikallaan. Massansiirron näkökulmasta, mikäli polkua $\gamma$ pitkin siirretään massaa, sen kuljetukseen kestää aikaa $T(\gamma)$ verran. Avaruudessa $K$ on luonnollisesti polkuja, jotka ovat äärettömän pitkiä tai eivät muuten pysähdy. Määritellään tämä mielessä pitäen liikennesuunnitelma, joka painottaa polkuja siten, että pysähtymättömät polut eivät näy tarkastelussa.
 
 \begin{definition}\label{def:liikennesuunnitelma}
-    Mitta $\P: K \to \R^+$ avaruudessa  $(K, \Borel)$ on \textbf{liikennesuunnitelma}, jos
+    Mitta $\P: K \to \R^+$ joukossa $K$ on \textbf{liikennesuunnitelma}, jos
     \begin{equation*}
      \int_K T(\gamma) \, \d \P (\gamma) < \infty.   
     \end{equation*}
+    Merkitään lisäksi joukon $X$ liikennesuunnitelmien kokoelmaa $TP(X)$.  \\ \whytho{Onko tässä X vain joukko vai aiemmin mainittu kompakti Rn osajoukko?}
 \end{definition}
 
-Liikennesuunnitelman määritelmä sallii, että $\P$-nollamittainen joukko polkuja $\gamma$ on pituudeltaan äärettömiä, eli joille $T(\gamma) = \infty$.
+Liikennesuunnitelman määritelmä sallii, että $\P$-nollamittainen
+joukko polkuja $\gamma$ on pysähtymisajaltaan äärettömiä, eli joille $T(\gamma) = \infty$. Otetaan myös käyttöön jatkon kannalta määritelmä 
 
 \begin{definition}
     Olkoon $\P$ liikennesuunnitelma. Merkitään joukon $X$ kaikkia liikennesuunnitelmia $TP = TP(X)$, ja $TP_C = TP_C(X)$ kaikkia joukon $X$ liikennesuunitelmia $\P$ joille
@@ -48,35 +58,35 @@ Liikennesuunnitelman määritelmä sallii, että $\P$-nollamittainen joukko polk
     \end{equation*}
 \end{definition}
 
+Otetaan käyttöön kuvaukset, jotka palauttavat polun lähtöpisteen, päätepisteen ja näistä pisteistä muodostetun parin.
+
 \begin{definition}
     Olkoon $\pi_0, \pi_\infty: K\to X$ ja $\pi:K\to X \times X$ kuvauksia, jotka määritellään polulle $\gamma \in K$ siten, että 
     \begin{align*}
-        \pi_0(\gamma) &= \gamma(0) &&\Big| \text{ Polun lähtöpiste. }\\
-        \pi_\infty(\gamma) &= \gamma(T(\gamma)) &&\Big| \text{ Polun päätepiste. }\\
-        \pi(\gamma) &= (\gamma(0), \gamma(T(\gamma)) &&\Big| \text{ Polun lähtöpiste ja päätepiste. }
+        \pi_0(\gamma) &= \gamma(0), &&\Big| \text{ Polun lähtöpiste. }\\
+        \pi_\infty(\gamma) &= \gamma(T(\gamma)), &&\Big| \text{ Polun päätepiste. }\\
+        \pi(\gamma) &= (\gamma(0), \gamma(T(\gamma)). &&\Big| \text{ Polun lähtöpiste ja päätepiste. }
     \end{align*}
 \end{definition}
+
+\whytho{Entä jos $T(\gamma) = \infty?$}
+
+Näiden kuvausten avulla voidaan määritellä mitat, jotka toimivat massojen mallintamisessa. Massa, joka halutaan siirtää, tullaan mallintamaan niin kutsutulla irrigoivalla mitalla, kun taas massa joka on jo siirretty mallinnetaan vastaavasti irrigoidulla mitalla. Näiden lisäksi määritellään siirtosuunnitelma, joka sisältää tiedon siitä, minne mikäkin massa halutaan siirtää.
 
 \begin{definition}
     Olkoon $\P$ liikennesuunnitelma. Määritellään mitat $\mu^+, \mu^- : X \to \mathbf{R}_+$ ja $\pi: X\times X \to \mathbf{R}_+$ siten, että
     \begin{align*}
-        \mu^+(\P) &= \pi_{0\#} \P  &&\Big| \text{ Irrigoiva mitta, \textit{irrigating measure} }\\
-        \mu^-(\P) &= \pi_{\infty \#} \P  &&\Big| \text{ Irrigoitu mitta, \textit{irrigating measure} }\\
-        \pi(\P) &= \pi_\# \P  &&\Big| \text{ Siirtosuunnitelma liikennesuunnitelmalle $\P$,}\\ 
+        \mu^+(\P) &= \pi_{0\#} \P,  &&\Big| \text{ Irrigoiva mitta, \textit{irrigating measure} }\\
+        \mu^-(\P) &= \pi_{\infty \#} \P,  &&\Big| \text{ Irrigoitu mitta, \textit{irrigating measure} }\\
+        \pi(\P) &= \pi_\# \P,  &&\Big| \text{ Siirtosuunnitelma liikennesuunnitelmalle $\P$,}\\ 
         & &&\hphantom{\Big|} \text{ \textit{transference plan of $\P$}}
     \end{align*}
 \end{definition}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.8]{graphics/irrigoiva-ja-irrigoitu-mitta.png}
-    \caption{Havainnollistus sovituista merkinnöistä.\todo{Merkittävä mitan $\mu^+$ support}, eli joukko, missä mitta saa aidosti positiivisia arvoja.}
-    \label{fig:my_label}
-\end{figure}
-
+Testaamalla näiden mittojen määritelmää sopiville joukoille, saadaan niistä parempi ymmärrys.
 
 \begin{remark}
-    Kaikille Borelin joukoille $A, B \subset K$ pätee
+    Kaikille Borelin joukoille $A, B \subset X$ pätee
     \begin{align*}
         \mu^+(\P)(A) &= \P(\pi_0^{-1}(A)) = \P(\{\gamma \in K : \gamma(0) \in A\}) \\
         \mu^-(\P)(B) &= \P(\pi_\infty^{-1}(B)) = \P(\{\gamma \in K : \gamma(\infty) \in B\}) \\
@@ -84,9 +94,12 @@ Liikennesuunnitelman määritelmä sallii, että $\P$-nollamittainen joukko polk
     \end{align*}
 \end{remark}
 
-Liikennesuunnitelman irrigoiva mitta on mitta sille joukolle, mistä massaa ollaan lähettämässä ja irrigoitu mitta mihin sitä ollaan lähettämässä. Liikennesuunnitelman siirtosuunnitelma sisältää tiedon siitä, minne minkäkin pisteen massa lähetetään.
+Edellistä huomautusta tullaan käyttämään myöhemmin siirtymään joukkojen $X$ ja $K$ muodostamien metristen avaruuksien välillä.
+
 
 \subsection{Parametrisoidut liikennesuunnitelmat}
+
+
  
 \begin{theorem}\label{thm:skorohkod}
     Olkoon $\P: K \to \R^+$ liikennesuunnitelma. Tällöin on olemassa mitallinen funktio $\chi: [0, c] \to K$ siten, että liikennesuunnitelma voidaan kirjoittaa muodossa $$\P =\chi_\# \lambda.$$
@@ -105,7 +118,7 @@ Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omeg
     Funktio $\chi: \Omega \times \R^+ \to X $ on mitallinen jos funktio $ \chi: \Omega \to K$ on mitallinen.
 \end{theorem}
 \begin{proof}
-Bernot, Caselles: Optimal transportation networks s.27 (joss.-versio)
+\cite[p. 27]{OptimalTransportationNetworks}(joss.-versio)
 \end{proof}
 Funktion $\chi$ pysähdysaika määritellään vastaavasti, kuten liikennesuunnitelman $\P$ pysähdysaika.
 \begin{definition}
@@ -129,6 +142,8 @@ Eritellään vielä käyttöön otetut merkinnät ja nimetään ne.
     \end{itemize}
 \end{definition}
 
+Osoitetaan vielä, että parametrisoidulla liikennesuunnitelmalla $\chi$ määritelty mitta $\chi_\#\lambda$ on myös liikennesuunnitelma. Tätä varten tarvitaan seuraavaa muuttujanvaihtolausetta.
+
 \begin{theorem}\label{thm:push-cov}
     Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen kuvaus $f: X_1 \to X_2$, mitta $\mu:\Sigma_1 \to [0, \infty]$\what{ja $g: X_2 \to \R^+$ integroituva}. Tällöin
     
@@ -142,36 +157,29 @@ LÄHDE?
 
 \begin{theorem}
     Olkoon $\chi : \Omega \times \R^+ \to X$ parametrisoitu liikennesuunnitelma.
-    Määritellään mitta $\P_\chi : K \to \Omega$ siten, että \[\P_\chi (E) = \lambda(\chi^{-1}(E)) = \chi_\#\lambda\] jokaiselle Borelin joukolle $E\subset K$. 
+    Määritellään mitta $\P_\chi : K \to \Omega$ siten, että \[\P_\chi (E) = \lambda(\chi^{-1}(E)) = \chi_\#\lambda(E)\] jokaiselle Borelin joukolle $E\subset K$. 
     Tällöin $\P_\chi$ on \textit{liikennesuunnitelma}. 
 \end{theorem}
 
 \begin{proof}
 Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma}.
 \begin{align*}
-    \int_K T(\gamma)\, d\P_\chi(\gamma) = &\int_K T(\chi(\omega))\, d\P_\chi(\chi(\omega)) \\
-    =& \int_K T_\chi(\omega) \, d(\chi_\# \lambda(\omega)) \\
-    \stackrel{\ref{thm:push-cov}}{=}& \int_\Omega T_\chi(\omega)(\chi) \, d\lambda(\omega) \\
+    \int_K T(\gamma)\, d\P_\chi(\gamma) =& \int_K T(\gamma) \, d(\chi_\# \lambda(\omega)) \\
+    \stackrel{\ref{thm:push-cov}}{=}& \int_\Omega T(\chi(\omega)) \, d\lambda(\omega) \\
     =& \int_\Omega T_\chi(\omega)(\chi) \, d\omega \stackrel{\ref{def:parameterizedTP}}{<} \infty.
 \end{align*}
-
+\whytho{Näytettävä, että $K$ ja $\Omega$ Borelin avaruuksia. Mistä saadaan sigma-algebrat?}
 \end{proof}
 
 
 
 \subsection{Liikennesuunnitelmien {stabiliteetti}}
-
-
-\begin{definition}
-    Olkoon funktio $f:A \to \R$, missä $A\subset \R^n$. Funktion $f$ kantaja $\supp(f)$ on funktion $f$ määrittelyjoukon osajoukko, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
-    \begin{equation*}
-        \supp(f) = \{x \in X | f(x) \ne 0\}.
-    \end{equation*}
-\end{definition}
-
+Tässä kappaleessa perehdytään liikennesuunnitelmien heikkoon suppenemiseen, ja pysähtymisajan sekä pituuden puolijatkuvuuteen. Sovitaan ensin merkintä jatkuville funktioille, joiden kantaja on kompakti.
 \begin{definition}
     Olkoon funktio $f: A \to \R$, missä $A\subset \R^n$ Jos funktio $f$ on jatkuva joukossa $A$, niin merkitään $f \in C(A)$ tai $f \in C(A, \R)$. Jos lisäksi funktion $f$ kantaja on kompakti, merkitään $f \in C_c(A)$.
 \end{definition}
+
+Liikennesuunnitelmista $\P_n$ muodostuvan jonon $(\P_n)$ heikko suppeneminen määritellään seuraavasti.
 
 \begin{definition} \label{def:weakConv}
     Olkoon $\P \in \mathcal{P}(X)$ liikennesuunnitelma metrisessä avaruudessa $(X, d)$. Liikennesuunnitelmien $\P_n \in \mathcal{P}(X)$ jono $(\P_n)$ suppenee heikosti, merkitään $\P_n \rightharpoonup \P$, jos pätee 
@@ -180,6 +188,8 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
     \end{equation*}
     kaikilla $f \in C_c(X)$.
 \end{definition}
+
+Liikennesuunnitelmien heikon suppenemisen määritelmä vastaa yleisen mitan heikon suppenemisen määritelmää. (LÄHDE?) Sovitaan vielä, mitä tarkoitetaan liikennesuunnitelmien suppenemisella.
 
 \begin{definition}
     Olkoon $\P_n$ jono liikennesuunnitelmia. Sanotaan, että jono $\P_n$ suppenee kohti liikennesuunnitelmaa $\P$, jos 
@@ -194,7 +204,6 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
 \begin{lemma}\label{le:LSCisLimitOfC-Functions}
     Jokainen alhaalta puolijatkuva funktio $f$ kompaktissa metrisessä avaruudessa on jatkuvien funktioiden kasvavan jonon raja-arvo.
 \end{lemma}
-
 \begin{proof}
     Todistus mukailee todistusta \cite[p. 30]{OptimalTransportationNetworks}. Olkoon $f:\R^n \to \R$ alhaalta puolijatkuva. Asetetaan $\displaystyle f_k(x) := \inf_y\{f(y) + kd(x,y)\}$. Tällöin $f_k$ on \whytho{jatkuva}. Lisäksi \whytho{$f_1 \le f_2 \le ... \le f$}.
     Olkoon $\varepsilon > 0$. Oletetaan, että $f \ge 0$. Koska $f$ on alhaalta puolijatkuva, on olemassa $\delta > 0$ siten, että $f(y) > f(x) - \varepsilon$ kaikilla $y \in B(x, \delta).$ ... (\url{https://math.stackexchange.com/questions/165764/lower-semicontinuous-function-as-the-limit-of-an-increasing-sequence-of-continuo})
@@ -206,7 +215,29 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
         \int_K f(\gamma) \, d\P(\gamma) \le \liminf_n \int_K f(\gamma) \, d\P_n(\gamma).
     \end{equation*}
 \end{lemma}
-
+\begin{proof}
+    Funktio $f$ on alhaalta puolijatkuva, joten Lemman \ref{le:LSCisLimitOfC-Functions} nojalla $f$ voidaan esittää jatkuvien funktioiden kasvavan jonon $(f_k)$ raja-arvona, jolloin kaikilla $k \in \N$ pätee $f_k(\gamma) \le f(\gamma)$, joten
+    \begin{equation*}
+        \liminf_n \int_K f_k(\gamma) \, d\P_n(\gamma) \le \liminf_n \int_K f(\gamma)\, d\P_n(\gamma).
+    \end{equation*}
+    Koska $\P_n \rightharpoonup \P$ ja $f_k$ on jatkuva kaikilla $k \in \N$, niin heikon suppenemisen Määritelmän \ref{def:weakConv} nojalla
+    \begin{equation*}
+        \int_K f_k(\gamma) \, d\P(\gamma) = \liminf_{n} \int_K f_k(\gamma)\, d\P_n(\gamma).
+    \end{equation*}
+    Yhdistämällä edelliset kaksi tulosta, saadaan epäyhtälö
+    \begin{equation*}\label{eq:mainThmMonoConv}
+        \int_K f_k(\gamma) \, d\P(\gamma) \le \liminf_n \int_K f(\gamma) \, d\P_n(\gamma).
+    \end{equation*}
+    Koska $(f_k)$ on kasvava mitallisten funktioiden jono, niin Monotonisen konvergenssin lauseen \ref{thm:monoConvThm} nojalla 
+    \begin{equation*}
+        \int_K f(\gamma) \, d\P(\gamma) = \lim_{k\to \infty}\int_K f_k(\gamma)\, d\P(\gamma) 
+    \end{equation*}
+    joten
+    \begin{equation*}
+        \int_K fT(\gamma) \, d\P(\gamma) = \lim_{k\to \infty}\int_K f_k(\gamma)\, d\P(\gamma)  \le \liminf_n \int_K f(\gamma) \, d\P_n(\gamma).
+    \end{equation*}
+\end{proof}
+Osoitetaan, että pysähtymisaika ja pituus ovat alhaalta puolijatkuvia.
 \begin{lemma}\label{le:pysahtymisajan&pituudenLSC}
     Olkoon jono polkuja $\gamma_n \in K$ Jos jono $(\gamma_n)$ suppenee polkuun $\gamma \in K$ etäisyyden $d$ suhteen, niin
     \begin{equation*}
@@ -218,7 +249,8 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
     \end{equation*}
 \end{lemma}
 
-\begin{lemma}
+Lemmat \ref{le:fdPLeLiminf} ja \ref{le:pysahtymisajan&pituudenLSC} yhdistämällä saadaan suoraan seuraava tulos.
+\begin{corollary}\label{le:keskipysahtymisajan&pituudenLSC}
     Jos jono liikennesuunnitelmia $\P_n$ suppenee liikennesuunnitelmaan $\P$, niin 
     \begin{equation*}
         \int_K T(\gamma) \, d\P(\gamma) \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma),
@@ -227,7 +259,7 @@ Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelm
     \begin{equation*}
         \int_K L(\gamma) \, d\P(\gamma) \le \liminf_n \int_K L(\gamma) \, d\P_n(\gamma).
     \end{equation*}
-\end{lemma}
+\end{corollary}
 
 \subsection{Liikennesuunnitelman kertaluku ja liikennesuunnitelman ylhäältä puolijatkuvuus}
 
@@ -324,7 +356,7 @@ Alkion $x\in \R^n$ polkuluokka sisältää ne kaikki säikeiden $\chi$ indeksit 
         &\le (M+1)d(\gamma_1, \gamma_2).
     \end{align*}
     Toisin sanoen, $F$ on $(M+1)$-Lipschitz-jatkuva.
-    Siispä $\gamma \mapsto \phi(\gamma(0), \gamma(M))$ on jatkuva. Osoitetaan, että tämä funktio toteuttaa heikon suppenemisen Määritelmän \ref{def:weakConv}. Merkitään $\pi(\P_n) = \pi_{\P_n}$ ja $\pi(\P) = \pi_\P$.  Koska siirtosuunnitelma on määritelty muodossa $\pi_{\P_n} = \pi_\#\P_n$, niin Muuttujanvaihtolauseen \ref{thm:push-cov} nojalla saadaan
+    Siispä $\gamma \mapsto \phi(\gamma(0), \gamma(M))$ on jatkuva. Osoitetaan tällä funktiolla, että heikon suppenemisen Määritelmä \ref{def:weakConv} toteutuu. Merkitään $\pi(\P_n) = \pi_{\P_n}$ ja $\pi(\P) = \pi_\P$.  Koska siirtosuunnitelma on määritelty muodossa $\pi_{\P_n} = \pi_\#\P_n$, niin Muuttujanvaihtolauseen \ref{thm:push-cov} nojalla saadaan
     \begin{align*}
         \limsup_{n\to\infty} \int_{X \times X} \phi(x, y) \, d\pi_{\P_n} (x, y) &= \limsup_{n\to\infty} \int_{K} \phi(\pi_{\P_n}(\gamma)) \, d\P_n (\gamma)  
     \end{align*}
@@ -575,26 +607,9 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     
     Koska liikennesuunnitelmat $\P_n'$ ovat kompaktin metrisen avaruuden $K$ todennäköisyysmittoja, niin Lauseen $\define{X}$ nojalla on olemassa jonon $(\P_n')$ osajono $(\P_n)$, joka suppenee heikosti johonkin avaruuden $K$ mittaan $\P$. Osoitetaan, että rajamitta $\P$ on liikennesuunnitelma.
     
-    Koska pysähdysaika ${T:K \to \Rp}$ on Lemman \ref{le:pysahtymisajan&pituudenLSC} mukaan alhaalta puolijatkuva, niin
-    Lemman \ref{le:LSCisLimitOfC-Functions} nojalla $T$ voidaan esittää jatkuvien funktioiden kasvavan jonon $(T_k)$ raja-arvona, jolloin kaikilla $k \in \N$ pätee $T_k(\gamma) \le T(\gamma)$, joten
+    Lemman \ref{le:pysahtymisajan&pituudenLSC} nojalla saadaan
     \begin{equation*}
-        \liminf_n \int_K T_k(\gamma) \, d\P_n(\gamma) \le \liminf_n \int_K T(\gamma)\, d\P_n(\gamma).
-    \end{equation*}
-    Koska $\P_n \rightharpoonup \P$ ja $T_k$ on jatkuva kaikilla $k \in \N$, niin
-    \begin{equation*}
-        \int_K T_k(\gamma) \, d\P(\gamma) = \liminf_{n} \int_K T_k(\gamma)\, d\P_n(\gamma).
-    \end{equation*}
-    Yhdistämällä edelliset kaksi tulosta, saadaan epäyhtälö
-    \begin{equation*}\label{eq:mainThmMonoConv}
-        \int_K T_k(\gamma) \, d\P(\gamma) \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma).
-    \end{equation*}
-    Koska $(T_k)$ on kasvava mitallisten funktioiden jono, niin Monotonisen konvergenssin lauseen \ref{thm:monoConvThm} nojalla 
-    \begin{equation*}
-        \int_K T(\gamma) \, d\P(\gamma) = \lim_{k\to \infty}\int_K T_k(\gamma)\, d\P(\gamma) 
-    \end{equation*}
-    joten
-    \begin{equation*}
-        \int_K T(\gamma) \, d\P(\gamma) = \lim_{k\to \infty}\int_K T_k(\gamma)\, d\P(\gamma)  \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma).
+       \lim_{k\to \infty}\int_K T_k(\gamma)\, d\P(\gamma)  \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma).
     \end{equation*}
     Polut ovat parametrisoituja pituuden mukaan, siispä {$T(\gamma) = L(\gamma)$}. Lemman \ref{le:nrgGeThanLength} nojalla epäyhtälön oikeaa puolta voidaan arvioida ylhäältäpäin, jolloin saadaan
     \begin{align*}
