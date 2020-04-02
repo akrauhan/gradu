@@ -1,0 +1,12 @@
+TODO:
+- Määritelmä:Pisteittäin rajoitettu
+- Lause 2.15
+	T:n mitallisuus (seuraa Lemma 3.20:sta. LSC -> mitallinen)
+- Lemma:
+	Jos funktio on LSC, on se mitallinen.
+	
+- Lemma 2.20
+	Todistus
+	
+- Lemma 2.10
+	Todistus
