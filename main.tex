@@ -2,17 +2,59 @@
 %\documentclass[12pt,twoside,a4paper]{amsbook} % kaksipuoleinen tulostus
 \input{sections/preamble.tex}
 \begin{document}
-\subfile{sections/coverpage} % Kansilehti ym. coverpagen sisällä
+% \subfile{sections/coverpage} % Kansilehti ym. coverpagen sisällä
 \pagebreak
 %%%% Esitiedot
 \chapter{Esitiedot}
 
+\section{Topologiset avaruudet}
+\begin{definition}
+    Topologinen avaruus on pari (X, T), missä $X$ on joukko ja $T$ on joukon $X$ osajoukkojen kokoelma, jonka alkioille pätee
+    \begin{enumerate}
+        \item $\displaystyle \emptyset \in T, X \in T$
+        \item $\displaystyle \{A_i : i\in I\} \subset T \implies \bigcup_{i \in I} A_i \in T$
+        \item $\displaystyle A, B \in T \implies A\cap B \in T$.
+    \end{enumerate}
+\end{definition}
+
+Merkitään $2^A$ joukon $A$ osajoukkojen kokoelmaa.
+
+\begin{definition}
+    \textbf{Sigma-algebra. } Olkoon $X$ joukko. Tällöin $\Gamma \subset 2^X$ on \textit{sigma-algebra}, joukossa $X$, jos $\Gamma$ toteuttaa seuraavat ominaisuudet:
+    \begin{enumerate}
+        \item $\emptyset \in \Gamma$ 
+        \item jos $A \in \Gamma$, niin $A^c \in \Gamma$
+        \item jos $A_1, A_2, ... \in \Gamma$, niin $\bigcup_{j=1}^\infty A_j \in \Gamma$ 
+    \end{enumerate}
+    (Lehrbäck, MII, s. 86)
+\end{definition}
+
+
+\begin{definition}
+    \textbf{Joukkoperheen virittämä sigma-algebra. } Olkoon $X$ joukko ja olkoon $\Delta \subset 2^X$. Tällöin 
+        $$ \Gamma_\Delta = \bigcap \{\Gamma : \Gamma \text{ on sigma-algebra joukossa } X \text{ ja }  \Delta \subset \Gamma \}$$ 
+    on joukkoperheen $\Delta$ \textit{virittämä} sigma-algebra joukossa $X$.
+    (Lehrbäck, MII, s. 86)
+\end{definition}
+
+\begin{definition}
+    \textbf{Borelin joukko:}
+    Olkoon $X$ topologinen avaruus, ja 
+    \[\Delta = \{A \subset X : A \text{ on avoin joukko}\} \subset 2^X \]
+    Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $X$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
+    (Lehrbäck, MII, s.87, muokattu)
+\end{definition}
+
+
+Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{suppein} avoimista joukoista koostuva joukon $X$ sigma-algebra, joka sisältää joukkoperheen $\Delta$.
+
+\begin{definition}
+    \textbf{Borelin avaruus:} Olkoon $X\subset \R^n$ joukko ja $\Gamma$ sigma-algebra joukossa $X$. Tällöin pari $(X, \Gamma)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}. LÄHDE?
+\end{definition}
+
 \section{Metriset avaruudet}
 \begin{definition}
-    \textbf{konveksi joukko:} Olkoon $S$ vektoriavaruus. Joukko $C \subset S$ on \textit{konveksi}, jos kaikille $x, y \in C$ pätee $l(x,y) \subset C$, kun merkitään $l(x,y)$ janan pisteitä pisteestä $x$ pisteeseen $y$.
-\end{definition}
-\begin{definition}
-    \textbf{etäisyys:} Joukon $X$ funktio $d: X\times X \to \R^+$ on \textit{etäisyys}, jos kaikilla $x, y, z \in X$ pätee
+    \textbf{etäisyys:} Joukon $X$ funktio $d: X\times X \to \R^+$ on \textit{etäisyys} joukossa $X$, jos kaikilla $x, y, z \in X$ pätee
     \begin{enumerate}
         \item $d(x,y) \ge 0$
         \item $d(x,y) = 0 \iff x = y$
@@ -26,45 +68,59 @@
 \end{definition}
 
 \begin{definition}
-    \textbf{Sigma-algebra. } Olkoon $X$ joukko. Tällöin $\Gamma \subset 2^X$ on \textit{sigma-algebra}, joukossa $X$, jos $\Gamma$ toteuttaa seuraavat ominaisuudet:
-    \begin{enumerate}
-        \item $\emptyset \in \Gamma$ 
-        \item jos $A \in \Gamma$, niin $A^c \in \Gamma$
-        \item jos $A_1, A_2, ... \in \Gamma$, niin $\bigcup_{j=1}^\infty A_j \in \Gamma$ 
-    \end{enumerate}
-    (Lehrbäck, MII, s. 86)
+    Jono $(p_n)$ metrisessä avaruudessa $M$ on \textit{Cauchyn jono}, jos kaikilla $\varepsilon > 0$ on olemassa $N\in \mathbf{\N}$ siten, että $d(p_n, p_m) < \varepsilon$ jos $n, m\ge N$. \cite[p.52]{principles}
+\end{definition}
+
+Täydelliseksi metriseksi avaruudeksi kutsutaan sellaista avaruutta, johon ei jää reikiä. Esimerkiksi reaalilukujen muodostama metrinen avaruus varustettuna tavallisella euklidisella normilla on täydellinen. Määritellään tarkasti, mitä tarkoittaa joukon täydellisyys. Motivaatio täydellisyyden määritelmään löytyy lähteestä \cite[p.54]{principles}.
+
+\begin{definition}
+    Metrinen avaruus on \textit{täydellinen}, jos avaruuden jokainen Cauchyn jono suppenee. 
+\end{definition} 
+
+\begin{definition}
+    \textbf{peite} Olkoon $I$ indeksijoukko. Joukkojen kokoelma $C = \{C_i \subset M \colon i \in I\}$ metrisessä avaruudessa $M$ on joukon $C \subset M$ peite, jos 
+    \begin{equation*}
+        A \subset \bigcup_{i\in I}C_i.
+    \end{equation*}
+    Peitteen $C$ osapeite on joukon $C$ osajoukko, joka edelleen peittää joukon $A$. Peite $C$ on avoin peite, jos peittämiseen käytetyt joukot $C_i$ ovat avoimia. 
 \end{definition}
 
 \begin{definition}
-    \textbf{peite, osapeite} Olkoon $I$ indeksijoukko. Avointen joukkojen kokoelma $\{U_i \colon i \in I\}$ metrisessä avaruudessa $M$ on 
+    \textbf{kompakti metrinen avaruus} Metrinen avaruus $M$ on \textit{kompakti}, jos jokaisella avaruuden $M$ avoimella peitteellä on äärellinen osapeite. 
 \end{definition}
 
 \begin{definition}
-    \textbf{kompakti metrinen avaruus} Metrinen avaruus $M$ on \textit{kompakti}, jos jokaisella avaruuden $M$ avoimella peitteellä on äärellinen osapeite.
+    Metrinen avaruus $M$ on \textit{täysin rajoitettu}, jos kaikilla $\varepsilon > 0$ on olemassa äärellinen kokoelma avoimia $\varepsilon$-säteisiä palloja avaruudessa $M$, joiden yhdiste sisältää avaruuden $M$.
 \end{definition}
 
 \begin{definition}
-    esikompakti
+Olkoon $X\subset \R^n$ ja $M$ metrinen avaruus. Funktion $f: X \to M$ sup-normi määritellään luvuksi
+\begin{equation*}
+    ||f||_\infty = \inf\{C \ge 0 : |f(x)| \le C \text{ melkein kaikilla } x\}.
+\end{equation*}
+Joukossa $A\subset M$ äärellisiä sup-normin arvoja saavien funktioiden avaruutta merkitään
+    \[L^\infty (A) = \{f:A\to M \colon  ||f||_\infty < \infty\}.\] 
 \end{definition}
+
+\begin{definition}
+    Olkoon $(M, d)$ metrinen avaruus ja $A \subset M$. Joukon $A$ halkaisija $\diam(A)$ määritellään supremumina
+    \begin{equation*}
+        \diam(A) = \sup\{d(x, y) : x,y \in A\}.
+    \end{equation*}
+\end{definition}
+
+
+
+
+\begin{theorem}\label{thm:compactness}
+    Jos metrinen avaruus $M$ on täysin rajoitettu ja täydellinen, niin se on kompakti.
+\end{theorem}
+\begin{proof}
+Todistus:
+    \url{https://math.stackexchange.com/questions/1883634/proofs-for-complete-totally-bounded-implies-compact/1889749}
+\end{proof}
 
 \section{Mittateoriaa}
-
-\begin{definition}
-    \textbf{Joukkoperheen virittämä sigma-algebra. } Olkoon $X$ joukko ja olkoon $\Delta \subset 2^X$. Tällöin 
-        $$ \Gamma_\Delta = \bigcap \{\Gamma : \Gamma \text{ on sigma-algebra joukossa } X \text{ ja }  \Delta \subset \Gamma \}$$ 
-    on joukkoperheen $\Delta$ \textit{virittämä} sigma-algebra joukossa $X$.
-    (Lehrbäck, MII, s. 86)
-\end{definition}
-
-\begin{definition}
-    \textbf{Borelin joukko:}
-    Olkoon
-    \[\Delta = \{A \subset \R^n : A \text{ on avoin joukko}\} \subset \mathcal{P}(\R^n) \]
-    Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $\R^n$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
-    (Lehrbäck, MII, s.87)
-\end{definition}
-
-Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{suppein} avoimista joukoista koostuva joukon $X$ sigma-algebra, joka sisältää joukkoperheen $\Delta$.
 
 \begin{definition}
     \textbf{Mitta} Oletetaan, että $X$ on joukko ja $\Gamma$ on $\sigma$-algebra joukossa $X$. Funktio $\mu : \Gamma \to [0, \infty]$ on \textit{mitta} (joukossa X tai $\sigma$-algebrassa $\Gamma$), jos 
@@ -81,10 +137,20 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 \end{definition}
 
 \begin{definition}
-    \textbf{Funktion mitallisuus:} Olkoon $X$ joukko ja $\Gamma \subset \mathcal P (X)$ sigma-algebra. Olkoon $A\in \Gamma$. Funktio $f: A \to \R \bigcup\{-\infty, \infty\}$ on \textit{$\Gamma$-mitallinen}, jos kaikille $a \in \R$ pätee, että
+    \textbf{Funktion mitallisuus:}Olkoon $(X, \Sigma)$ ja $(Y, \Gamma)$ metrisiä avaruuksia, missä $X$ ja $Y$ ovat joukkoja varustettuna sigma-algebroilla $\Sigma$ ja $\Gamma$. Funktio $f: X \to Y$ on mitallinen, jos kaikille $E\in \Gamma$ funktion $f$ alkukuva joukolle $E$ sisältyy kokoelmaan $\Sigma$, toisin sanoen kaikille $E \in \Gamma$
+    \begin{equation*}
+        f^{-1} = \{x \in X : f(x) \in E\} \in \Sigma.  
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+     Olkoon $X$ joukko ja $\Gamma \subset 2^X$ sigma-algebra. Olkoon $A\in \Gamma$. Funktio $f: A \to \R \bigcup\{-\infty, \infty\}$ on \textit{$\Gamma$-mitallinen}, jos kaikille $a \in \R$ pätee, että
     \begin{equation*}
         \{x \in A : f(x) > a\} = f^{-1}(]a, \infty]) \in \Gamma.
-    \end{equation*} (Lehrbäck MII, s. 110)
+    \end{equation*} 
+    Jos $\mu:\Gamma \to \Rp$ on mitta ja $f$ on $\Gamma$-mitallinen, sanotaan, että $f$ on $\mu$-mitallinen.
+    
+    (Lehrbäck MII, s. 110)
 \end{definition}
 
 \begin{theorem} \label{thm:monoConvThm}
@@ -101,7 +167,7 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
     \textbf{Lebesguen ulkomitta:} Funktio $m^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
     $$m^*(A) = \inf\left\{\sum_{i=1}^\infty v(I_i) : I_i \in \mathcal K_n \text{ ja } A \subset \bigcup_{i=1}^{\infty}I_i\right\} \text{ kaikille } A \subset \R^n$$
 \end{definition}
-
+\whytho{Päätä merkinnät: m tai $\lambda$}
 \begin{definition}
     \textbf{Lebesgue-mitalliset joukot:} Joukko $A\subset \R^n$ on \textit{Lebesgue-mitallinen}, jos kaikille $E\subset \R^n$ pätee
     $$m^*(E) = m^*(E \, \backslash \, A) + m^*(E\cap A)$$
@@ -111,13 +177,12 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 \end{definition}
 
 \begin{definition}
-    \textbf{Lebesguen mitta} Funktio $m : \mathcal M \to \R^+$ on \textit{Lebesguen mitta} kun määritellään
+    \textbf{Lebesguen mitta} Funktio $\lambda : \mathcal M \to \R^+$ on \textit{Lebesguen mitta} kun määritellään
     $$m(A) = m^*(A) \text{ kaikille } A\subset \mathcal M.$$
 \end{definition}
 
-
 \begin{definition}
-    Olkoon $\Sigma \sigma$-algebra joukossa $X$ ja $\mu:\Sigma \to [0,1]$ mitta joukossa $X$. Jos $\mu(X) = 1$, niin tällöin $\mu$ on \textit{todennäköisyysmitta} joukossa $X$, merkitään $\mu \in \mathcal{P}(X)$. 
+Olkoon $\Sigma$ sigma-algebra joukossa $X$ ja $\mu:\Sigma \to [0,1]$ mitta joukossa $X$. Jos $\mu(X) = 1$, niin tällöin $\mu$ on \textit{todennäköisyysmitta} joukossa $X$, merkitään $\mu \in \mathcal{P}(X)$. 
     Kolmikkoa $(X, \Gamma, \mu)$ kutsutaan tällöin \textit{todennäköisyysavaruudeksi}.
 \end{definition}
 
@@ -132,16 +197,26 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
     Todistus löytyy lähteestä \url{https://proofwiki.org/wiki/Markov%27s_Inequality}.
 \end{proof}
 
-\begin{definition}
-    \textbf{Borelin avaruus:} Olkoon $X\subset \R^n$ joukko ja $\mathcal \Sigma$ sigma-algebra joukossa $X$. Tällöin pari $(X, \Sigma)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}. LÄHDE?
-\end{definition}
 
 \begin{definition}
     \textbf{Push-forward:} Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, kun määritellään
     $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
 \end{definition}
 
-\section{Puolijatkuvuus ja Lipschitz-jatkuvuus}
+\subsection{Puolijatkuvuus ja Lipschitz-jatkuvuus}
+Olkoon $X$ ja $Y$ metrisiä avaruuksia.
+
+\begin{definition} \textbf{Jatkuvuus}. Merkitään jatkuvien funktioiden $f: X \to Y$ kokoelmaa $C(X, Y)$ tai $C(X)$.
+\end{definition}
+
+\begin{definition}
+Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in X$, jos kaikilla $\varepsilon > 0 $ on olemassa $\delta > 0$ siten, että $d(f(x_0), f(x)) < \varepsilon$ kaikille $f \in F$ ja kaikille $x \in X$ joille $d(x_0, x) < \delta $. Kokoelma $F$ on $tasajatkuva$, jos $F$ on tasajatkuva kaikilla $x \in X$.
+\end{definition}
+
+\begin{theorem}\label{thm:ascoli-arzela}
+    \textbf{Arzela-Ascoli:}
+    Olkoon $F \subset C(\Rp)$. Tällöin $F$ on täysin rajoitettu jos ja vain jos se on tasajatkuva ja \define{pisteittäin rajoitettu.}
+\end{theorem}
 
 \begin{definition}
     \textbf{Alhaalta puolijatkuvuus:} Olkoon $X\subset \R^n$. Funktio $f: X \to \R \cup\{-\infty, \infty\}$ on \textit{alhaalta puolijatkuva} pisteessä $x_0$ jos 
@@ -153,6 +228,10 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
     $$\limsup_{x\to x_0}  f(x) \le f(x_0).$$
 \end{definition}
 
+\begin{lemma}\label{le:LSCimpliesMeasurable}
+    Olkoon mitta $\mu: 2^X\to \Rp$. Jos funktio $f:X \to \Rp$ on alhaalta puolijatkuva, niin se on $\mu$-mitallinen.
+\end{lemma}
+
 \begin{definition}
     \textbf{1-Lipschitz-kuvaus:} Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{K-Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
     $$d_y(f(x_1),f(x_2)) \le Kd_x(x_1,x_2).$$
@@ -161,16 +240,7 @@ Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{
 
 
 
-\section{HATARALLA POHJALLA:}
-\begin{definition}
-L-ääretön, L-infinity:
-    \[L^\infty (A) = \{f:A\to X ;  ||f||_\infty < \infty\}\] 
-    \[||f||_\infty = \esssup_{x\in A} ||f(x)||_{\R^n}\]
-\end{definition}
-
-
-
-
+\section{Tarvitaanko / mihin kohtaan?}
 
 
 \begin{definition}
@@ -178,45 +248,78 @@ L-ääretön, L-infinity:
 \end{definition}
 
 
-
-
-\begin{theorem}
-    Skorokhodin lause: Olkoon (K, d) esikompakti metrinen avaruus ja $\mu$ todennäköisyysmitta joukossa $K$. Tällöin on olemassa mitta $\chi$ jolla  $\mu$ voidaan kirjoittaa muodossa
-    $$ \mu = \chi_\# \lambda. $$
-    Sanotaan, että $\chi$ on mitan $\mu$ parametrisaatio.
-\end{theorem}
-\begin{proof}
-Bernot, Caselles: Optimal transportation networks s.185
-\end{proof}
-
 %%%% Liikennesuunnitelmat
 \chapter{Liikennesuunnitelmat}
 
-\hrule $\color{white}{.}$ \\
-Merkitään 
-\begin{itemize}
-    \item $\mathcal{B}$ Borelin $\sigma$-algebra joukossa $K$
-    \item $\Omega = [0,|\Omega|]$, kaikkien säikeiden indeksijoukko. (Kirjan johdannossa valittu [0,1])
-    \item $X$ kompakti, konveksi $R^n$ osajoukko, $X \subset R^n$.
-    \item $|A|$ Mitallisen joukon $A\subset \R$ Lebesgue-mitta.
-    \item $K$ Merkitään kaikkien 1-Lipschitz kuvauksien $\gamma:\R^+ \to X$ joukkoa $K$. 
-    \item $2^E$ joukon $E$ osajoukkojen kokoelmaa
-\end{itemize}
-\hrule
+Tämän tutkielman tavoitteena on rakentaa massansiirtämiseen liittyvää teoriakehystä, pääosin niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Lopulta osoitetaan, että on olemassa liikennesuunnitelma, joka minimoi kuljetusongelman energian, joka määritellään myöhemmin. Aloitetaan rajaamalla tarkasteltavien kuljetusreittien eli polkujen avaruutta. 
 
-\begin{definition}
-    Olkoon funktio $f:A \to \R$, missä $A\subset \R^n$. Funktion $f$ kantaja $\supp(f)$ on funktion $f$ määrittelyjoukon osajoukko, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
-    \begin{equation*}
-        \supp(f) = \{x \in X | f(x) \ne 0\}.
-    \end{equation*}
-\end{definition}
-
-Tässä tutkielmassa rajoitettaan tarkasteltavien polkujen joukon 1-Lipschitz-kuvauksiin, jotka kuvautuvat johonkin konveksiin $\R^n$ osajoukkoon $X$.\whytho{miksi?} Merkitään kaikkien tällaisten 1-Lipschitz kuvauksien $\gamma: \Rp \to X$  joukkoa $K$. 
+Rajoitetaan tarkasteltavien polkujen joukko 1-Lipschitz-kuvauksiin, jotka kuvautuvat johonkin kompaktiin $\R^n$ osajoukkoon $X$. Merkitään kaikkien tällaisten 1-Lipschitz kuvauksien $\gamma: \Rp \to X$  joukkoa $K$. 
 
 \begin{definition}
     Määritellään etäisyys joukossa $K$ siten, että
-    \[d(\gamma, \gamma') = \sup_k \frac{1}{k}||\gamma - \gamma'||_{L^\infty([0,k])}\]
+    \[d(\gamma, \gamma') = \sup_k \frac{1}{k}||\gamma - \gamma'||_{L^\infty([0,k])}.\]
 \end{definition}
+
+\begin{lemma}\label{le:compactnessOfK}
+    Metrinen avaruus $(K, d)$ on kompakti.
+\end{lemma}
+\begin{proof}
+    Todistus mukailee lähdettä \cite[p.26]{OptimalTransportationNetworks}. \\
+    Osoitetaan väite todistamalla, että avaruus $K$ täydellinen ja täysin rajoitettu, jolloin Lauseesta $\ref{thm:compactness}$ seuraa kompaktius.
+    
+    Osoitetaan ensin, että avaruus $K$ on täydellinen, eli että kaikki avaruuden $K$ Cauchyn jonot suppenevat johonkin joukon $K$ alkioon. Olkoon $(\gamma_i)$ Cauchyn jono joukossa K ja $t\in \Rp$. Osoitetaan, että tällöin myös $(\gamma_i(t))$ on Cauchyn jono joukossa $X$. Olkoon kokonaisluku $k \ge t$. Koska $\gamma_i$ on Cauchyn jono, on kaikille $\varepsilon > 0$ olemassa $n \in \N$ siten, että $d(\gamma_i, \gamma_j) < \varepsilon$ jos $i, j \ge n$. Olkoon $\varepsilon > 0$. Tällöin on siis olemassa $n \in \N$, jolle
+    \begin{align*}
+        ||\gamma_i(t)-\gamma_j(t)|| &\le k\frac{1}{k} ||\gamma_i - \gamma_j||_{L^\infty{([0,k])}} \\ 
+        &\le k d(\gamma_i, \gamma_j) \le k\varepsilon
+    \end{align*}
+    kaikilla $i, j \ge n$. Siispä $(\gamma_i(t))$ on myös Cauchyn jono.
+    
+    Koska $X$ on täydellinen, suppenee Cauchyn jono $(\gamma_i(t))$ johonkin joukon $X$ alkioon $\gamma(t)$. Osoitetaan, että tällä tavoin määritelty $\gamma$ on 1-Lipschitz, jolloin $\gamma \in K$. Olkoon $t, s \in \Rp$. Koska $\gamma_i \to \gamma$, niin kaikille $\varepsilon > 0$ on olemassa $n\in \N$, jolloin
+    \begin{align*}
+        ||\gamma(t) - \gamma(s)|| &= ||\gamma(t) - \gamma_i(t) + \gamma_i(s) - \gamma(s) + \gamma_i(t) - \gamma_i(s)|| \\
+        &\le  ||\gamma(t) - \gamma_i(t)|| + ||\gamma_i(s) - \gamma(s)|| + ||\gamma_i(t) - \gamma_i(s)|| \\
+        &\le \varepsilon/2 + \varepsilon/2 + ||\gamma_i(t) - \gamma_i(s)||
+    \end{align*}
+    kaikilla $i \ge n$. Koska $\gamma_i$ on 1-Lipschitz, niin $||\gamma_i(t) - \gamma_i(s)|| = |t-s|$. Siispä
+    \begin{align*}
+        ||\gamma(t) - \gamma(s)|| &\le |t-s| + \varepsilon
+    \end{align*}
+    kaikilla $\varepsilon > 0$, joten kaikilla $t,s \in \Rp$
+    \begin{equation*}
+        ||\gamma(t)-\gamma(s)|| = |t-s|.
+    \end{equation*}
+    Siispä $\gamma$ on 1-Lipschitz, ja siten $\gamma \in K$, joten $K$ on täydellinen.
+    
+    Osoitetaan, että $K$ on täysin rajoitettu. Olkoon $\varepsilon > 0$. Asetetaan $k_0$ siten, että 
+    \begin{equation*}
+        \sup_{k\ge k_0} \left(\frac{1}{k}\text{ diam(X)}\right) < \frac{\varepsilon}{2}.
+    \end{equation*}
+    Olkoon joukko $K_{k_0} \subset K$, jonka polkujen pysähdysaika on pienempää kuin $k_0$, eli
+    \begin{equation*}
+        K_{k_0} = \{\gamma \in K : T(\gamma) \le k_0\}.
+    \end{equation*}
+    Osoitetaan seuraavaksi, että kaikki joukon $K$ alkiot ovat korkeintaan etäisyyden $\varepsilon/2$ päässä joukon $K_{k_0}$ alkioista.
+        Olkoon $\gamma \in K$. Määritellään $\tilde \gamma : \Rp \to X$,
+    \begin{equation*}
+        \tilde\gamma(t) = \begin{cases}
+            \gamma(t), &\text{ kun } 0 \le t \le k_0 \\
+            \gamma(k_0), &\text{ kun } t > k_0
+        \end{cases}.
+    \end{equation*}
+    Polku $\tilde\gamma$ on edelleen 1-Lipschitz-jatkuva, joten $\tilde\gamma \in K_{k_0}$ ja 
+    \begin{align*}
+        d(\gamma, \tilde\gamma) &= \sup_{k \in \N} \frac{1}{k}||\gamma - \gamma'||_{L^\infty[0, k]} \\
+        &\le \sup_{k \in \N} \left(\frac{1}{k}\text{ diam(X)}\right)\\
+        &= \sup_{k > k_0} \left(\frac{1}{k}\text{ diam(X)}\right) < \frac{\varepsilon}{2}.
+    \end{align*}
+    Siispä polulle $\gamma \in K$ löydetään aina polku $\tilde\gamma \in K_{k_0}$ joka on halutun etäisyyden päässä.
+    
+    Osoitetaan, että $K_{k_0}$ on täysin rajoitettu. Joukko $K_{k_0}$ on tasajatkuva 1-Lipschitz-jatkuvien funktioiden kokoelmana. Lisäksi kaikille $x\in \Rp$ joukko $\{f(x) : f \in K_{k_0}\}\subset X$ on rajoitettu, joten $K_{k_0}$ on \whytho{pisteittäin rajoitettu}. Siispä Lauseesta \ref{thm:ascoli-arzela} seuraa, että joukko $K_{k_0}$ on täysin rajoitettu avaruudessa $C([0, k_0], \R^N)$ varustettuna normilla $||\cdot ||_\infty$.
+    
+    Koska $K_{k_0}$ on täysin rajoitettu, on olemassa äärellinen kokoelma joukon $K_{k_0}$ $\varepsilon/2$-säteisiä palloja, joiden yhdiste sisältää joukon $K_{k_0}$. Tutkimalla $\varepsilon$-säteisten pallojen kokoelmaa, joiden keskukset ovat samat kuin edellisen $\varepsilon/2$-säteisten pallojen kokoelma, saadaan äärellinen kokoelma $\varepsilon$-säteisiä palloja, merkitään tämän kokoelma joukkojen yhdistettä $B$. Koska kaikki joukon $K$ alkiot ovat korkeintaan etäisyyden $\varepsilon/2$ päässä joukon $K_{k_0}$ alkioista, löydetään jokaiselle joukon $K$ alkiolle pallo, johon se sisältyy. Tällöin $K$ voidaan peittää pallojen yhdisteellä $B$. Siispä $K$ on täysin rajoitettu.
+    
+    Koska $K$ on täydellinen ja täysin rajoitettu, on se Lauseen \ref{thm:compactness} nojalla kompakti.
+    \end{proof}
 
 \begin{definition}
     Määritellään polun $\gamma \in K$ pysähtymisajaksi 
@@ -232,15 +335,15 @@ Tässä tutkielmassa rajoitettaan tarkasteltavien polkujen joukon 1-Lipschitz-ku
 Polun pysähtymisaika kuvastaa sitä, mistä parametrin arvosta $t$ lähtien polun $\gamma$ pisteet pysyvät paikallaan. Massansiirron näkökulmasta, mikäli polkua $\gamma$ pitkin siirretään massaa, sen kuljetukseen kestää aikaa $T(\gamma)$ verran. Avaruudessa $K$ on luonnollisesti polkuja, jotka ovat äärettömän pitkiä tai eivät muuten pysähdy. Määritellään tämä mielessä pitäen liikennesuunnitelma, joka painottaa polkuja siten, että pysähtymättömät polut eivät näy tarkastelussa.
 
 \begin{definition}\label{def:liikennesuunnitelma}
-    Mitta $\P: K \to \R^+$ joukossa $K$ on \textbf{liikennesuunnitelma}, jos
+    Mitta $\P: 2^K \to \R^+$ joukossa $K$ on \textbf{liikennesuunnitelma}, jos
     \begin{equation*}
      \int_K T(\gamma) \, \d \P (\gamma) < \infty.   
     \end{equation*}
-    Merkitään lisäksi joukon $X$ liikennesuunnitelmien kokoelmaa $TP(X)$.  \\ \whytho{Onko tässä X vain joukko vai aiemmin mainittu kompakti Rn osajoukko?}
+    Merkitään lisäksi joukon $X$ liikennesuunnitelmien kokoelmaa $TP(X)$. \whytho{Mutta $\P$ on mitta joukossa $X$...}
 \end{definition}
 
 Liikennesuunnitelman määritelmä sallii, että $\P$-nollamittainen
-joukko polkuja $\gamma$ on pysähtymisajaltaan äärettömiä, eli joille $T(\gamma) = \infty$. Otetaan myös käyttöön jatkon kannalta määritelmä 
+joukko polkuja $\gamma$ on pysähtymisajaltaan äärettömiä, eli joille $T(\gamma) = \infty$. 
 
 \begin{definition}
     Olkoon $\P$ liikennesuunnitelma. Merkitään joukon $X$ kaikkia liikennesuunnitelmia $TP = TP(X)$, ja $TP_C = TP_C(X)$ kaikkia joukon $X$ liikennesuunitelmia $\P$ joille
@@ -290,26 +393,54 @@ Edellistä huomautusta tullaan käyttämään myöhemmin siirtymään joukkojen 
 
 \section{Parametrisoidut liikennesuunnitelmat}
 
-
- 
 \begin{theorem}\label{thm:skorohkod}
     Olkoon $\P: K \to \R^+$ liikennesuunnitelma. Tällöin on olemassa mitallinen funktio $\chi: [0, c] \to K$ siten, että liikennesuunnitelma voidaan kirjoittaa muodossa $$\P =\chi_\# \lambda.$$
 \end{theorem}
 \begin{proof}
-    Lause seuraa Skorohkodin lauseesta, joka on todistettu lähteessä \cite[p. 185]{OptimalTransportationNetworks}.
+    Lause seuraa Skorohkodin lauseesta, joka on todistettu esitelty ja todistettu lähteessä \cite[p. 185]{OptimalTransportationNetworks}.
 \end{proof}
 Edellisen lauseen mukaan mikä tahansa liikennesuunnitelma $\P$ voidaan parametrisoida mitallisella funktiolla $ \chi: [0, c] \to K$ s. e. $\P = \chi_\# \lambda$, missä $\lambda$ on Lebesguen mitta välille $[0,c]$. 
 
 Funktio $ \chi:[0, c] \to K$ antaa siis jokaiselle välin $[0, c]$ luvulle 1-Lipschitz-polun joukosta $K$. 
 Merkitään jatkossa $\Omega = [0,c]$ ja kutsutaan väliä indeksijoukoksi. Polku $ \chi(\omega)$ vastaa siis indeksin $\omega$ hiukkasen reittiä.
 
-Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omega$ ja $t \in \R^+$. Jatkossa, kun käytetään merkintää $\chi(\omega, t)$, tarkoitetaan funktiota $\chi : \Omega \times \R^+ \to X$. Osoitetaan seuraavaksi, että myös näin määriteltynä $\chi$ on mitallinen funktio.
+Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omega$ ja $t \in \R^+$. Osoitetaan seuraavaksi, että myös näin määriteltynä on mitallinen funktio. Mitallisuuden osoittamiseksi esitellään seuraava Lemma.
 
-\begin{theorem}
-    Funktio $\chi: \Omega \times \R^+ \to X $ on mitallinen jos funktio $ \chi: \Omega \to K$ on mitallinen.
-\end{theorem}
+\begin{lemma}\label{le:caratheodoryIsMeasurable}
+    Olkoon $f:\Omega \times \Rp \to \R$ funktio, jolle
+    \begin{itemize}
+        \item $\omega \mapsto f(\omega, t)$  on mitallinen kaikilla $t \in \Rp$.
+        \item $t \mapsto f(\omega, t)$ on jatkuva kaikilla $\omega \in \Omega$
+    \end{itemize}
+    Tällöin $f$ on mitallinen sigma-algebran suhteen, joka saadaan tulona joukkojen $\Omega$ ja $\Rp$ Lebesgue-mitallisista osajoukkojen kokoelmista.
+\end{lemma}
 \begin{proof}
-\cite[p. 27]{OptimalTransportationNetworks}(joss.-versio)
+    Olkoon $\Qp = \Q \cap \Rp$ ja $a, b \in \Qp$. Määritellään kaikille $c > 0$ ja $\varepsilon$ joukot 
+    \begin{align*}
+        U &= \{(\omega, t) \in \Omega\times \Rp : f(\omega, t) > c,\} \\
+        V_\varepsilon(a, b) &= \{\omega \in \Omega : f(\omega, s) > c + \varepsilon \text{ kaikilla } s \in [a,b]\cap \Qp\}.
+    \end{align*}
+Osoitetaan, että
+\begin{equation*}
+    U = \bigcup_{a, b, \varepsilon \in \Qp} V_\varepsilon(a,b) \times [a,b].
+\end{equation*}
+Osoitetaan inkluusio $\supset$. Olkoon $(\omega, t) \in [a, b] \times V_\varepsilon(a, b)$. Tällöin kaikille $s\in [a, b] \cap \Qp$ pätee $f(\omega, s) > c + \varepsilon$. Koska $t \mapsto f(\omega, t)$ on oletuksen nojalla jatkuva, niin 
+    \begin{equation*}
+        f(\omega, t) = \lim_{s\to t} f(\omega, s) > \lim_{s\to t} c + \varepsilon > c.
+    \end{equation*}
+mikä osoittaa inkluusion. 
+
+Osoitetaan inkluusio $\subset$. Olkoon $(\omega, t) \in \Omega \times \Rp $ jolle $f(\omega, t) > c$. Tällöin on olemassa $\varepsilon > 0$ jolla $f(\omega, t) > c + 2\varepsilon$. Funktion $f$ jatkuvuuden nojalla voidaan valita $a$ ja $b$ siten, että kaikilla $s \in [a, b]$ pätee $f(\omega, s) > c + \varepsilon$ ja $t\in [a,b]$, mikä osoittaa inkluusion.
+
+Osoitetaan lopulta, että $V_\varepsilon(a,b)$ on mitallinen. Koska funktio $t \mapsto f(\omega, t)$ on mitallinen kaikilla $t \in D$, niin kaikille $a, b, \varepsilon$ joukko $V_\varepsilon(a, b)$ on mitallinen numeroituvana \whytho{mitallisten joukkojen leikkauksena.} 
+\end{proof}
+
+\begin{lemma}\label{le:chiMeasurable}
+    Jos funktio $ \chi: \Omega \to K$ on mitallinen niin funktio $\chi: \Omega \times \R^+ \to X $ on mitallinen.
+\end{lemma}
+\begin{proof}
+Todistus seuraa lähdettä \cite[p. 27]{OptimalTransportationNetworks}.
+Määritellään jatkuva funktio $\pi_t:K \to X$, $\pi_t(\gamma) = \gamma(t)$. Tällöin yhdistetty kuvaus $\omega \mapsto \pi_t \circ \chi (\omega, \cdot)$ on mitallinen, joten $\omega \mapsto \chi(\omega, t)$ on mitallinen kaikilla $t$. Olkoon $B(x, r) \subset X$. Lemman \ref{le:caratheodoryIsMeasurable} nojalla funktio $f(\omega, t) = ||\chi(\omega, t) - x||$ on mitallinen. Siispä $f^{-1}([0,r[) = \chi^{-1}(B(x,r))$ on mitallinen joukon $\Omega \times \Rp$ osajoukko, ja siten $\chi:\Omega \times \Rp \to X $ on mitallinen.
 \end{proof}
 Funktion $\chi$ pysähdysaika määritellään vastaavasti, kuten liikennesuunnitelman $\P$ pysähdysaika.
 \begin{definition}
@@ -327,16 +458,15 @@ Eritellään vielä käyttöön otetut merkinnät ja nimetään ne.
 \begin{definition}
     Olkoon $\Omega\subset \R$ mitallinen ja äärellismittainen. Olkoon lisäksi $\chi$ liikennesuunnitelman $\P$ parametrisoitu liikennesuunnitelma.
     \begin{itemize}
-        \item Funktio $\chi:\Omega \times \R^+ \to X$ on parametrisoitu liikennesuunnitelma. 
-        \item Polku $\chi(\omega, \cdot)$ on \textit{säie}.
-        \item Polun $\chi(\omega, \cdot)$ kuvajoukko on myös \textit{säie}.
+        \item Funktio $(\omega, t) \mapsto \chi(\omega, t)$ on parametrisoitu liikennesuunnitelma. 
+        \item Polku $t \mapsto \chi(\omega, t)$ ja sen kuvajoukko ovat molemmat \textit{säikeitä}.
     \end{itemize}
 \end{definition}
 
 Osoitetaan vielä, että parametrisoidulla liikennesuunnitelmalla $\chi$ määritelty mitta $\chi_\#\lambda$ on myös liikennesuunnitelma. Tätä varten tarvitaan seuraavaa muuttujanvaihtolausetta.
 
 \begin{theorem}\label{thm:push-cov}
-    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen kuvaus $f: X_1 \to X_2$, mitta $\mu:\Sigma_1 \to [0, \infty]$\what{ja $g: X_2 \to \R^+$ integroituva}. Tällöin
+    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitalliset kuvaukset $f: X_1 \to X_2$ ja $g: X_2 \to \R^+$, sekä mitta $\mu:\Sigma_1 \to [0, \infty]$. Mikäli $g$ on $f_\#\mu$-integroituva tai $g \circ f$ on $\mu$-integroituva, niin tällöin
     
     \begin{equation*}
         \int_{X_2} g \, d(f_{\#} \mu) = \int_{X_1} g \circ f \, d\mu.
@@ -353,19 +483,27 @@ LÄHDE?
 \end{theorem}
 
 \begin{proof}
-Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma}.
+Osoitetaan, että $\P_\chi$ toteuttaa Määritelmän \ref{def:liikennesuunnitelma}. Lauseella \ref{thm:push-cov} saadaan oletusten ollessa voimassa, että
 \begin{align*}
     \int_K T(\gamma)\, d\P_\chi(\gamma) =& \int_K T(\gamma) \, d(\chi_\# \lambda(\omega)) \\
     \stackrel{\ref{thm:push-cov}}{=}& \int_\Omega T(\chi(\omega)) \, d\lambda(\omega) \\
-    =& \int_\Omega T_\chi(\omega)(\chi) \, d\omega \stackrel{\ref{def:parameterizedTP}}{<} \infty.
+    =& \int_\Omega T_\chi(\omega) \, d\omega \stackrel{\ref{def:parameterizedTP}}{<} \infty.
 \end{align*}
-\whytho{Näytettävä, että $K$ ja $\Omega$ Borelin avaruuksia. Mistä saadaan sigma-algebrat?}
+Tarkistetaan vielä, että oletukset täyttyvät. Avaruudet $K$ ja $\Omega$ ovat metrisiä avaruuksia. Siispä ne voidaan varustaa Borelin sigma-algebroilla, jolloin saadaan tarvittavat Borelin avaruudet. Funktio $\chi:\Omega \to X$ on mitallinen Lemman \ref{le:chiMeasurable} nojalla. Myöhemmin tullaan osoittamaan Lemmassa \ref{le:pysahtymisajan&pituudenLSC} pysähtymisaika $T$ alhaalta puolijatkuvaksi, jolloin Lemman \ref{le:LSCimpliesMeasurable} nojalla $T$ on mitallinen. 
 \end{proof}
 
 
 
 \section{Liikennesuunnitelmien {stabiliteetti}}
-Tässä kappaleessa perehdytään liikennesuunnitelmien heikkoon suppenemiseen, ja pysähtymisajan sekä pituuden puolijatkuvuuteen. Sovitaan ensin merkintä jatkuville funktioille, joiden kantaja on kompakti.
+Tässä kappaleessa perehdytään liikennesuunnitelmien heikkoon suppenemiseen, ja pysähtymisajan sekä pituuden puolijatkuvuuteen. Määritellään ensin funktion kantaja.
+
+\begin{definition}
+    Olkoon funktio $f:A \to \R$, missä $A\subset \R^n$. Funktion $f$ kantaja $\supp(f)$ on funktion $f$ määrittelyjoukon osajoukko, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
+    \begin{equation*}
+        \supp(f) = \{x \in X : f(x) \ne 0\}.
+    \end{equation*}
+\end{definition}
+Jatkossa rajoitamme tarkastelun jatkuviin funktioihin, joiden kantaja on kompakti.
 \begin{definition}
     Olkoon funktio $f: A \to \R$, missä $A\subset \R^n$ Jos funktio $f$ on jatkuva joukossa $A$, niin merkitään $f \in C(A)$ tai $f \in C(A, \R)$. Jos lisäksi funktion $f$ kantaja on kompakti, merkitään $f \in C_c(A)$.
 \end{definition}
@@ -396,8 +534,10 @@ Liikennesuunnitelmien heikon suppenemisen määritelmä vastaa yleisen mitan hei
     Jokainen alhaalta puolijatkuva funktio $f$ kompaktissa metrisessä avaruudessa on jatkuvien funktioiden kasvavan jonon raja-arvo.
 \end{lemma}
 \begin{proof}
-    Todistus mukailee todistusta \cite[p. 30]{OptimalTransportationNetworks}. Olkoon $f:\R^n \to \R$ alhaalta puolijatkuva. Asetetaan $\displaystyle f_k(x) := \inf_y\{f(y) + kd(x,y)\}$. Tällöin $f_k$ on \whytho{jatkuva}. Lisäksi \whytho{$f_1 \le f_2 \le ... \le f$}.
-    Olkoon $\varepsilon > 0$. Oletetaan, että $f \ge 0$. Koska $f$ on alhaalta puolijatkuva, on olemassa $\delta > 0$ siten, että $f(y) > f(x) - \varepsilon$ kaikilla $y \in B(x, \delta).$ ... (\url{https://math.stackexchange.com/questions/165764/lower-semicontinuous-function-as-the-limit-of-an-increasing-sequence-of-continuo})
+    Todistus mukailee todistusta \cite[p. 30]{OptimalTransportationNetworks}. Olkoon $f:\R^n \to \R$ alhaalta puolijatkuva. Asetetaan $\displaystyle f_k(x) := \inf_y\{f(y) + kd(x,y)\}$. Tällöin $f_k$ on \whytho{jatkuva} kaikilla $k$. Lisäksi selvästi $f_1 \le f_2 \le ... \le f$. Lisäksi kaikille $x\in \R^n$ pätee $f_k(x) \to f(x)$ kun $k \to \infty$. Siispä
+    \begin{equation*}
+        \liminf_k f_k(x) = \liminf_k (f(x_k) + kd(x_k, x)) \ge \liminf_k f(x_k) \ge f(x)
+    \end{equation*}
 \end{proof}
 
 \begin{lemma}\label{le:fdPLeLiminf}
@@ -601,14 +741,14 @@ Koska $\phi$ on mielivaltainen funktio ja $\varepsilon > 0$, niin $\pi_{\P_n} \r
  Sovitaan, että $0^{\alpha - 1} = \infty$, kun $\alpha \in [0, 1]$.
 
 \begin{definition}\label{def:energyOfP}
-    Olkoon $\alpha \in [0, 1].$ Liikennesuunnitelman $\P$ energia parametrisaatiolla $\chi$ on \define{funktionaali}
+    Olkoon $\alpha \in [0, 1]$ ja $\P$ liikennesuunnitelma parametrisaatiolla $\chi$. Liikennesuunnitelman $\P$ energia on \define{funktionaali}
         \begin{equation*}
-            \E^\alpha(\P) = \int_\Omega \int_{\R^+} |\chi(\omega, t)|_\chi^{\alpha-1}|\dot \chi(\omega, t)|\, dtd\omega.
+            \E^\alpha(\P) = \int_\Omega \int_{\R^+} |\chi(\omega, t)|_\chi^{\alpha-1}|\dot \chi(\omega, t)|\, dtd\omega,
         \end{equation*}
 \end{definition}
     
 \begin{remark}\label{thm:energyOfPIndependent}
-    Olkoon $\alpha \in [0, 1].$ Liikennesuunnitelman $\P$ energia voidaan kirjoittaa muodossa
+    Olkoon $\alpha \in [0, 1].$ Liikennesuunnitelman $\P$ energia voidaan esittää muodossa
     \begin{equation*}
         \E^\alpha(\P) = \int_K \int_{\R^+}|\gamma(t)|^{\alpha-1}_\P|\dot\gamma(t)| \, dtd\P(\gamma).
     \end{equation*}
@@ -816,7 +956,6 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     \end{align*}
     joten liikennesuunnitelma $\P$ on energian $\E^\alpha$ minimoija.
 \end{proof}
-
 
 
 \subfile{sections/references}
