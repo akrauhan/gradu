@@ -1,0 +1,37 @@
+%Parametrisaatiolemmasta
+Koska $\tilde \chi(\omega, \cdot)$ on Lipschitz-funktion $\chi(\omega, \cdot)$ ja kasvavan funktion $T(\omega, \cdot)$ yhdistetty funktio, niin \define{ketjusäännön} nojalla
+    \begin{align*}
+        \dot{\tilde {\chi}} (\omega, s)  = \dot \chi(\omega, T(\omega, s)) \frac{\partial T}{\partial s}(\omega, s)
+    \end{align*}
+    melkein kaikilla $s$. Nyt kaikille $\omega$, $\int_0^T(\omega,s) |\dot \chi \omega, r| \, dr$ on Lipschitz-funktion $t \mapsto \int_0^t|\dot \chi(\omega, r)| \, dr$ ja kasvavan funktion $s \mapsto T(\omega, s)$ yhdistetty funktio. Yhdistetty funktio on \define{rajoitetusti heilahteleva}, ja siten derivoituva melkein kaikkialla. Lisäksi huomion $\eqref{eq:paramByL1}$ nojalla sen derivaatalla ei ole \what{singular part}. Siispä
+    \begin{align}\label{eq:paramByL2}
+        |\dot \chi(\omega, T(\omega, s))| \frac{\partial T}{\partial s}(\omega, s) = 1
+    \end{align}
+    melkein kaikilla $s$. Siispä $|\dot{\tilde {\chi}} (\omega, s)| = 1$.
+    
+
+%Polun pituus
+Määritellään $\gamma:\Rp \to X$ pituudeksi
+    \begin{align*}
+        L'(\gamma) = \sup_N\left\{\sum_{i=1}^N |\gamma(t_i) - \gamma(t_{i-1})| : t_i \in \Rp, t_0 \le t_1 \le ... \le t_N\right\}.
+    \end{align*}
+    Pituus $L'$ ei riipu parametrisaatiosta, jolloin $L'(\chi(\omega)) = L'(\tilde\chi(\omega))$.
+    
+    Jos $\gamma$ on 1-Lipschitz, niin 
+    \begin{align*}
+        L'(\gamma) = 
+    \end{align*}
+    
+    
+    
+    
+
+% Säie
+Eritellään vielä käyttöön otetut merkinnät ja nimetään ne.
+\begin{definition}
+    Olkoon $\Omega\subset \R$ mitallinen ja äärellismittainen. Olkoon lisäksi $\chi$ liikennesuunnitelman $\P$ parametrisoitu liikennesuunnitelma.
+    \begin{itemize}
+        \item Funktio $(\omega, t) \mapsto \chi(\omega, t)$ on parametrisoitu liikennesuunnitelma. 
+        \item Polku $t \mapsto \chi(\omega, t)$ ja sen kuvajoukko ovat molemmat \textit{säikeitä}.
+    \end{itemize}
+\end{definition}

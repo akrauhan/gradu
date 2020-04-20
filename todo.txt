@@ -1,12 +1,19 @@
 TODO:
-- Määritelmä:Pisteittäin rajoitettu
-- Lause 2.15
-	T:n mitallisuus (seuraa Lemma 3.20:sta. LSC -> mitallinen)
-- Lemma:
-	Jos funktio on LSC, on se mitallinen.
-	
-- Lemma 2.20
-	Todistus
-	
-- Lemma 2.10
-	Todistus
+- Yleinen Muuttujanvaihto
+- Ketjusääntö
+- Lemma 1.23
+- Yhdistetty funktio on mitallinen
+    Todistus loppuun. Käytä:
+        Borelin sigma-algebra on pienin avoimet joukot sisältävä sigma-algebra. Tehtävänä Lemmassa on siis osoittaa, että kaikkien Borel joukkojen alkukuva on Borel. Tiedetään jo, että avointen joukkojen alkukuva on Borel. Riittää siis osoittaa, että niiden avaruuden Y joukkojen kokoelma joiden alkukuva on Borel, on sigma-algebra. Tällöin kokoelma sisältää Borelin sigma-algebran määritelmän mukaan kaikki Borel-joukot (mutta saattaa olla isompi). Se, että tuo kokoelma on sigma-algebra tulee siitä että yhdisteet, leikkaukset, komplementit yms. toimivat nätisti alkukuvissa.
+
+
+Mahdollisia lähteitä:
+
+Löytyy JYU:
+Markovin epäyhtälöön https://jyu.finna.fi/Record/jykdok.985388
+
+Kysy:
+
+Lemma 3.3. Alkukuva nollamittainen -> Kuvaus mitallinen? Lauseen muotoilu ja todistus.
+
+Pituuden LSC. Tarvitaanko vai ei?
