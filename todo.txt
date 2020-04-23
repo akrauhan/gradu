@@ -1,6 +1,6 @@
 TODO:
-- Yleinen Muuttujanvaihto
-- Ketjusääntö
+- Yleinen Muuttujanvaihto?
+- Ketjusääntö?
 - Lemma 1.23
 - Yhdistetty funktio on mitallinen
     Todistus loppuun. Käytä:
@@ -14,6 +14,3 @@ Markovin epäyhtälöön https://jyu.finna.fi/Record/jykdok.985388
 
 Kysy:
 
-Lemma 3.3. Alkukuva nollamittainen -> Kuvaus mitallinen? Lauseen muotoilu ja todistus.
-
-Pituuden LSC. Tarvitaanko vai ei?
