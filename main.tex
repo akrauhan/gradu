@@ -17,11 +17,16 @@ Massan siirtämisen tutkiminen katsotaan alkaneen Gaspard Mongen (1746-1818) esi
 
 Mongen-Kantorovitsin ongelman muotoilussa ei kuitenkaan oteta huomioon, kuinka massaa siirretään paikasta toiseen. Muotoilussa voidaan ajatella, että jokainen massahiukkanen siirrettäisiin suoraa reittiä päämääräänsä. Tämä mallinnus ei ole kuitenkaan kovin realistinen, sillä valtaosassa käytännön massansiirto-ongelmista on suotuisampaa käyttää saman massan kuljettamiseen yhtä reittiä, kuin kahta pienemmän kapasiteetin reittiä. Lisäksi muotoilussa oletetaan, että ei ole väliä, mikä hiekanjyvä menee minnekin. 
 
-Tässä tutkielmassa lähdetään mallintamaan massan siirtämistä niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Ensimmäisessä kappaleessa esitellään tarvittat teoreettiset lähtökohdat. Toisessa kappaleessa määritellään liikennesuunnitelma ja todistetaan siihen liittyviä tuloksia. Viimeisessä, kolmannessa kappaleessa liikennesuunnitelmalle tullaan määrittämään energia $\E(\P)$, jonka jälkeen tutkielman päätuloksena on todistaa, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian minimoiminen tullaan osoittamaan osoittamalla energia alhaalta puolijatkuvaksi, jonka lisäksi tarvitaan tieto tarkasteltavien polkujen kompaktiudesta. Alhaalta puolijatkuvuuden osoittaminen on yleinen minimointistrategia variaatiolaskennassa, lisää aiheesta lähteessä \cite{benesova}.
+Tässä tutkielmassa lähdetään mallintamaan massan siirtämistä niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Ensimmäisessä kappaleessa esitellään tarvittat teoreettiset lähtökohdat, joita liikennesuunnitelmien tarkasteluun ja liittyviin tuloksiin tarvitaan. Toisessa kappaleessa määritellään liikennesuunnitelma ja todistetaan siihen liittyviä tuloksia. Viimeisessä, kolmannessa kappaleessa liikennesuunnitelmalle tullaan määrittämään energia $\E(\P)$, jonka jälkeen tutkielman päätuloksena on todistaa, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian minimoiminen tullaan osoittamaan osoittamalla energia alhaalta puolijatkuvaksi, jonka lisäksi tarvitaan tieto tarkasteltavien polkujen kompaktiudesta. Alhaalta puolijatkuvuuden osoittaminen on yleinen minimointistrategia variaatiolaskennassa, lisää aiheesta lähteessä \cite{benesova}.
 
-Liikennesuunnitelmat, jotka minimoivat energian, tulevat olemaan rakenteeltaan \textit{haarautuneita} (\textit{branched}). Haarautuneisuus on intuitiivinen lopputulos, jos oletetaan kahden pienemmän tien olevan energiatehokkaampi vaihtoehto yhden suuremman sijaan. Tätä väitettä käsittelee tämänkin tutkielman lähdeteoksena ollut kirja \cite{optimal}. Esimerkki haarautuneesta ratkaisusta on kuvassa \ref{fig:branched}, jossa on ollut ongelmana siirtää massa yhdestä pisteestä jollekin janalle.
+Liikennesuunnitelmat, jotka minimoivat energian, tulevat olemaan rakenteeltaan \textit{haarautuneita} (\textit{branched}). Esimerkki haarautuneesta ratkaisusta on kuvassa \ref{fig:branched}, jossa on ollut ongelmana siirtää massa yhdestä pisteestä jollekin janalle. Haarautuneisuus tai puumaisuus on intuitiivinen lopputulos, jos oletetaan kahden pienemmän tien olevan energiatehokkaampi vaihtoehto yhden suuremman sijaan. Tätä väitettä käsittelee tarkemmin tämänkin tutkielman päälähdeteoksena ollut kirja \cite{optimal}.
 
-
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{graphics/johdanto_branched.png}
+    \caption{Approksimaatio erään massansiirto-ongelman ratkaisulle, kun tavoitteena on siirtää massaa yhdestä pisteestä janalle. \cite[s. 166]{optimal}}
+    \label{fig:branched}
+\end{figure}
 
 
 
@@ -112,11 +117,18 @@ Merkinnällä $||f||_{L^\infty(B)}$ rajoitetaan funktion määrittelyjoukon tark
     \end{equation*}
 \end{definition}
 
+\begin{definition}
+    Olkoon $(M, d)$ metrinen avaruus, $x \in M$ ja $r > 0$. Avaruuden $M$ $r$-säteinen $x$-keskinen pallo on tällöin joukko
+    \begin{align*}
+        B(x, r) = \{y \in M : d(x, y) < r\}.
+    \end{align*}
+\end{definition}
+
 \begin{theorem}\label{thm:compactness}
     Jos metrinen avaruus $M$ on täysin rajoitettu ja täydellinen, niin se on kompakti.
 \end{theorem}
-\begin{proof}\whytho{Hyvä tarkistuttaa + miten toimitaan verkkolähteiden kanssa?}
-Todistuksen idea on saatu verkkolähteestä:  \url{https://math.stackexchange.com/questions/1883634/proofs-for-complete-totally-bounded-implies-compact/1889749}
+\begin{proof}
+Todistuksen idea on saatu verkkolähteestä \cite{gibara}.
 
 Olkoon $(M, d)$ täysin rajoitettu ja $C$ avoin joukon $M$ peite. Osoitetaan väite käänteisellä päättelyllä. Oletetaan, että ei ole olemassa äärellistä peitteen $C$ osapeitettä.
 
@@ -130,344 +142,8 @@ Olkoon joukko $A \in C$, jolle $x \in A$. Tällöin on olemassa $r > 0$ siten, e
 \end{proof}
 
 \begin{definition}
-    Olkoon $(M, d)$ metrinen avaruus, $x \in M$ ja $r > 0$. Avaruuden $M$ $r$-säteinen $x$-keskinen pallo on tällöin joukko
-    \begin{align*}
-        B(x, r) = \{y \in M : d(x, y) < r\}.
-    \end{align*}
-\end{definition}
-
-\begin{definition}
     Metrisen avaruuden $(M, d)$ joukko $A \subset M$ on \textit{tiheä} avaruudessa $M$, jos kaikille $x \in M$ ja $r > 0$ pätee $B(x, r) \cap S \ne \emptyset$, toisin sanoen kaikki avaruuden $(M, d)$ avoimet pallot sisältävät pisteen joukosta $S$.
 \end{definition}
-
-\section{Mittateoriaa}
-\subsection{Sigma-algebra}
-Merkitään $2^A$ joukon $A$ osajoukkojen kokoelmaa. Seuraavat määritelmät liittyen sigma-algebraan ja Borelin joukkoihin on muotoiltu lähteeseen \cite[s.86-87]{lehrbäck} pohjaten.
-
-\begin{definition}
-    Olkoon $X$ joukko. Tällöin $\Gamma \subset 2^X$ on \textit{sigma-algebra}, joukossa $X$, jos $\Gamma$ toteuttaa seuraavat ominaisuudet:
-    \begin{enumerate}
-        \item $\emptyset \in \Gamma$ 
-        \item jos $A \in \Gamma$, niin $A^c \in \Gamma$
-        \item jos $A_1, A_2, ... \in \Gamma$, niin $\bigcup_{j=1}^\infty A_j \in \Gamma$ 
-    \end{enumerate}
-    %(Lehrbäck, MII, s. 86)
-\end{definition}
-
-
-\begin{definition}
-    Olkoon $X$ joukko ja olkoon $\Delta \subset 2^X$. Tällöin 
-        $$ \Gamma_\Delta = \bigcap \{\Gamma : \Gamma \text{ on sigma-algebra joukossa } X \text{ ja }  \Delta \subset \Gamma \}$$ 
-    on joukkoperheen $\Delta$ \textit{virittämä} sigma-algebra joukossa $X$.
-    %(Lehrbäck, MII, s. 86)
-\end{definition}
-
-\begin{definition}
-    Olkoon $X$ topologinen avaruus, ja 
-    \[\Delta = \{A \subset X : A \text{ on avoin joukko}\} \subset 2^X \]
-    Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $X$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
-    %(Lehrbäck, MII, s.87, muokattu)
-\end{definition}
-
-Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{suppein} avoimista joukoista koostuva joukon $X$ sigma-algebra, joka sisältää joukkoperheen $\Delta$.
-
-\begin{definition}
-    Olkoon $X\subset \R^n$ joukko ja $\Gamma$ sigma-algebra joukossa $X$. Tällöin pari $(X, \Gamma)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}.
-\end{definition}
-\subsection{Ulkomitta ja mitta}
-Mittaan ja funktion mitallisuuteen liittyvät määritelmät on mukailtu lähteen \cite[s.88-110]{lehrbäck} avulla. Aloitetaan ulkomitan ja mitallisten joukkojen määritelmästä.
-\begin{definition}
-    Olkoon $X$ joukko. Funktio $\mu^*: 2^X \to \Rp$ on \textit{ulkomitta} joukossa $X$, jos pätee
-    \begin{enumerate}
-        \item $\mu^*(\emptyset) = 0.$
-        \item Jos $A \subset B \subset X$, niin $\mu^*(A) \le \mu^*(B)$.
-        \item Jos $A_1, A_2, ... \subset X$, niin 
-        \begin{align*}
-            \mu^*\left(\bigcup_{j=1}^\infty A_j \right) \le \sum_{j = 1}^\infty\mu^*(A_j).
-        \end{align*}
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}
-    Joukko $A\subset \R^n$ on $\mu^*$-\textit{mitallinen}, jos kaikille $E\subset \R^n$ pätee
-    \begin{equation}\label{eq:measurable}
-        \mu^*(E) = \mu^*(E \cap A^c) + \mu^*(E\cap A).
-    \end{equation}
-    %(Lehrbäck, MII, s. 27)
-\end{definition}
-
-\begin{lemma}\label{le:countableUnionAndIntersectionIsMeas}
-    Mitallisten joukkojen $A_1, A_2, ...$ numeroituva yhdiste $\bigcup_{j=1}^\infty A_j$ ja numeroituva leikkaus $\bigcup_{j=1}^\infty A_j$ ovat mitallisia.
-\end{lemma}
-\begin{proof}
-    Numeroituvan yhdisteen tapaus sivuutetaan; tämä on todistettu lähteessä \cite[s. 94]{lehrbäck}.
-    De Morganin sääntöjen nojalla
-    \begin{align*}
-        \bigcap_{j=1}^\infty A_j = \left(\bigcup_{j=1}^\infty A_j^c\right)^c.
-    \end{align*}
-    Siispä numeroituva leikkaus on mitallinen, jos mitallisen joukon komplementti on mitallinen. Tämä seuraa suoraan mitallisuusehdosta \eqref{eq:measurable}.
-\end{proof}
-
-Osoittautuu, että riittävä ehto joukkojen mitallisuuden takaamiseksi on se, että joukot muodostavat sigma-algebran. Perustelu tälle on esitelty lähetessä \cite{tao}. Määritellään seuraavaksi mitta ja mitta-avaruus.
-
-\begin{definition}
-    Oletetaan, että $X$ on joukko ja $\Gamma$ on $\sigma$-algebra joukossa $X$. Funktio $\mu : \Gamma \to [0, \infty]$ on \textit{mitta} (joukossa X tai $\sigma$-algebrassa $\Gamma$), jos 
-    \begin{enumerate}
-        \item $\mu(\emptyset) = 0$, \\
-        ja
-        \item Jos $A_1, A_2, ... \in \Gamma$ ovat erillisiä eli $A_i \cap A_j = \emptyset$ aina, kun $i \ne i$, niin
-        $$\mu\left(\bigcup_{j=1}^\infty A_j \right) = \sum_{j=1}^\infty \mu(A_j).$$
-    \end{enumerate}
-    
-    Kolmikkoa $(X,\Gamma, \mu)$ sanotaan \textit{mitta-avaruudeksi} ja joukkoja $A\in \Gamma$ sanotaan $\Gamma$-mitallisiksi.
-    
-    %(Lehrbäck, MII, s. 88)
-\end{definition}
-
-Määritellään Lebesguen mitta ja todistetaan siihen liittyvä tulos.
-
-\begin{definition}
-    Avaruuden $\R^n$ \textit{avoimia välejä} ovat joukot
-    \begin{align*}
-        I = I^{(1)} \times I^{(2)} \times ... \times I^{(n)},
-    \end{align*}
-    jossa $I^{(k)} = ]a_k, b_k[ \subset \R$ joillain $a_k, b_k \in \R$.
-    Välin $I$ \textit{geometrinen mitta} on
-    \begin{align*}
-        v(I) = \prod_{k=1}^n(b_k-a_k).
-    \end{align*}
-\end{definition}
-
-\begin{definition}
-    Funktio $\lambda^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
-    $$\lambda^*(A) = \inf\left\{\sum_{i=1}^\infty v(I_i) : I_i \subset \R^n \text{ on avoin väli tai tyhjä joukko, ja } A \subset \bigcup_{i=1}^{\infty}I_i\right\}$$
-    kaikille $A \subset \R^n$.
-\end{definition}
-
-\begin{definition}
-    Olkoon $\mathcal M$ joukon $\R^n$ mitallisten joukkojen kokoelma. Funktio $\lambda : \mathcal M \to \R^+$ on \textit{Lebesguen mitta} kun määritellään
-    $$\lambda(A) = \lambda^*(A) \text{ kaikille } A \in \mathcal M.$$
-\end{definition}
-
-\begin{lemma}\label{le:nestedIntersection}
-    Olkoon $A_1 \supset A_2 \supset A_3 \supset ...$ ja $A = \cap_{k=1}^\infty A_k$. Jos $\lambda(A_1) < \infty$, niin 
-    \begin{equation*}
-        \lambda(A) = \lim_{k\to \infty}\lambda(A_k).
-    \end{equation*}
-\end{lemma}
-\begin{proof} \whytho{Todistus verkkolähteestä}: \url{https://math.stackexchange.com/questions/1752654/lebesgue-measure-of-an-intersection-of-a-sequence-of-subsets}.
-    Olkoon $B_n = A_n \setminus A_{n+1}$ kaikille $n \in \N$. Tällöin
-    \begin{align*}
-        A_k = A \cup \bigcup_{n = k}^\infty B_n,
-    \end{align*}
-    joten $A_k$ voidaan esittää kahden erillisen joukon yhdisteenä. Siispä
-    \begin{align*}
-        \lambda(A_k) &= \lambda(A) + \lambda\left(\bigcup_{n = k}^\infty B_n\right) \\
-        &= \lambda(A) + \sum_{n = k}^\infty\lambda(B_n).
-    \end{align*}
-    Jos $m(A_{k_0}) < \infty$ jollekin $k_0$, niin $m(E) < \infty$ ja $\sum_{n = k}^\infty\lambda(B_n) < \infty$, joten 
-    \begin{align*}
-        \lim_{k\to\infty}\lambda(A_k) = \lim_{k\to\infty}\left(\lambda(A) + \sum_{n = k}^\infty\lambda(B_n)\right) = \lambda(A) + \lim_{k\to\infty}\sum_{n=k}^\infty \lambda(B_n) = \lambda(A).
-    \end{align*}
-\end{proof}
-
-\subsection{Funktion mitallisuus}
-Määritellään funktion mitallisuus. Funktion mitallisuus riippuu funktion lisäksi määrittely- ja maalijoukon avaruuksien sigma-algebroista.
-
-\begin{definition}
-    Olkoon $(X, \Sigma)$ ja $(Y, \Gamma)$ metrisiä avaruuksia, missä $X$ ja $Y$ ovat joukkoja varustettuna sigma-algebroilla $\Sigma$ ja $\Gamma$. Funktio $f: X \to Y$ on mitallinen, jos kaikkien $E\in \Gamma$ alkukuva funktiolle $f$ sisältyy kokoelmaan $\Sigma$, toisin sanoen kaikille $E \in \Gamma$
-    \begin{equation*}
-        f^{-1}(E) = \{x \in X : f(x) \in E\} \in \Sigma.  
-    \end{equation*}
-\end{definition}
-
-Määritellään reaaliarvoiselle funktiolle oma mitallisuus, joka on \what{ekvivalentti edellisen määritelmän} kanssa.
-
-\begin{definition}
-     Olkoon $X$ joukko ja $\Gamma \subset 2^X$ sigma-algebra. Olkoon $A\in \Gamma$. Funktio $f: A \to \R \bigcup\{-\infty, \infty\}$ on \textit{$\Gamma$-mitallinen}, jos kaikille $a \in \R$ pätee, että
-    \begin{equation*}
-        \{x \in A : f(x) > a\} = f^{-1}(]a, \infty]) \in \Gamma.
-    \end{equation*} 
-    Jos $\mu:\Gamma \to \Rp$ on mitta ja $f$ on $\Gamma$-mitallinen, sanotaan, että $f$ on $\mu$-mitallinen.
-    
-    %(Lehrbäck MII, s. 110)
-\end{definition}
-
-\begin{lemma}\label{le:measurableIfBallMeasurable}
-    Olkoon $X, Y \subset \R^n$. Kuvaus $f: X \to Y$ on mitallinen, jos jokaisen avoimen pallon alkukuva funktiolle $f$ on mitallinen.
-\end{lemma}
-\begin{proof}
-    Varustetaan $X$ ja $Y$ Borelin sigma-algebroilla $\mathcal B_X$ ja $\mathcal B_Y$.  Olkoon $E\in\mathcal B_X$ avoin. Osoitetaan, että on olemassa on olemassa numeroituva avoimien pallojen yhdiste, joille
-    \begin{equation*}
-        E = \bigcup_i B(x_i, r_i).
-    \end{equation*}
-    Koska $E$ on avoin, niin kaikille $x \in E$ on olemassa $r > 0$ siten, että $B(x, r) \subset E$. Koska $X$ on tiheä avaruuden $\R^n$ osajoukkona, on olemassa $x_p \in \Q^n$ ja $x_q \in \Q$, joille $B(x_p, x_q) \subset B(x, r)$ ja lisäksi $x \in B(x_p, x_q)$. Lisäksi, koska $B(x_p, x_q) \subset E$, niin pallojen numeroituva yhdiste sisältyy joukkoon $E$.
-    
-    Koska oletuksen nojalla avoimen pallon alkukuva on mitallinen, pätee funktion alkukuvalle
-    \begin{align*}
-        f^{-1}(E) &= f^{-1}\left(\bigcup_i B(x_i, r_i)\right) \\
-        &= \bigcup_i f^{-1}(B(x_i, r_i)) \in \mathcal B_X,
-    \end{align*}
-    numeroituvana mitallisten joukkojen yhdisteenä. 
-    
-    Olkoon 
-    \begin{align*}
-        \Sigma =\{A \subset Y : f^{-1}(A) \in \mathcal B_x\},
-    \end{align*}
-    jolloin $\Sigma$ sisältää kaikki avaruuden $Y$ joukot, joiden alkukuva on Borel-joukko. Osoitetaan, että $\Sigma$ on sigma-algebra. 
-    
-    Kokoelma $\Sigma$ sisältää Borelin sigma-algebran määritelmän nojalla kaikki Borel-joukot. Tällöin $\emptyset \in \Sigma$. 
-    
-    Olkoon $A \in \Sigma$, jolloin $f^{-1}(A) \in \mathcal B_x$. Koska $\mathcal B_x$ on sigma-algebra, niin joukon $A$ komplementille $f^{-1}(A^c) \in \mathcal B_x$. Funktion alkukuvan komplementti on komplementin alkukuva, joten $f^{-1}(A)^c = f^{-1}(A^c) \in \mathcal{B_x}$.
-    
-    Olkoon $A_1, A_2, ... \in \Sigma$. Tällöin $f^{-1}(A_i) \in B_x$ kaikilla $i \ge 1$. Koska yhdisteen alkukuva on alkukuvien yhdiste, niin
-    \begin{equation*}
-        f^{-1}\left(\bigcup_{j=1}^\infty A_j\right) = \bigcup_{j=1}^\infty f^{-1}(A_j) \in \mathcal{B}_x.
-    \end{equation*}
-    Siispä $\Sigma$ on sigma-algebra, ja siten $f$ on mitallinen.
-\end{proof}
-
-\begin{definition}
-Olkoon $\Sigma$ sigma-algebra joukossa $X$ ja $\mu:\Sigma \to [0,1]$ mitta joukossa $X$. Jos $\mu(X) = 1$, niin tällöin $\mu$ on \textit{todennäköisyysmitta} joukossa $X$, merkitään $\mu \in \mathcal{P}(X)$. 
-    Kolmikkoa $(X, \Gamma, \mu)$ kutsutaan tällöin \textit{todennäköisyysavaruudeksi}.
-\end{definition}
-Jos mitta on todennäköisyysmitta, käytetään myös nimitystä yksi-massainen.
-
-
-\subsection{Integraali ja integroituvuus}
-Seuraavat määritelmät liittyen yleiseen mitta-avaruuden integraaliin ja integroituvuuden on mukailtu lähteestä \cite[s.110-111]{lehrbäck}
-\begin{definition}
-    Olkoon $\Gamma \subset 2^X$ sigma-algebra. Funktio $u: X \to \R$ on $\Gamma$-yksinkertainen, merkitään $u \in Y_\Gamma$, jos
-    \begin{align*}
-        u(x) = \sum_{i=1}^M a_i \indfct{A_i}(x) \quad \text{kaikille } x \in X,
-    \end{align*}
-    missä $a_i \in \R$ ja $A_i \in \Gamma$ kaikille $i = 1, ..., M.$ Jos $u \in Y_\Gamma$ ja $u(x) \ge 0$ kaikille $x \in X$, niin merkitään, että $u \in Y_\Gamma^+$.
-\end{definition}
-
-\begin{lemma}
-    Jokaisella $u \in Y_\Gamma$ on normaaliesitys, jolloin $a_i \ne a_j$ ja $A_i \cap A_j = \emptyset$ aina, kun $i \ne j$.
-\end{lemma}
-\begin{proof}
-    Todistus löytyy lähteestä \cite[s.110]{lehrbäck}
-\end{proof}
-
-\begin{lemma}
-    Funktio $f: A \to [0, \infty]$ on $\Gamma$-mitallinen jos ja vain jos on olemassa yksinkertaiset funktiot $u_k \in Y_\Gamma^+$ siten, että $u_k \le u_{k+1}$ kaikille $k \in \N$ ja $\lim_{k\to\infty}u_k(x) = f(x)$ kaikille $x \in A$.
-\end{lemma}
-\begin{proof}
-    Todistus löytyy lähteestä \cite[s.110]{lehrbäck}
-\end{proof}
-
-\begin{definition}
-    Olkoon funktion $u \in Y_\Gamma^+$ normaaliesitys $u(x) = \sum_{i=1}^M a_i\indfct{A_i}(x)$ ja olkoon $E \in \Gamma$. Tällöin funktion $u$ yksinkertainen $\mu$-integraali yli joukon $E$ on
-    \begin{equation*}
-        I(u, E; \mu) = \sum_{i=1}^M a_i \mu(A_i \cap E).
-    \end{equation*}
-\end{definition}
-
-\begin{definition}
-    Olkoon $(X, \Gamma, \mu)$ mitta-avaruus. Jos $f: A \to [0, \infty]$ on $\Gamma$-mitallinen, niin funktion $f$ $\mu$-integraali yli joukon $A$ on
-    \begin{align*}
-        \int_A f \, d\mu = \sup\{I(u, A; \mu) : u \in Y_\Gamma^+, u(x) \le f(x) \text{ kaikille } x \in A\}.
-    \end{align*}
-\end{definition}
-
-\begin{definition}
-    $\Gamma$-mitallinen funktio $f$ on $\mu$-integroituva yli joukon $A$, mikäli $\int_A f^+ \, d\mu < \infty$ ja $\int_A f^-\, d\mu < \infty$, kun $f^+$ ja $f^-$ ovat funktion $f$ positiivi- ja negatiiviosat.
-\end{definition}
-Mikäli mitta $\mu$ ja joukko $A$ ovat kontekstista selvät, sanotaan pelkästään, että $f$ on integroituva.
-
-Yleisen mitta-avaruuden integraalille pätevät samat perusominaisuudet, kuten Lebesgue-integraalille. Näiden ominaisuuksien todistus sivuutetaan.
-\begin{lemma}\label{le:integralProperties}
-    Olkoon $(X, \Gamma, \mu)$ mitta-avaruus ja olkoon $A\in \Gamma$. Oletetaan, että funktiot $f, g$ ovat $\mu$-integroituvia yli joukon $A$ ja $\lambda \in \R$. Tällöin
-    \begin{enumerate}
-        \item $\lambda f$ on $\mu$-integroituva yli joukon $A$, ja 
-        \begin{equation*}
-            \int_A \lambda f \, d\mu = \lambda \int_A f \, d\mu
-        \end{equation*}
-        \item $f + g$ on $\mu$-integroituva yli joukon $A$, ja
-        \begin{equation*}
-            \int_A  (f+g) \, d\mu = \int_A  f \, d\mu + \int_A  g \, d\mu
-        \end{equation*}
-        \item jos $\gamma$-mitalliset joukot $A_j \subset A$ ovat erillisiä, niin
-        \begin{equation*}
-            \int_{\cup_{j=1}^\infty A_j}f \, d\mu = \sum_{j=1}^\infty \int_{A_j} f\, d\mu
-        \end{equation*}
-        \item jos $f(x) \le g(x)$ $\mu$-melkein kaikille $x \in A$, niin 
-        \begin{equation*}
-            \int_A f \, d\mu \le \int_A g \, d\mu
-        \end{equation*}
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    Todistetaan vastaavasti, kuten Lebesgue-integraalille. Todistuksen idea on esitelty lähteessä \cite[s.113]{lehrbäck}.
-\end{proof}
-
-Tärkeässä osassa tulee esiintymään monotonisen konvergenssin lause, joka antaa ehdot sille, milloin funktiojonon alkioiden integraalien raja-arvo on raja-arvon integraali. Lauseen todistus sivuutetaan.
-\begin{theorem} \label{thm:monoConvThm}
-    (Monotonisen konvergenssin lause) Olkoon $(X, \mathcal{B}, \mu)$ mitta-avaruus ja olkoot $f_n:X\to [0, \infty]$ mitallisia funktioita siten, että funktiojono $(f_k)$ on kasvava. Tällöin
-    \begin{equation*}
-        \lim_{n\to\infty} \int_X f_n \, d\mu = \int_X \lim_{n\to \infty} f_n \, d\mu
-    \end{equation*}
-\end{theorem}
-\begin{proof}
-    Todistettu lähteessä \cite[s. 107]{tao}.
-\end{proof}
-
-
-\begin{theorem}\label{thm:markov}
-    (Markovin epäyhtälö) Olkoon $(X, \Gamma, \mu)$ mitta-avaruus ja $f$ $\Gamma$-mitallinen funktio, kun $A \in \Gamma$. Tällöin
-    \begin{equation*}
-        \mu(\left\{x \in A : |f(x)| \ge t\right\}) \le \frac{1}{t}\int_A |f| \, d\mu.
-    \end{equation*}
-    kaikilla $t\in \Rp$.
-\end{theorem}
-\begin{proof}
-    Todistus seuraa lähteen \url{https://proofwiki.org/wiki/Markov%27s_Inequality} todistusta. \whytho{Korjaa viittaus.}
-    
-    Olkoon $t \in \Rp$ ja merkitään
-    \begin{equation*}
-        B = \{x \in A : |f(x)| \ge t\}.
-    \end{equation*}
-    Olkoon $\indfct{B}: B \to A$ indikaattorifunktio. Osoitetaan, että kaikilla $x\in A$ pätee $t\indfct{B}(x) \le |f(x)|$. Olkoon $x \in A$. Jos $x \in B$, niin 
-    \begin{equation*}
-        t\indfct B (x) = t \le |f(x)|
-    \end{equation*}
-    ja jos $x \notin B$, niin
-    \begin{equation*}
-        t\indfct B (x) = 0 \le |f(x)|.
-    \end{equation*}
-    Siispä kaikilla $x\in A$ on $t\indfct{B}(x) \le |f(x)|$.
-    
-    Integroitavan funktion integraalin monotonisuuden, eli Lemman $\ref{le:integralProperties}$ nojalla
-    \begin{equation}\label{eq:markov1}
-        \int_A t\indfct{B} \, d\mu \le \int_A |f| \, d\mu,
-    \end{equation}
-    ja toisaalta
-    \begin{equation}\label{eq:markov2}
-        \int_A t\indfct{B} \, d\mu = t\int_A \indfct{B} \, d\mu, = t\mu(B).
-    \end{equation}
-    Yhdistämällä tulokset \eqref{eq:markov1} ja \eqref{eq:markov2}, saadaan
-    \begin{align*}
-        \mu(B) \le \frac{1}{t}\int_A |f| \, d\mu.
-    \end{align*}
-    
-\end{proof}
-
-\begin{definition}
-    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, kun määritellään
-    $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
-\end{definition}
-
-\begin{theorem}\label{thm:push-cov}
-    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitalliset kuvaukset $f: X_1 \to X_2$ ja $g: X_2 \to \R^+$, sekä mitta $\mu:\Sigma_1 \to [0, \infty]$. Mikäli $g$ on $f_\#\mu$-integroituva, niin  $g \circ f$ on $\mu$-integroituva. Lisäksi
-    \begin{equation*}
-        \int_{X_2} g \, d(f_{\#} \mu) = \int_{X_1} g \circ f \, d\mu.
-    \end{equation*}
-\end{theorem}
-\begin{proof}
-Todistus sivuutetaan, todistettu lähteessä \cite[s. 190]{bogachev}.
-\end{proof}
 
 \subsection{Puolijatkuvuus ja Lipschitz-jatkuvuus}
 Olkoon $(X, d_x)$ ja $(Y, d_y)$ metrisiä avaruuksia.
@@ -554,13 +230,6 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
     joten $f_k \to f$, kun $k \to \infty$.
 \end{proof}
 
-\begin{corollary}\label{co:LSCimpliesMeasurable}
-    Alhaalta ja ylhäältä puolijatkuvat kuvaukset ovat mitallisia.
-\end{corollary}
-\begin{proof}
-    Edellisen lemman nojalla alhaalta puolijatkuva funktio voidaan esittää jatkuvien kuvausten raja-arvona. Jatkuvat kuvaukset ovat mitallisia, joten niiden raja-arvo on mitallinen. Siispä alhaalta puolijatkuva kuvaus on mitallinen. \what{Mutta entä USC?}
-\end{proof}
-
 \begin{definition}
     Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{K-Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
     $$d_y(f(x_1),f(x_2)) \le Kd_x(x_1,x_2).$$
@@ -587,6 +256,352 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
 \end{proof}
 
 
+\section{Mittateoriaa}
+\subsection{Sigma-algebra}
+Merkitään $2^A$ joukon $A$ osajoukkojen kokoelmaa. Seuraavat määritelmät liittyen sigma-algebraan ja Borelin joukkoihin on muotoiltu lähteeseen \cite[s.86-87]{lehrbäck} pohjaten.
+
+\begin{definition}
+    Olkoon $X$ joukko. Tällöin $\Gamma \subset 2^X$ on \textit{sigma-algebra}, joukossa $X$, jos $\Gamma$ toteuttaa seuraavat ominaisuudet:
+    \begin{enumerate}
+        \item $\emptyset \in \Gamma$ 
+        \item jos $A \in \Gamma$, niin $A^c \in \Gamma$
+        \item jos $A_1, A_2, ... \in \Gamma$, niin $\bigcup_{j=1}^\infty A_j \in \Gamma$ 
+    \end{enumerate}
+    %(Lehrbäck, MII, s. 86)
+\end{definition}
+
+
+\begin{definition}
+    Olkoon $X$ joukko ja olkoon $\Delta \subset 2^X$. Tällöin 
+        $$ \Gamma_\Delta = \bigcap \{\Gamma : \Gamma \text{ on sigma-algebra joukossa } X \text{ ja }  \Delta \subset \Gamma \}$$ 
+    on joukkoperheen $\Delta$ \textit{virittämä} sigma-algebra joukossa $X$.
+    %(Lehrbäck, MII, s. 86)
+\end{definition}
+
+\begin{definition}
+    Olkoon $X$ topologinen avaruus, ja 
+    \[\Delta = \{A \subset X : A \text{ on avoin joukko}\} \subset 2^X \]
+    Tällöin $\sigma$-algebra $\mathcal B = \mathcal B_n := \Gamma_\Delta$ on avaruuden $X$ \textit{Borelin} $\sigma$-\textit{algebra} ja joukkoja $A\in \mathcal B$ kutsutaan \textit{Borel-joukoiksi.} 
+    %(Lehrbäck, MII, s.87, muokattu)
+\end{definition}
+
+Sigma-algebran $\Gamma_\Delta$ määritelmän nojalla Borelin joukko on \textit{suppein} avoimista joukoista koostuva joukon $X$ sigma-algebra, joka sisältää joukkoperheen $\Delta$.
+
+\begin{definition}
+    Olkoon $X\subset \R^n$ joukko ja $\Gamma$ sigma-algebra joukossa $X$. Tällöin pari $(X, \Gamma)$ on \textit{Borelin avaruus}. Borelin avaruudesta käytetään myös nimitystä \textit{mitallinen avaruus}.
+\end{definition}
+\subsection{Ulkomitta ja mitta}
+Mittaan ja funktion mitallisuuteen liittyvät määritelmät on mukailtu lähteen \cite[s.88-110]{lehrbäck} avulla. Aloitetaan ulkomitan ja mitallisten joukkojen määritelmästä.
+\begin{definition}
+    Olkoon $X$ joukko. Funktio $\mu^*: 2^X \to \Rp$ on \textit{ulkomitta} joukossa $X$, jos pätee
+    \begin{enumerate}
+        \item $\mu^*(\emptyset) = 0.$
+        \item Jos $A \subset B \subset X$, niin $\mu^*(A) \le \mu^*(B)$.
+        \item Jos $A_1, A_2, ... \subset X$, niin 
+        \begin{align*}
+            \mu^*\left(\bigcup_{j=1}^\infty A_j \right) \le \sum_{j = 1}^\infty\mu^*(A_j).
+        \end{align*}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Joukko $A\subset \R^n$ on $\mu^*$-\textit{mitallinen}, jos kaikille $E\subset \R^n$ pätee
+    \begin{equation}\label{eq:measurable}
+        \mu^*(E) = \mu^*(E \cap A^c) + \mu^*(E\cap A).
+    \end{equation}
+    %(Lehrbäck, MII, s. 27)
+\end{definition}
+
+\begin{lemma}\label{le:countableUnionAndIntersectionIsMeas}
+    Mitallisten joukkojen $A_1, A_2, ...$ numeroituva yhdiste $\bigcup_{j=1}^\infty A_j$ ja numeroituva leikkaus $\bigcup_{j=1}^\infty A_j$ ovat mitallisia.
+\end{lemma}
+\begin{proof}
+    Numeroituvan yhdisteen tapaus sivuutetaan; tämä on todistettu lähteessä \cite[s. 94]{lehrbäck}.
+    De Morganin sääntöjen nojalla
+    \begin{align*}
+        \bigcap_{j=1}^\infty A_j = \left(\bigcup_{j=1}^\infty A_j^c\right)^c.
+    \end{align*}
+    Siispä numeroituva leikkaus on mitallinen, jos mitallisen joukon komplementti on mitallinen. Tämä seuraa suoraan mitallisuusehdosta \eqref{eq:measurable}.
+\end{proof}
+
+Osoittautuu, että riittävä ehto joukkojen mitallisuuden takaamiseksi on se, että joukot muodostavat sigma-algebran. Perustelu tälle on esitelty lähteessä \cite{tao}. Määritellään seuraavaksi mitta ja mitta-avaruus.
+
+\begin{definition}
+    Oletetaan, että $X$ on joukko ja $\Gamma$ on $\sigma$-algebra joukossa $X$. Funktio $\mu : \Gamma \to [0, \infty]$ on \textit{mitta} (joukossa X tai $\sigma$-algebrassa $\Gamma$), jos 
+    \begin{enumerate}
+        \item $\mu(\emptyset) = 0$, \\
+        ja
+        \item Jos $A_1, A_2, ... \in \Gamma$ ovat erillisiä eli $A_i \cap A_j = \emptyset$ aina, kun $i \ne i$, niin
+        $$\mu\left(\bigcup_{j=1}^\infty A_j \right) = \sum_{j=1}^\infty \mu(A_j).$$
+    \end{enumerate}
+    
+    Kolmikkoa $(X,\Gamma, \mu)$ sanotaan \textit{mitta-avaruudeksi} ja joukkoja $A\in \Gamma$ sanotaan $\Gamma$-mitallisiksi.
+    
+    %(Lehrbäck, MII, s. 88)
+\end{definition}
+
+Määritellään Lebesguen mitta ja todistetaan siihen liittyvä tulos.
+
+\begin{definition}
+    Avaruuden $\R^n$ \textit{avoimia välejä} ovat joukot
+    \begin{align*}
+        I = I^{(1)} \times I^{(2)} \times ... \times I^{(n)},
+    \end{align*}
+    jossa $I^{(k)} = ]a_k, b_k[ \subset \R$ joillain $a_k, b_k \in \R$.
+    Välin $I$ \textit{geometrinen mitta} on
+    \begin{align*}
+        v(I) = \prod_{k=1}^n(b_k-a_k).
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Funktio $\lambda^* : \R^n \to \R^+$ on \textit{Lebesguen ulkomitta} kun määritellään
+    $$\lambda^*(A) = \inf\left\{\sum_{i=1}^\infty v(I_i) : I_i \subset \R^n \text{ on avoin väli tai tyhjä joukko, ja } A \subset \bigcup_{i=1}^{\infty}I_i\right\}$$
+    kaikille $A \subset \R^n$.
+\end{definition}
+
+\begin{definition}
+    Olkoon $\mathcal M$ joukon $\R^n$ mitallisten joukkojen kokoelma. Funktio $\lambda : \mathcal M \to \R^+$ on \textit{Lebesguen mitta} kun määritellään
+    $$\lambda(A) = \lambda^*(A) \text{ kaikille } A \in \mathcal M.$$
+\end{definition}
+
+\begin{lemma}\label{le:nestedIntersection}
+    Olkoon $A_1 \supset A_2 \supset A_3 \supset ...$ ja $A = \cap_{k=1}^\infty A_k$. Jos $\lambda(A_1) < \infty$, niin 
+    \begin{equation*}
+        \lambda(A) = \lim_{k\to \infty}\lambda(A_k).
+    \end{equation*}
+\end{lemma}
+\begin{proof} Todistuksen idea saatu verkkolähteestä \cite{brozius}.
+    Olkoon $B_n = A_n \setminus A_{n+1}$ kaikille $n \in \N$. Tällöin
+    \begin{align*}
+        A_k = A \cup \bigcup_{n = k}^\infty B_n,
+    \end{align*}
+    joten $A_k$ voidaan esittää kahden erillisen joukon yhdisteenä. Siispä
+    \begin{align*}
+        \lambda(A_k) &= \lambda(A) + \lambda\left(\bigcup_{n = k}^\infty B_n\right) \\
+        &= \lambda(A) + \sum_{n = k}^\infty\lambda(B_n).
+    \end{align*}
+    Jos $m(A_{k_0}) < \infty$ jollekin $k_0$, niin $m(E) < \infty$ ja $\sum_{n = k}^\infty\lambda(B_n) < \infty$, joten 
+    \begin{align*}
+        \lim_{k\to\infty}\lambda(A_k) = \lim_{k\to\infty}\left(\lambda(A) + \sum_{n = k}^\infty\lambda(B_n)\right) = \lambda(A) + \lim_{k\to\infty}\sum_{n=k}^\infty \lambda(B_n) = \lambda(A).
+    \end{align*}
+\end{proof}
+
+\subsection{Funktion mitallisuus}
+Määritellään funktion mitallisuus. Funktion mitallisuus riippuu funktion lisäksi määrittely- ja maalijoukon avaruuksien sigma-algebroista.
+
+\begin{definition}
+    Olkoon $(X, \Sigma)$ ja $(Y, \Gamma)$ metrisiä avaruuksia, missä $X$ ja $Y$ ovat joukkoja varustettuna sigma-algebroilla $\Sigma$ ja $\Gamma$. Funktio $f: X \to Y$ on mitallinen, jos kaikkien $E\in \Gamma$ alkukuva funktiolle $f$ sisältyy kokoelmaan $\Sigma$, toisin sanoen kaikille $E \in \Gamma$
+    \begin{equation*}
+        f^{-1}(E) = \{x \in X : f(x) \in E\} \in \Sigma.  
+    \end{equation*}
+\end{definition}
+
+Määritellään reaaliarvoiselle funktiolle oma mitallisuus, joka on ekvivalentti edellisen määritelmän kanssa.
+
+\begin{definition}
+     Olkoon $X$ joukko ja $\Gamma \subset 2^X$ sigma-algebra. Olkoon $A\in \Gamma$. Funktio $f: A \to \R \bigcup\{-\infty, \infty\}$ on \textit{$\Gamma$-mitallinen}, jos kaikille $a \in \R$ pätee, että
+    \begin{equation*}
+        \{x \in A : f(x) > a\} = f^{-1}(]a, \infty]) \in \Gamma.
+    \end{equation*} 
+    Jos $\mu:\Gamma \to \Rp$ on mitta ja $f$ on $\Gamma$-mitallinen, sanotaan, että $f$ on $\mu$-mitallinen.
+    
+    %(Lehrbäck MII, s. 110)
+\end{definition}
+
+\begin{lemma}\label{le:measurableIfBallMeasurable}
+    Olkoon $X, Y \subset \R^n$ ja $\mathcal B_X$, $\mathcal B_Y$ Borelin sigma-algebrat joukoissa $X$ ja $Y$. Kuvaus $f: X \to Y$ on mitallinen, jos jokaisen avoimen pallon alkukuva funktiolle $f$ on mitallinen.
+\end{lemma}
+\begin{proof}
+    Olkoon $E\in\mathcal B_X$ avoin. Osoitetaan, että on olemassa on olemassa numeroituva avoimien pallojen yhdiste, joille
+    \begin{equation*}
+        E = \bigcup_i B(x_i, r_i).
+    \end{equation*}
+    Koska $E$ on avoin, niin kaikille $x \in E$ on olemassa $r > 0$ siten, että $B(x, r) \subset E$. Koska $X$ on tiheä avaruuden $\R^n$ osajoukkona, on olemassa $x_p \in \Q^n$ ja $x_q \in \Q$, joille $B(x_p, x_q) \subset B(x, r)$ ja lisäksi $x \in B(x_p, x_q)$. Lisäksi, koska $B(x_p, x_q) \subset E$, niin pallojen numeroituva yhdiste sisältyy joukkoon $E$.
+    
+    Koska oletuksen nojalla avoimen pallon alkukuva on mitallinen, pätee funktion alkukuvalle
+    \begin{align*}
+        f^{-1}(E) &= f^{-1}\left(\bigcup_i B(x_i, r_i)\right) \\
+        &= \bigcup_i f^{-1}(B(x_i, r_i)) \in \mathcal B_X,
+    \end{align*}
+    numeroituvana mitallisten joukkojen yhdisteenä. 
+    
+    Olkoon 
+    \begin{align*}
+        \Sigma =\{A \subset Y : f^{-1}(A) \in \mathcal B_x\},
+    \end{align*}
+    jolloin $\Sigma$ sisältää kaikki avaruuden $Y$ joukot, joiden alkukuva on Borel-joukko. Osoitetaan, että $\Sigma$ on sigma-algebra. 
+    
+    Kokoelma $\Sigma$ sisältää Borelin sigma-algebran määritelmän nojalla kaikki Borel-joukot. Tällöin $\emptyset \in \Sigma$. 
+    
+    Olkoon $A \in \Sigma$, jolloin $f^{-1}(A) \in \mathcal B_x$. Koska $\mathcal B_x$ on sigma-algebra, niin joukon $A$ komplementille $f^{-1}(A^c) \in \mathcal B_x$. Funktion alkukuvan komplementti on komplementin alkukuva, joten $f^{-1}(A)^c = f^{-1}(A^c) \in \mathcal{B_x}$.
+    
+    Olkoon $A_1, A_2, ... \in \Sigma$. Tällöin $f^{-1}(A_i) \in B_x$ kaikilla $i \ge 1$. Koska yhdisteen alkukuva on alkukuvien yhdiste, niin
+    \begin{equation*}
+        f^{-1}\left(\bigcup_{j=1}^\infty A_j\right) = \bigcup_{j=1}^\infty f^{-1}(A_j) \in \mathcal{B}_x.
+    \end{equation*}
+    Siispä $\Sigma$ on sigma-algebra, ja siten $f$ on mitallinen.
+\end{proof}
+
+\begin{definition}
+Olkoon $\Sigma$ sigma-algebra joukossa $X$ ja $\mu:\Sigma \to [0,1]$ mitta joukossa $X$. Jos $\mu(X) = 1$, niin tällöin $\mu$ on \textit{todennäköisyysmitta} joukossa $X$, merkitään $\mu \in \mathcal{P}(X)$. 
+    Kolmikkoa $(X, \Gamma, \mu)$ kutsutaan tällöin \textit{todennäköisyysavaruudeksi}.
+\end{definition}
+Jos mitta on todennäköisyysmitta, käytetään myös nimitystä yksi-massainen.
+
+
+\subsection{Integraali ja integroituvuus}
+Seuraavat määritelmät liittyen yleiseen mitta-avaruuden integraaliin ja integroituvuuden on mukailtu lähteestä \cite[s.110-111]{lehrbäck}
+\begin{definition}
+    Olkoon $\Gamma \subset 2^X$ sigma-algebra. Funktio $u: X \to \R$ on $\Gamma$-yksinkertainen, merkitään $u \in Y_\Gamma$, jos
+    \begin{align*}
+        u(x) = \sum_{i=1}^M a_i \indfct{A_i}(x) \quad \text{kaikille } x \in X,
+    \end{align*}
+    missä $a_i \in \R$ ja $A_i \in \Gamma$ kaikille $i = 1, ..., M.$ Jos $u \in Y_\Gamma$ ja $u(x) \ge 0$ kaikille $x \in X$, niin merkitään, että $u \in Y_\Gamma^+$.
+\end{definition}
+
+\begin{lemma}
+    Jokaisella $u \in Y_\Gamma$ on normaaliesitys, jolloin $a_i \ne a_j$ ja $A_i \cap A_j = \emptyset$ aina, kun $i \ne j$.
+\end{lemma}
+\begin{proof}
+    Todistus löytyy lähteestä \cite[s.110]{lehrbäck}
+\end{proof}
+
+\begin{lemma}
+    Funktio $f: A \to [0, \infty]$ on $\Gamma$-mitallinen jos ja vain jos on olemassa yksinkertaiset funktiot $u_k \in Y_\Gamma^+$ siten, että $u_k \le u_{k+1}$ kaikille $k \in \N$ ja $\lim_{k\to\infty}u_k(x) = f(x)$ kaikille $x \in A$.
+\end{lemma}
+\begin{proof}
+    Todistus löytyy lähteestä \cite[s.110]{lehrbäck}
+\end{proof}
+
+\begin{definition}
+    Olkoon funktion $u \in Y_\Gamma^+$ normaaliesitys $u(x) = \sum_{i=1}^M a_i\indfct{A_i}(x)$ ja olkoon $E \in \Gamma$. Tällöin funktion $u$ yksinkertainen $\mu$-integraali yli joukon $E$ on
+    \begin{equation*}
+        I(u, E; \mu) = \sum_{i=1}^M a_i \mu(A_i \cap E).
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Olkoon $(X, \Gamma, \mu)$ mitta-avaruus. Jos $f: A \to [0, \infty]$ on $\Gamma$-mitallinen, niin funktion $f$ $\mu$-integraali yli joukon $A$ on
+    \begin{align*}
+        \int_A f \, d\mu = \sup\{I(u, A; \mu) : u \in Y_\Gamma^+, u(x) \le f(x) \text{ kaikille } x \in A\}.
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    $\Gamma$-mitallinen funktio $f$ on $\mu$-integroituva yli joukon $A$, mikäli $\int_A f^+ \, d\mu < \infty$ ja $\int_A f^-\, d\mu < \infty$, kun $f^+$ ja $f^-$ ovat funktion $f$ positiivi- ja negatiiviosat.
+\end{definition}
+Mikäli mitta $\mu$ ja joukko $A$ ovat kontekstista selvät, sanotaan pelkästään, että $f$ on integroituva.
+
+Yleisen mitta-avaruuden integraalille pätevät samat perusominaisuudet, kuten Lebesgue-integraalille. Näiden ominaisuuksien todistus sivuutetaan.
+\begin{lemma}\label{le:integralProperties}
+    Olkoon $(X, \Gamma, \mu)$ mitta-avaruus ja olkoon $A\in \Gamma$. Oletetaan, että funktiot $f, g$ ovat $\mu$-integroituvia yli joukon $A$ ja $\lambda \in \R$. Tällöin
+    \begin{enumerate}
+        \item $\lambda f$ on $\mu$-integroituva yli joukon $A$, ja 
+        \begin{equation*}
+            \int_A \lambda f \, d\mu = \lambda \int_A f \, d\mu.
+        \end{equation*}
+        \item $f + g$ on $\mu$-integroituva yli joukon $A$, ja
+        \begin{equation*}
+            \int_A  (f+g) \, d\mu = \int_A  f \, d\mu + \int_A  g \, d\mu.
+        \end{equation*}
+        \item jos $\gamma$-mitalliset joukot $A_j \subset A$ ovat erillisiä, niin
+        \begin{equation*}
+            \int_{\cup_{j=1}^\infty A_j}f \, d\mu = \sum_{j=1}^\infty \int_{A_j} f\, d\mu.
+        \end{equation*}
+        \item jos $f(x) \le g(x)$ $\mu$-melkein kaikille $x \in A$, niin 
+        \begin{equation*}
+            \int_A f \, d\mu \le \int_A g \, d\mu.
+        \end{equation*}
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Todistetaan vastaavasti, kuten Lebesgue-integraalille. Todistuksen idea on esitelty lähteessä \cite[s.113]{lehrbäck}.
+\end{proof}
+
+Tärkeässä osassa tulee esiintymään monotonisen konvergenssin lause, joka antaa ehdot sille, milloin funktiojonon alkioiden integraalien raja-arvo on raja-arvon integraali. Lauseen todistus sivuutetaan.
+\begin{theorem} \label{thm:monoConvThm}
+    (Monotonisen konvergenssin lause) Olkoon $(X, \mathcal{B}, \mu)$ mitta-avaruus ja olkoot $f_n:X\to [0, \infty]$ mitallisia funktioita siten, että funktiojono $(f_k)$ on kasvava. Tällöin
+    \begin{equation*}
+        \lim_{n\to\infty} \int_X f_n \, d\mu = \int_X \lim_{n\to \infty} f_n \, d\mu.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Todistettu lähteessä \cite[s. 107]{tao}.
+\end{proof}
+
+
+\begin{theorem}\label{thm:markov}
+    (Markovin epäyhtälö) Olkoon $(X, \Gamma, \mu)$ mitta-avaruus ja $f$ $\Gamma$-mitallinen funktio, kun $A \in \Gamma$. Tällöin
+    \begin{equation*}
+        \mu(\left\{x \in A : |f(x)| \ge t\right\}) \le \frac{1}{t}\int_A |f| \, d\mu
+    \end{equation*}
+    kaikilla $t\in \Rp$.
+\end{theorem}
+\begin{proof}
+    Todistuksen idea on saatu verkkolähteestä \cite{markov}. Olkoon $t \in \Rp$ ja merkitään
+    \begin{equation*}
+        B = \{x \in A : |f(x)| \ge t\}.
+    \end{equation*}
+    Olkoon $\indfct{B}: B \to A$ indikaattorifunktio. Osoitetaan, että kaikilla $x\in A$ pätee $t\indfct{B}(x) \le |f(x)|$. Olkoon $x \in A$. Jos $x \in B$, niin 
+    \begin{equation*}
+        t\indfct B (x) = t \le |f(x)|,
+    \end{equation*}
+    ja jos $x \notin B$, niin
+    \begin{equation*}
+        t\indfct B (x) = 0 \le |f(x)|.
+    \end{equation*}
+    Siispä kaikilla $x\in A$ on $t\indfct{B}(x) \le |f(x)|$.
+    
+    Integroitavan funktion integraalin monotonisuuden, eli Lemman $\ref{le:integralProperties}$ nojalla
+    \begin{equation}\label{eq:markov1}
+        \int_A t\indfct{B} \, d\mu \le \int_A |f| \, d\mu,
+    \end{equation}
+    ja toisaalta
+    \begin{equation}\label{eq:markov2}
+        \int_A t\indfct{B} \, d\mu = t\int_A \indfct{B} \, d\mu, = t\mu(B).
+    \end{equation}
+    Yhdistämällä tulokset \eqref{eq:markov1} ja \eqref{eq:markov2}, saadaan
+    \begin{align*}
+        \mu(B) \le \frac{1}{t}\int_A |f| \, d\mu.
+    \end{align*}
+    
+\end{proof}
+
+\begin{definition}
+    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, kun määritellään
+    $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
+\end{definition}
+
+\begin{theorem}\label{thm:push-cov}
+    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitalliset kuvaukset $f: X_1 \to X_2$ ja $g: X_2 \to \R^+$, sekä mitta $\mu:\Sigma_1 \to [0, \infty]$. Mikäli $g$ on $f_\#\mu$-integroituva, niin  $g \circ f$ on $\mu$-integroituva. Lisäksi
+    \begin{equation*}
+        \int_{X_2} g \, d(f_{\#} \mu) = \int_{X_1} g \circ f \, d\mu.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+Todistus sivuutetaan, todistettu lähteessä \cite[s. 190]{bogachev}.
+\end{proof}
+
+\begin{corollary}\label{co:LSCimpliesMeasurable}
+    Alhaalta ja ylhäältä puolijatkuvat kuvaukset ovat mitallisia.
+\end{corollary}
+\begin{proof}
+    Lemman \ref{le:LSCisLimitOfC-Functions} nojalla alhaalta puolijatkuva funktio voidaan esittää jatkuvien kuvausten raja-arvona. Jatkuvat kuvaukset ovat mitallisia, joten niiden raja-arvo on mitallinen. Siispä alhaalta puolijatkuva kuvaus on mitallinen. \what{Mutta entä USC?}
+\end{proof}
+
+\subsection{Heikko suppeneminen}
+
+\begin{definition} \label{def:weakConv}
+    Olkoon $K$ kompakti metrinen avaruus ja $X\subset \R^n$. Olkoon $\P \in \mathcal{P}(K)$ mitta metrisessä avaruudessa $(X, d)$. Mittojen $\P_n \in \mathcal{P}(K)$ jono $(\P_n)$ suppenee heikosti, merkitään $\P_n \rightharpoonup \P$, jos pätee 
+    \begin{equation*}
+        \lim_{n\to\infty} \int_X f(x) \, d\P_n (x) = \int_X f(x) \, d\P(x)
+    \end{equation*}
+    kaikilla $f \in C_c(X)$.
+\end{definition}
+
+
+
 \section{Tarvitaanko / mihin kohtaan?}
 
 \begin{definition}
@@ -596,6 +611,8 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
     \end{equation*}
      Jos funktion $f$ kantaja on kompakti, merkitään $f \in C_c(X)$.
 \end{definition}
+
+
 
 \begin{theorem}\label{thm:Riesz}
     Olkoon $X$ kompakti metrinen avaruus. Olkoon $\kappa:C_c(X) \to \R$ positiivinen ja lineaarinen funktionaali. Tällöin on olemassa sigma-algebra $\Sigma$, joka sisältää kaikki Borelin joukot joukossa $X$ ja on olemassa yksikäsitteinen positiivinen mitta $\mu:\Sigma \to \Rp$, jolle
@@ -611,7 +628,7 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
     Olkoon $K$ kompakti metrinen avaruus ja $(\mu_n)$ jono todennäköisyysmittoja joukossa $K$. Tällöin jonolla $(\mu_n)$ on heikosti suppeneva osajono.
 \end{theorem}
 \begin{proof}
-    Olkoon $f \in C(X, \R)$. Merkintöjen helpottamiseksi merkitään $\mu(f) = \int f \, d\mu$. Koska $X$ on kompakti, on $C(X, \R)$ \textit{separoituva}, eli on olemassa numeroituva tiheä osajoukko funktioita $\{f_i\}_{i = 1}^\infty \subset C(X)$ \cite[s. 140]{conway}. Tällöin reaalilukujen jonolle $(\mu_n(f_1))$ pätee
+    Olkoon $f \in C_c(X, \R)$. Merkintöjen helpottamiseksi merkitään $\mu(f) = \int f \, d\mu$. Koska $X$ on kompakti, on $C_c(X, \R)$ \textit{separoituva}, eli on olemassa numeroituva tiheä osajoukko funktioita $\{f_i\}_{i = 1}^\infty \subset C_c(X)$ \cite[s. 140]{conway}. Tällöin reaalilukujen jonolle $(\mu_n(f_1))$ pätee
     \begin{equation}
         |\mu_n(f_1)| \le ||f_1||_\infty,
     \end{equation}
@@ -640,9 +657,9 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
         &=\lim_{n \to \infty}  \left(A \int f \, d\mu_n^{(n)} + B \int g \, d\mu_n^{(n)}\right)  \\
         &= A w(f) + B w(g).
     \end{align*}
-    Koska $|w(f)| \le ||f||_\infty$ ja $f \in C(X, \R)$ niin $w$ on rajoitettu. Lisäksi, jos $f \ge 0$, niin tällöin selvästi $w(f) \ge 0$, joten $w$ on positiivinen.
+    Koska $|w(f)| \le ||f||_\infty$ ja $f \in C_c(X, \R)$ niin $w$ on rajoitettu. Lisäksi, jos $f \ge 0$, niin tällöin selvästi $w(f) \ge 0$, joten $w$ on positiivinen.
 
-Lopulta kaikille $n, m$ pätee $\mu_n^{(m)} \in \mathcal P(K)$, niin $w(1) = \lim_{n\to\infty} \mu_n^{(n)}(1) = 1$, joten $w \in \mathcal P(K)$
+%Lopulta kaikille $n, m$ pätee $\mu_n^{(m)} \in \mathcal P(K)$, niin $w(1) = \lim_{n\to\infty} \mu_n^{(n)}(1) = 1$, joten $w \in \mathcal P(K)$
 
     Siispä Lauseen \ref{thm:Riesz} nojalla on olemassa $\mu \in \mathcal P(K)$, jolle $w(f) = \int f \, d\mu$. Tällöin kaikille $f \in C(X, \R)$ on
     \begin{equation*}
@@ -939,16 +956,6 @@ Tarkistetaan vielä, että oletukset täyttyvät. Avaruudet $K$ ja $\Omega$ ovat
 
 \section{Liikennesuunnitelmien {stabiliteetti}}
 Seuraavaksi perehdytään liikennesuunnitelmien heikkoon suppenemiseen, ja pysähtymisajan sekä pituuden puolijatkuvuuteen. Tarkastelu rajoitetaan siten, että käsittelyssä ovat vain jatkuvat funktiot, joiden kantaja on kompakti.
-
-Liikennesuunnitelmista $\P_n$ muodostuvan jonon $(\P_n)$ heikko suppeneminen määritellään seuraavasti.
-
-\begin{definition} \label{def:weakConv}
-    Olkoon $\P \in \mathcal{P}(X)$ liikennesuunnitelma metrisessä avaruudessa $(X, d)$. Liikennesuunnitelmien $\P_n \in \mathcal{P}(X)$ jono $(\P_n)$ suppenee heikosti, merkitään $\P_n \rightharpoonup \P$, jos pätee 
-    \begin{equation*}
-        \lim_{n\to\infty} \int_X f(x) \, d\P_n (x) = \int_X f(x) \, d\P(x)
-    \end{equation*}
-    kaikilla $f \in C_c(X)$.
-\end{definition}
 
 Sovitaan, että jono liikennesuunnitelmia suppenee, jos se suppenee heikosti, tai jono liikennesuunnitelman parametrisaatioita suppenee.
 
