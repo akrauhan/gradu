@@ -590,7 +590,7 @@ Todistus sivuutetaan, todistettu lähteessä \cite[s. 190]{bogachev}.
     Lemman \ref{le:LSCisLimitOfC-Functions} nojalla alhaalta puolijatkuva funktio voidaan esittää jatkuvien kuvausten raja-arvona. Jatkuvat kuvaukset ovat mitallisia, joten niiden raja-arvo on mitallinen. Siispä alhaalta puolijatkuva kuvaus on mitallinen. \what{Mutta entä USC?}
 \end{proof}
 
-\subsection{Heikko suppeneminen}
+\subsection{Heikko suppeneminen} 
 
 \begin{definition} \label{def:weakConv}
     Olkoon $K$ kompakti metrinen avaruus ja $X\subset \R^n$. Olkoon $\P \in \mathcal{P}(K)$ mitta metrisessä avaruudessa $(X, d)$. Mittojen $\P_n \in \mathcal{P}(K)$ jono $(\P_n)$ suppenee heikosti, merkitään $\P_n \rightharpoonup \P$, jos pätee 
@@ -600,18 +600,13 @@ Todistus sivuutetaan, todistettu lähteessä \cite[s. 190]{bogachev}.
     kaikilla $f \in C_c(X)$.
 \end{definition}
 
-
-
-\section{Tarvitaanko / mihin kohtaan?}
-
 \begin{definition}
-    Olkoon funktio $f:X \to \R$, missä $X$ on metrinen avaruus. Funktion $f$ kantaja $\supp(f)$ on funktion $f$ määrittelyjoukon osajoukko, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
+    Olkoon funktio $f:X \to \R$, missä $X$ on metrinen avaruus. Funktion $f$ kantaja $\supp(f)$ on sulkeuma funktion $f$ määrittelyjoukon osajoukosta, jossa funktio $f$ saa nollasta poikkeavia arvoja, eli
     \begin{equation*}
-        \supp(f) = \{x \in X : f(x) \ne 0\}.
+        \supp(f) = \overline{\{x \in X : f(x) \ne 0\}}.
     \end{equation*}
      Jos funktion $f$ kantaja on kompakti, merkitään $f \in C_c(X)$.
 \end{definition}
-
 
 
 \begin{theorem}\label{thm:Riesz}
@@ -838,7 +833,7 @@ Otetaan käyttöön kuvaukset, jotka palauttavat polun lähtöpisteen, päätepi
     \end{align*}
     jos $T(\gamma) < \infty$. Jos $T(\gamma) = \infty$, niin kuvaukset määritellään vastaavasti, korvaamalla määritelmässä $\gamma(T(\gamma))$ alkupisteellä $\gamma(0).$
 \end{definition}
-
+Tilanteessa $T(\gamma) = \infty$ erillinen määritelmä tehdään vain merkintöjen takia. Liikennesuunnitelman määritelmän nojalla äärettömille poluille tulee mitaksi nolla.
 
 Näiden kuvausten avulla voidaan määritellä mitat, jotka toimivat massojen mallintamisessa. Massa, joka halutaan siirtää, tullaan mallintamaan niin kutsutulla irrigoivalla mitalla, kun taas massa joka on jo siirretty mallinnetaan vastaavasti irrigoidulla mitalla. Näiden lisäksi määritellään siirtosuunnitelma, joka sisältää tiedon siitä, minne mikäkin massa halutaan siirtää.
 
@@ -878,7 +873,7 @@ Osoittautuu, että mikä tahansa liikennesuunnitelma voidaan muodostaa puskemall
 
 Perehdytään lauseen antamaan mitalliseen funktioon tarkemmin. Funktio $ \chi:[0, c] \to K$ antaa jokaiselle välin $[0, c]$ luvulle 1-Lipschitz-polun joukosta $K$. Merkitään jatkossa $\Omega = [0,c]$ ja kutsutaan väliä indeksijoukoksi. Polku $ \chi(\omega)$ vastaa siis indeksin $\omega$ hiukkasen reittiä.
 
-Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omega$ ja $t \in \R^+$. Osoitetaan seuraavaksi, että myös näin määriteltyn $\chi$ on mitallinen funktio. Mitallisuuden osoittamiseksi todistetaan seuraava aputulos.
+Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omega$ ja $t \in \R^+$. Osoitetaan seuraavaksi, että myös näin määritellyn $\chi$ on mitallinen funktio. Mitallisuuden osoittamiseksi todistetaan seuraava aputulos.
 
 \begin{lemma}\label{le:caratheodoryIsMeasurable}
     Olkoon $f:\Omega \times \Rp \to \R$ funktio, jolle
@@ -886,7 +881,7 @@ Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omeg
         \item $\omega \mapsto f(\omega, t)$  on mitallinen kaikilla $t \in \Rp$.
         \item $t \mapsto f(\omega, t)$ on jatkuva kaikilla $\omega \in \Omega$
     \end{itemize}
-    Tällöin $f$ on mitallinen sigma-algebran suhteen, joka saadaan tulona joukkojen $\Omega$ ja $\Rp$ Lebesgue-mitallisista osajoukkojen kokoelmista.
+    Tällöin $f$ on mitallinen sigma-algebran suhteen, joka saadaan joukon $\Omega \times \Rp$ mitallisten joukkojen virittämästä sigma-algebrasta.
 \end{lemma}
 \begin{proof}
     Todistus mukailee lähdettä \cite{optimal}
@@ -1005,10 +1000,10 @@ Osoitetaan, että pysähtymisaika ja pituus ovat alhaalta puolijatkuvia.
     \begin{equation*}
         T(\gamma) \le \liminf_n T(\gamma_n),
     \end{equation*}
-    ja 
-    \begin{equation*}
-        L(\gamma) \le \liminf_n L(\gamma_n).
-    \end{equation*}
+    %ja 
+    %\begin{equation*}
+    %    L(\gamma) \le \liminf_n L(\gamma_n).
+    %\end{equation*}
 \end{lemma}
 \begin{proof}
     Olkoon $t, s \in \Rp$, joille $t \ge s \ge \liminf T(\gamma_n)$. Tällöin on olemassa kasvava jono indeksejä $(n_k)$, joille $n_k \to \infty$ kun $k \to \infty$, joille $T(\gamma_{n_k}) < s \le t$ alaraja-arvon määritelmän nojalla. Pysähtymisajan $T$ määritelmän nojalla ajanhetkestä $T(\gamma_{n_k})$ eteenpäin polku $\gamma_{n_k}$ pysyy vakiona, joten erityisesti $\gamma_{n_k}(t) = \gamma_{n_k}(s)$. Kun $k \to \infty$, niin $n_k \to \infty$, ja oletuksen nojalla
@@ -1017,20 +1012,22 @@ Osoitetaan, että pysähtymisaika ja pituus ovat alhaalta puolijatkuvia.
     \end{align*}
     joten $\gamma(t) = \gamma(s)$. Siispä $\gamma$ on vakio välillä $]\liminf T(\gamma_n), \infty[$, joten polun $\gamma$ pysähtymisaika on korkeintaan $\liminf T(\gamma_n)$, eli $T(\gamma) \le \liminf T(\gamma_n)$.
     
-    \what{Pituuden LSC ei ilmeisesti tarvita..? Voisi riisua pois.}
+    %\what{Pituuden LSC ei ilmeisesti tarvita..? Voisi riisua pois.}
 \end{proof}
 
-Lemmat \ref{le:fdPLeLiminf} ja \ref{le:pysahtymisajan&pituudenLSC} yhdistämällä saadaan suoraan seuraava tulos.
 \begin{corollary}\label{le:keskipysahtymisajan&pituudenLSC}
     Jos jono liikennesuunnitelmia $\P_n$ suppenee liikennesuunnitelmaan $\P$, niin 
     \begin{equation*}
         \int_K T(\gamma) \, d\P(\gamma) \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma),
     \end{equation*}
-    ja
-    \begin{equation*}
-        \int_K L(\gamma) \, d\P(\gamma) \le \liminf_n \int_K L(\gamma) \, d\P_n(\gamma).
-    \end{equation*}
+    %ja
+    %\begin{equation*}
+    %    \int_K L(\gamma) \, d\P(\gamma) \le \liminf_n \int_K L(\gamma) \, d\P_n(\gamma).
+    %\end{equation*}
 \end{corollary}
+\begin{proof}
+    Tulos saadaan suoraan Lemmat \ref{le:fdPLeLiminf} ja \ref{le:pysahtymisajan&pituudenLSC} yhdistämällä.
+\end{proof}
 
 \section{Liikennesuunnitelman kertaluku}
 
@@ -1242,7 +1239,18 @@ Osoitetaan, että liikennesuunnitelmalle $\P$ löytyy liikennesuunnitelma $\tild
     \begin{align*}
         \chi((I, \tau)(\omega, t)) = \chi(\omega, \tau(\omega, t)) = \tilde \chi(\omega, t)
     \end{align*}
-    kaikille $(\omega, t) \in [0, 1] \times \Rp$. Tällöin kuvaus $\tilde \chi$ on mitallinen, jos $\chi$ on mitallinen, $(I, \tau)$ on mitallinen. Oletuksen mukaan $\chi$ ja $\tau$ ovat mitallisia. Kuvauksen $(I, \tau)$ mitallisuus seuraa kuvauksen $\tau$ mitallisuudesta ja siitä, että $(I, \tau)^{-1}(N)$ on \define{nollamittainen} kaikilla nollamittaisilla $N \subset [0, 1] \times [0, \infty[$. \define{Tästä lause.}
+    kaikille $(\omega, t) \in [0, 1] \times \Rp$. Tällöin kuvaus $\tilde \chi$ on mitallinen, jos $\chi$ on mitallinen ja $(I, \tau)$ on mitallinen. Oletuksen mukaan $\chi$ ja $\tau$ ovat mitallisia. 
+    
+    Kuvauksen $(I, \tau)$ mitallisuuden osoittamiseksi käytetään tietoa, että jokainen Lebesgue-mitallinen joukko on nollamittaisen joukon ja Borel-joukon yhdiste. Olkoon mitalliset joukot $A$ ja $B$ joille $A\times B \subset [0,1] \times \Rp$. Tällöin
+    \begin{align*}
+        A &= N_A \cup \mathcal{B}_A \text{ ja } \\
+        B &= N_B \cup \mathcal{B}_B,
+    \end{align*}
+    kun $N_A$ ja $N_B$ ovat nollamittaiset osat, ja $\mathcal{B}_A$ ja $\mathcal{B}_B$ ovat joukkojen Borel-osat. Tutkitaan tulojoukon $A\times B$ alkukuvaa. Alkukuvalle pätee
+    \begin{align*}
+        (I, \tau)^{-1}(A\times B) &= (A \cap \Rp) \times \tau^{-1}(B) \\
+        &= \left(\left(N_A \cup \mathcal{B}_A\right) \cap \Rp\right) \times \tau^{-1}(N_B \cup \mathcal{B}_B)
+    \end{align*}
     
     Olkoon $N \subset [0, 1] \times \Rp$ nollamittainen ja $\varepsilon > 0$. Olkoon $B$ Borelin joukko, joka sisältää joukon $N$ ja jonka mitta on pienempää kuin $\varepsilon$. Määritellään mitallinen kuvaus $F(\omega, s) = \indfct{B}(\omega, \tau(\omega, s))$. Melkein kaikille $\omega \in [0,1]$ pätee tällöin
     \begin{align}
@@ -1252,7 +1260,7 @@ Osoitetaan, että liikennesuunnitelmalle $\P$ löytyy liikennesuunnitelma $\tild
     \begin{align*}
         |(I, \tau)^{-1}(B)| = \int_0^1\int_0^\infty \indfct{B}(\omega, \tau(\omega, s)) \, dsd\omega \le \int_0^1\int_0^\infty \indfct{B}(\omega, t) \, dtd\omega \le \varepsilon.
     \end{align*}
-Siispä $(I, \tau)^{-1}(N)$ on nollamittainen, ja siten Lemman 
+Siispä $(I, \tau)^{-1}(N)$ on nollamittainen.
 \end{proof}
 
 \begin{lemma}\label{le:parametrizedByLength}
@@ -1282,11 +1290,11 @@ Siispä $(I, \tau)^{-1}(N)$ on nollamittainen, ja siten Lemman
     \end{align*}
     Siispä kaikille $n$ on olemassa $m$ siten, että
     \begin{align*}
-        (\omega, s) \in \{\omega \in [0, 1] : T(\omega, t_m) \le \lambda \times [0, t_m + \frac{1}{n}\}
+        (\omega, s) \in \{\omega \in [0, 1] : T(\omega, t_m) \le \lambda \times [0, t_m + \frac{1}{n}[ \, \}
     \end{align*}
     joten tällöin myös
     \begin{align*}
-        (\omega, s) \in \bigcap_{n=1}^\infty \bigcup_{m=1}^\infty\{\omega \in [0, 1] : T(\omega, t_m) \le \lambda \times [0, t_m + \frac{1}{n}\}
+        (\omega, s) \in \bigcap_{n=1}^\infty \bigcup_{m=1}^\infty\{\omega \in [0, 1] : T(\omega, t_m) \le \lambda \times [0, t_m + \frac{1}{n}[ \, \}
     \end{align*}
 
     Olkoon $(\omega, s) \in \bigcap_{n=1}^\infty \bigcup_{m=1}^\infty \{\omega \in [0, 1] : T(\omega, t_m) \le \lambda\}.$ Tällöin kaikilla $n$ on olemassa $t_m(n) \times [0, t_m + \frac{1}{n}]$ ja $T(\omega, t_m(n) \le \lambda$. Jos $s \le t_m(n)$, niin kasvavuuden nojalla 
@@ -1302,7 +1310,7 @@ Siispä $(I, \tau)^{-1}(N)$ on nollamittainen, ja siten Lemman
     Olkoon positiivisten reaalilukujen jono $(s_i)$ jolle $s_i \to s$. Olkoon jono $(T(\omega, s_i))$. Määritelmänsä nojalla $T$ on rajoitettu, joten on olemassa suppeneva osajono jota merkitään edelleen $(T(\omega, s_i))$. Olkoon $t = \lim_i T(\omega, s_i)$. Nyt
     \begin{align*}
         S(\omega, t) &= \int_0^t |\dot\chi(\omega, r)| \, dr \\
-        &= \lim_i\int_0^T(\omega, s_i) |\dot\chi(\omega, r)| \, dr \\
+        &= \lim_i\int_0^{T(\omega, s_i)} |\dot\chi(\omega, r)| \, dr \\
         &= \lim_i s_i = s.
     \end{align*}
     Siispä $T(\omega, s) \le t = \lim_i T(\omega, s_i)$, joten $T$ on alhaalta puolijatkuva.
@@ -1364,7 +1372,7 @@ Siispä $(I, \tau)^{-1}(N)$ on nollamittainen, ja siten Lemman
 \end{proof}
 
 \begin{lemma}\label{le:nrgGeThanLength}
-    Olkoon $P \in \mathcal{P}(K)$ liikennesuunnitelma. Tällöin
+    Olkoon $\P \in \mathcal{P}(K)$ liikennesuunnitelma. Tällöin
         \begin{equation*}
             \E^\alpha(\P) \ge \int_K L(\gamma) \, d\P(\gamma).
         \end{equation*}
@@ -1407,9 +1415,10 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
         \end{equation*}
 \end{lemma}
 \begin{proof}
+Alaraja-arvon määritelmän ja integraalin monotonisuuden nojalla saadaan
     \begin{align*}
         \int_\Omega f(\omega) \, d\omega &\le \int_\Omega \liminf_n f_n(\omega) \, d\omega \\
-        & = \int_\Omega \lim_{n\to\infty} \inf_{k\ge n} f_k(\omega) \, d\omega
+        & = \int_\Omega \lim_{n\to\infty} \inf_{k\ge n} f_k(\omega) \, d\omega.
     \end{align*}
  Mitallisten funktioiden jono $(\inf_{k\ge n}f_k(\omega))_k$ on kasvava, jolloin Monotonisen konvergenssilauseen \ref{thm:monoConvThm} nojalla voidaan raja-arvon ja integroinnin järjestys vaihtaa, joten
     \begin{align*}
@@ -1451,7 +1460,7 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     \end{align*}
     Jos $\displaystyle \liminf_n |\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \ge |\chi(\omega, t)|_{\chi}^{\alpha-1}$ ja $\displaystyle \liminf_n \indfct{[0, L(\chi_n(\omega))[}(t) \ge \indfct{[0, L(\chi(\omega))[}(t)$, niin
     \begin{align*}
-        % \int_\Rp \liminf_{n} |\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \indfct{[0, L(\chi_n(\omega))[}(t) \, dt &\ge \int_\Rp|\chi(\omega, t)|_{\chi}^{\alpha-1} \indfct{[0, L(\chi(\omega))[}(t) \, dt \\
+        \int_\Rp \liminf_{n} |\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \indfct{[0, L(\chi_n(\omega))[}(t) \, dt &\ge \int_\Rp|\chi(\omega, t)|_{\chi}^{\alpha-1} \indfct{[0, L(\chi(\omega))[}(t) \, dt \\
         &= \int_0^{L(\chi(\omega))} |\chi(\omega, t)|_{\chi}^{\alpha-1} \, dt,
     \end{align*}
     mikä osoittaa väitteen \eqref{eq:eLSC1}. Osoitetaan, että $\displaystyle \liminf_n |\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \ge |\chi(\omega, t)|_{\chi}^{\alpha-1}$ ja lisäksi, että $\displaystyle \liminf_n \indfct{[0, L(\chi_n(\omega))[}(t) \ge \indfct{[0, L(\chi(\omega))[}(t)$.
@@ -1471,7 +1480,9 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     \begin{align*}
         \liminf_n{|\chi_n(\omega, t)|_{\chi_n}^{\alpha-1}} \ge |\chi(\omega, t)|_{\chi}^{\alpha-1},
     \end{align*}
-    mitä haluttiin osoittaa. Koska $L(\chi(\omega)) \le \liminf_n L(\chi_n(\omega)) < \infty$, niin soveltamalla Lemmaa \ref{le:indFct}, saadaan
+    mitä haluttiin osoittaa. 
+    
+    Pituus $L$ on aina korkeintaan polun pysähtymisaika $T$. Lisäksi kaikki jonon $(\chi_n(\omega))$ alkiot on parametrisoitu pituuden mukaan, joten jonon polkujen pituudet ovat yhtä suuret kuin polkujen pysähtymisajat. Siispä $L(\chi(\omega)) \le T(\chi(\omega)) \le \liminf_n T(\chi_n(\omega)) = \liminf_n L(\chi_n(\omega))$ pysähtymisajan $T$ alhaalta puolijatkuvuuden nojalla, joka osoitettiin Lemmassa \ref{le:pysahtymisajan&pituudenLSC}.  Soveltamalla Lemmaa \ref{le:indFct}, saadaan
     \begin{equation*}
         \indfct{[0, L(\chi(\omega))[}(t) \le \liminf_{n} \indfct{[0, L(\chi_n(\omega))[}(t),
     \end{equation*}
@@ -1481,7 +1492,7 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     \begin{equation*}
         \liminf_n \int_\Omega \int_0^{L(\chi_n(\omega))}|\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \, dtd\omega\ge \int_0^{L(\chi(\omega))}|\chi(\omega, t)|_{\chi}^{\alpha-1} \, dtd\omega
     \end{equation*}
-    Kaikki polut  $\chi(\omega) \in K$ ovat 1-Lipschitz-jatkuvia, jolloin $|\dot \chi(\omega, t)| \le 1$ kaikilla $t \in \R^+$. Siisp
+    Kaikki polut  $\chi(\omega) \in K$ ovat 1-Lipschitz-jatkuvia, jolloin $|\dot \chi(\omega, t)| \le 1$ kaikilla $t \in \R^+$. Siispä
     \begin{align*}
          \liminf_n \E^\alpha(\P_n) &=  \liminf_n \int_\Omega \int_0^{L(\chi_n(\omega))}|\chi_n(\omega, t)|_{\chi_n}^{\alpha-1} \\
          &\ge \int_0^{L(\chi(\omega))}|\chi(\omega, t)|_{\chi}^{\alpha-1} \, dtd\omega \\
@@ -1489,6 +1500,7 @@ Seuraavia lemmoja tarvitaan osoittamaan energian alhaalta puolijatkuvuus.
     \end{align*}
 \end{proof}
 
+Viimeisenä lauseena todistetaan tutkielman päätulos. Energialla $\E^\alpha$ on olemassa minimoiva liikennesuunnitelma $\P$.
 
 \begin{theorem}
     Olkoon todennäköisyysmitat $\mu^+$ ja $\mu^-$ joukossa $K $. Merkitään mitat $\mu^+$ ja $\mu^-$ yhdistävää liikennesuunnitelmien kokoelmaa $TP(\mu^+, \mu^-)$, eli
