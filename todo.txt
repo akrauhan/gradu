@@ -1,11 +1,7 @@
 TODO:
 - Yleinen Muuttujanvaihto?
 - Ketjusääntö?
-- Lemma 1.23
-- Yhdistetty funktio on mitallinen
-    Todistus loppuun. Käytä:
-        Borelin sigma-algebra on pienin avoimet joukot sisältävä sigma-algebra. Tehtävänä Lemmassa on siis osoittaa, että kaikkien Borel joukkojen alkukuva on Borel. Tiedetään jo, että avointen joukkojen alkukuva on Borel. Riittää siis osoittaa, että niiden avaruuden Y joukkojen kokoelma joiden alkukuva on Borel, on sigma-algebra. Tällöin kokoelma sisältää Borelin sigma-algebran määritelmän mukaan kaikki Borel-joukot (mutta saattaa olla isompi). Se, että tuo kokoelma on sigma-algebra tulee siitä että yhdisteet, leikkaukset, komplementit yms. toimivat nätisti alkukuvissa.
-
+- Jokainen Lebesgue-mitallinen joukko on Borelin ja 0-mittaisen yhdiste?
 
 Mahdollisia lähteitä:
 
@@ -13,4 +9,8 @@ Löytyy JYU:
 Markovin epäyhtälöön https://jyu.finna.fi/Record/jykdok.985388
 
 Kysy:
+Lemma 1.37 muotoilu.
 
+Lemman 1.28 muotoilussa pitäisi olla Borelin sigma-algebrat mukana.
+
+Muotoilin uudestaan. En ole ihan täysin sisäistänyt tuota Borel-mitallisuutta, joten sen muotoilussa saattaa vielä olla jotakin häikkää. 

@@ -11,13 +11,17 @@ Tämän kirjoitelman tarkoituksena on perehtyä massansiirtoteorian perusteisiin
 
 Ihmiset ovat kautta aikojen ratkoneet ongelmia liittyen tavaran kuljettamiseen paikasta toiseen. Useat kaupat tarvitsevat tuotteita useasta eri tehtaasta. Koko kaupungin kattava vesijohtoverkosto pyrkii kuljettamaan jokaiselle asukkaalle riittävästi vettä. Julkisen liikenteen tehtävä on kuljettaa ihmisiä ympäri maan paikasta toiseen. Kaikille näistä ongelmista on oleellista kustannusten minimointi; tavara tai ihminen halutaan kuljettaa mahdollisimman tehokkaasti. Kuvitellaan, että jokin kauppa saa tuotteensa kahdelta tehtaalta. Kaupan tehtäväksi jää ratkaista, onko tehokkaampaa tuoda tavara molemmista kaupoista erikseen, vai esimerkiksi tuoda tavara johonkin paikkaan kauppojen ja tehtaiden väliin, josta riittää vain yksi kuljetus kauppaan.
 
-Mielenkiintoista on, että ihmisen suunnittelemat verkostot ratkaisemaan tämän kaltaisia logistisia ongelmia muistuttavat vahvasti luonnossa esiintyviä ratkaisuja samankaltaisiin ongelmiin. Esimerkiksi Suomen tieverkostossa ja ihmisen verisuonistossa voidaan nähdä samankaltaista haarautuvaa systemaattisuutta. Suomen tieverkoston tehtävä on siirtää liikennettä paikasta toiseen siten, että teitä on mahdollisimman vähän kustannusten vähentämiseksi, mutta kuitenkin siten, että mahdollisimman iso asuinalue voidaan kattaa. Verisuoniston tehtävänä on siirtää verta sydämestä koko kehoon mahdollisimman vähällä energialla. Molemmat verkostot pyrkivät ratkomaan saman ongelman; miten siirtää massa mahdollisimman vähillä kustannuksilla paikasta toiseen? 
+Mielenkiintoista on, että ihmisen suunnittelemat verkostoratkaisut tämän kaltaisiin logistisiin ongelmiin muistuttavat vahvasti luonnossa esiintyviä ratkaisuja samankaltaisiin ongelmiin. Esimerkiksi Suomen tieverkostossa ja ihmisen verisuonistossa voidaan nähdä samankaltaista haarautuvaa systemaattisuutta. Suomen tieverkoston tehtävä on siirtää liikennettä paikasta toiseen siten, että teitä on mahdollisimman vähän kustannusten vähentämiseksi, mutta kuitenkin siten, että mahdollisimman iso asuinalue voidaan kattaa. Verisuoniston tehtävänä on siirtää verta sydämestä koko kehoon mahdollisimman vähällä energialla. Molemmat verkostot pyrkivät ratkomaan saman ongelman; miten siirtää massa mahdollisimman vähillä kustannuksilla paikasta toiseen? 
 
 Massan siirtämisen tutkiminen katsotaan alkaneen Gaspard Mongen (1746-1818) esittämästä ongelmasta \cite{monge} siirtää kasa hiekkaa toiseen paikkaan mahdollisimman vähällä työllä. Moderni, niin kutsuttu Mongen-Kantorovitsin ongelma mallintaa siirrettävää massaa mitoilla. Olkoon annettuna kaksi massajakaumaa $\mu^+$ ja $\mu^-$ avaruudessa $\R^n$, joilla mallinnetaan kysyntä- ja tarjontajakaumia. Siirtosuunnitelmaksi tullaan kutsumaan avaruuteen $\R^n \times \R^n$ määriteltyä mittaa $\pi$, jolloin $\pi(A\times B)$ kuvastaa joukosta $A$ siirrettävää massaa joukkoon $B$. Siirtosuunnitelman tehokkuuden laskemiseksi määritellään kustannusfunktio $c:\R^n\times \R^n \to \Rp$, jolloin $c(x, y)$ antaa kustannuksen siirtää massaa pisteestä $x$ pisteeseen $y$. Siirtosuunnitelman kokonaishinnaksi määritellään tällöin $\int_{\R^n\times \R^n} c(x, y) \, d\pi(x, y)$. Mongen-Kantorovitsin ongelmana on tällöin etsiä siirtosuunnitelma $\pi$, joka minimoi kokonaishinnan. \cite[s. 11]{optimal}
 
-Mongen-Kantorovitsin ongelman muotoilussa ei kuitenkaan oteta huomioon, kuinka massaa siirretään paikasta toiseen. Muotoilussa voidaan ajatella, että jokainen massahiukkanen siirrettäisiin suoraa reittiä päämääräänsä. Tämä mallinnus ei ole kuitenkaan kovin realistinen, sillä valtaosassa käytännön massansiirto-ongelmista on suotuisampaa käyttää saman massan kuljettamiseen yhtä reittiä, kuin kahta pienemmän kapasiteetin reittiä. Lisäksi muotoilussa oletetaan, että ei ole väliä, mikä hiekanjyvä menee minnekin. 
+Mongen-Kantorovitsin ongelman muotoilussa ei kuitenkaan oteta huomioon, kuinka massaa siirretään paikasta toiseen. Muotoilussa voidaan ajatella, että jokainen massahiukkanen siirrettäisiin suoraa reittiä päämääräänsä. Tämä mallinnus ei ole kuitenkaan kovin realistinen, sillä valtaosassa käytännön massansiirto-ongelmista on suotuisampaa käyttää saman massan kuljettamiseen yhtä reittiä, kuin kahta pienemmän kapasiteetin reittiä. 
 
-Tässä tutkielmassa lähdetään mallintamaan massan siirtämistä niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Ensimmäisessä kappaleessa esitellään tarvittat teoreettiset lähtökohdat, joita liikennesuunnitelmien tarkasteluun ja liittyviin tuloksiin tarvitaan. Toisessa kappaleessa määritellään liikennesuunnitelma ja todistetaan siihen liittyviä tuloksia. Viimeisessä, kolmannessa kappaleessa liikennesuunnitelmalle tullaan määrittämään energia $\E(\P)$, jonka jälkeen tutkielman päätuloksena on todistaa, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian minimoiminen tullaan osoittamaan osoittamalla energia alhaalta puolijatkuvaksi, jonka lisäksi tarvitaan tieto tarkasteltavien polkujen kompaktiudesta. Alhaalta puolijatkuvuuden osoittaminen on yleinen minimointistrategia variaatiolaskennassa, lisää aiheesta lähteessä \cite{benesova}.
+Tässä tutkielmassa mallinnetaan massan siirtämistä niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Ensimmäisessä kappaleessa esitellään tarvittavat teoreettiset lähtökohdat, joita liikennesuunnitelmien tarkasteluun ja liittyviin tuloksiin tarvitaan. Vahvan painotuksen saa mittateoria, sillä massansiirron mallintaminen tullaan toteuttamaan mittoja käyttämällä. Mittateoreettisia käsitteitä ja tuloksia on rakennettu lähteiden \cite{lehrbäck}, \cite{rudin} ja \cite{conway} avulla. Lisäksi tarvetta on metristen avaruuksien käsitteille, erityisesti erinäisille jatkuvuuksille. Jatkuvuuksista tärkeimpänä mainittakoon alhaalta puolijatkuvuus, joka on tärkeä ominaisuus minimointiongelmien ratkomista varten. Metrisiin avaruuksiin liittyvää teoriaa on haettu lähteestä \cite{rudin}.
+
+Toisessa kappaleessa määritellään liikennesuunnitelma ja todistetaan siihen liittyviä tuloksia. Liikennesuunnitelma on mitta polkujen avaruudessa, joka antaa poluille keskipysähtymisajan. Pysähtymisajalla tarkoitetaan polulle sitä ajanhetkeä, josta eteenpäin polun kuvapisteet pysyvät paikallaan. Liikennesuunnitelma määritellään siten, että äärettömän pitkille poluille annetaan sellainen paino, etteivät nämä polut näy tarkastelussa. Liikennesuunnitelmien teoria on rakennettu täydentäen erityisesti lähdettä \cite{optimal}.
+
+Viimeisessä, kolmannessa kappaleessa liikennesuunnitelmalle tullaan määrittämään energia, joka vastaa intuitiivista kuvaa logistisen verkon kustannuksista. Heuristisesti, energia tulee olemaan suurempi silloin, kun liikennesuunnitelman positiivisesti painottamat polut ovat pitkiä tai niitä on paljon lähekkäin, mutta pienempi silloin, kun painotetut polut ovat mahdollisimman lyhyitä ja lähekkäiset polut on yhdistetty tehokkaammin. Tämän jälkeen tutkielman päätuloksena on todistaa, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian minimoiminen tullaan osoittamaan osoittamalla energia alhaalta puolijatkuvaksi, jonka lisäksi tarvitaan tieto tarkasteltavien polkujen avaruuden kompaktiudesta. Minimoitavan funktionaalin alhaalta puolijatkuvuuden osoittaminen on yleinen minimointistrategia variaatiolaskennassa, lisää aiheesta lähteessä \cite{benesova}.
 
 Liikennesuunnitelmat, jotka minimoivat energian, tulevat olemaan rakenteeltaan \textit{haarautuneita} (\textit{branched}). Esimerkki haarautuneesta ratkaisusta on kuvassa \ref{fig:branched}, jossa on ollut ongelmana siirtää massa yhdestä pisteestä jollekin janalle. Haarautuneisuus tai puumaisuus on intuitiivinen lopputulos, jos oletetaan kahden pienemmän tien olevan energiatehokkaampi vaihtoehto yhden suuremman sijaan. Tätä väitettä käsittelee tarkemmin tämänkin tutkielman päälähdeteoksena ollut kirja \cite{optimal}.
 
@@ -36,30 +40,18 @@ Liikennesuunnitelmat, jotka minimoivat energian, tulevat olemaan rakenteeltaan \
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Esitiedot
 \chapter{Esitiedot}
-
-\section{Topologiset avaruudet}
-Avaruutta kutsutaan topologiseksi, jos se toteuttaa tietyt joukko-opilliset ehdot. Topologisen avaruuden käsite tulee toimimaan pohjana Borelin sigma-algebran määritelmälle ja sitä kautta mittateorialle.
-
+Merkitään positiivisten reaalilukujen joukkoa $\Rp = [0, \infty[$. 
 \section{Metriset avaruudet}
-
-\begin{definition}
-    Topologinen avaruus on pari (X, T), missä $X$ on joukko ja $T$ on joukon $X$ osajoukkojen kokoelma, jonka alkioille pätee
-    \begin{enumerate}
-        \item $\displaystyle \emptyset \in T, X \in T$
-        \item $\displaystyle \{A_i : i\in I\} \subset T \implies \bigcup_{i \in I} A_i \in T$
-        \item $\displaystyle A, B \in T \implies A\cap B \in T$.
-    \end{enumerate}
-\end{definition}
 
 Avaruus on metrinen, jos joukon kahden alkion etäisyys toisistaan pystytään määrittämään sopivalla etäisyysfunktiolla. Etäisyysfunktiolle asetetaan seuraavat ehdot.
 
 \begin{definition}
     Joukon $X$ funktio $d: X\times X \to \R^+$ on \textit{etäisyys} joukossa $X$, jos kaikilla $x, y, z \in X$ pätee
     \begin{enumerate}
-        \item $d(x,y) \ge 0$
-        \item $d(x,y) = 0 \iff x = y$
-        \item $d(x,y) = d(y,x)$
-        \item $d(x,y) \ge d(x,z) + d(z,y)$
+        \item $d(x,y) \ge 0$,
+        \item $d(x,y) = 0 \iff x = y$,
+        \item $d(x,y) = d(y,x)$,
+        \item $d(x,y) \ge d(x,z) + d(z,y)$.
     \end{enumerate}
     Joukossa $X$ määritellystä etäisyydestä käytetään merkintää $d_X$, tai $d$ jos etäisyys on kontekstista selvä. 
 \end{definition}
@@ -160,7 +152,7 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
 \end{definition}
 
 \begin{definition}
-    Olkoon $I$ indeksijoukko. Funktioiden kokoelma $F = \{f_i : X \to Y \ | \ i \in I\}$ on \textit{tasaisesti rajoitettu}, jos on olemassa $a \in Y$ ja $M \in \R$ siten, että
+    Olkoon $I$ indeksijoukko. Kokoelma $F = \{f_i : X \to Y \ | \ i \in I\}$ on \textit{tasaisesti rajoitettu}, jos on olemassa $a \in Y$ ja $M \in \R$ siten, että
     \begin{equation*}
         d(f_i(x), a) \le M
     \end{equation*} 
@@ -231,7 +223,7 @@ Funktioiden $f:X \to Y$ kokoelma $F$ on \textit{tasajatkuva pisteessä} $x_0 \in
 \end{proof}
 
 \begin{definition}
-    Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Funktio $f:X\to Y$ on \textit{K-Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ s.e. kaikille $x_1,x_2 \in X$
+    Olkoon metriset avaruudet $(X, d_x)$ ja $(Y, d_y)$. Sanotaan, että funktio  ${f:X\to Y}$ on \textit{K-Lipschitz-jatkuva}, jos on olemassa $K\ge 0$ siten, että kaikille $x_1,x_2 \in X$ pätee
     $$d_y(f(x_1),f(x_2)) \le Kd_x(x_1,x_2).$$
 \end{definition}
 
@@ -663,9 +655,13 @@ Todistus sivuutetaan, todistettu lähteessä \cite[s. 190]{bogachev}.
     kun $n \to \infty$, toisin sanoen $\mu_n^{(n)} \to \mu$ kun $n \to \infty$.
 \end{proof}
 
+%%%% Liikennesuunnitelmat
+\chapter{Liikennesuunnitelmat}
+
+Tämän tutkielman tavoitteena on rakentaa massansiirtämiseen liittyvää teoriakehystä, pääosin niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Liikennesuunnitelma on mitta polkujen joukolle. Lopulta osoitetaan, että on olemassa liikennesuunnitelma, joka minimoi kuljetusongelman energian, joka määritellään myöhemmin. 
 
 \section{Poluista}
-Kuvitellaan tilanne, että halutaan siirtää tason $\R^2$ pisteestä $A$ pisteeseen $B$ paketti. Mahdollisia paketin reittejä on äärettömän monta, mutta on syytä olettaa kaikki reitit jatkuviksi. Jatkuvia kuvauksia reaaliakselilta johonkin joukon $\R^n$ osajoukkoon kutsutaan poluiksi. 
+Ennen perehtymistä liikennesuunnitelmaan, määritellään massan siirtämiseen käytettävien reittien rakenne. Kuvitellaan tilanne, että halutaan siirtää tason $\R^2$ pisteestä $A$ pisteeseen $B$ paketti. Mahdollisia paketin reittejä on äärettömän monta, mutta on syytä olettaa kaikki reitit jatkuviksi. Jatkuvia kuvauksia reaaliakselilta johonkin joukon $\R^n$ osajoukkoon kutsutaan poluiksi. 
 
 Merkitään $X \subset \R^n$. Jatkuvuutta varten määritellään joukon $X$ alkioille normi ja etäisyys Euklidisena normina.
 \begin{definition}
@@ -692,8 +688,6 @@ Koska polku määritellään saamaan arvoja jokaisella positiivisella reaaliluvu
     \end{equation*}
 \end{definition}
 
-
-
 \begin{definition}
     Olkoon $\gamma$ polku. Jos $T(\gamma) < \infty$, niin polun $\gamma$ pituus $L(\gamma)$ määritellään osapituuksien summan supremunina
     \begin{equation*}
@@ -703,7 +697,7 @@ Koska polku määritellään saamaan arvoja jokaisella positiivisella reaaliluvu
 \end{definition}
 
 \begin{definition}
-    Polun $\gamma$ \textit{nopeudeksi} $\dot \gamma$ määritellään alaraja-arvona
+    Polun $\gamma$ \textit{nopeus} $\dot \gamma$ määritellään alaraja-arvona
     \begin{equation*}
         \dot\gamma(t) = \lim_{h\to 0} \frac{\gamma(t+h) + \gamma(t)}{h}.
     \end{equation*}
@@ -794,12 +788,6 @@ joukkoon 1-Lipschitz-kuvauksia, jotka kuvautuvat johonkin kompaktiin $\R^n$ osaj
     Koska $K$ on täydellinen ja täysin rajoitettu, on se Lauseen \ref{thm:compactness} nojalla kompakti.
     \end{proof}
 
-
-
-%%%% Liikennesuunnitelmat
-\chapter{Liikennesuunnitelmat}
-
-Tämän tutkielman tavoitteena on rakentaa massansiirtämiseen liittyvää teoriakehystä, pääosin niin kutsuttujen \textit{liikennesuunnitelmien} avulla. Liikennesuunnitelma on mitta polkujen joukolle. Lopulta osoitetaan, että on olemassa liikennesuunnitelma, joka minimoi kuljetusongelman energian, joka määritellään myöhemmin. 
 
 \section{Liikennesuunnitelman määritelmä}
 
@@ -1200,12 +1188,13 @@ Koska $\phi$ on mielivaltainen funktio ja $\varepsilon > 0$, niin $\pi_{\P_n} \r
     Olkoon $\pi$ mitta joukossa $X \times X$. Tällöin on olemassa liikennesuunnitelma $\P$ siten, että $\pi_\P = \pi$.
 \end{corollary}
 
-\chapter{Liikennesuunnitelman energia ja sen minimoijan olemassaolo}
+\chapter{Liikennesuunnitelman energian minimoijan olemassaolo}
 
-Määritellään liikennesuunnitelmalle energia ja osoitetaan, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian määrittämiseksi sovitaan, että massan $s$ kuljettamiseksi matka $l$ on suoraan verrannollinen tuloon $l \times s^\alpha$, missä $\alpha \in [0, 1]$. Sovitaan, että $0^{\alpha - 1} = \infty$, kun $\alpha \in [0, 1]$. 
+\section{Liikennesuunnitelman energia}
+Määritellään liikennesuunnitelmalle energia ja osoitetaan, että on olemassa liikennesuunnitelma, joka minimoi energian. Energian määrittämiseksi sovitaan, että massan $s$ kuljettamiseksi matkan $l$, energia on suoraan verrannollinen tuloon $l \times s^\alpha$, missä $\alpha \in [0, 1]$. Tällä sopimuksella energian määrittämisessä suositaan yhtä polkua usean pienemmän sijaan.  Sovitaan lisäksi, että $0^{\alpha - 1} = \infty$, kun $\alpha \in [0, 1]$. 
 
 \begin{definition}\label{def:energyOfP}
-    Olkoon $\alpha \in [0, 1]$ ja $\P$ liikennesuunnitelma parametrisaatiolla $\chi$. Liikennesuunnitelman $\P$ energia on \define{funktionaali}
+    Olkoon $\alpha \in [0, 1]$ ja $\P$ liikennesuunnitelma parametrisaatiolla $\chi$. Liikennesuunnitelman $\P$ energia on funktionaali
         \begin{equation*}
             \E^\alpha(\P) = \int_\Omega \int_{\R^+} |\chi(\omega, t)|_\chi^{\alpha-1}|\dot \chi(\omega, t)|\, dtd\omega,
         \end{equation*}
@@ -1235,22 +1224,34 @@ Osoitetaan, että liikennesuunnitelmalle $\P$ löytyy liikennesuunnitelma $\tild
     Oletetaan, että $\tau$ on mitallinen. Tällöin $\tilde\chi(\omega, t) = \chi(\omega, \tau(\omega, t))$ on mitallinen.
 \end{lemma}
 \begin{proof}
-    Todistus mukailee lähdettä \cite[s.44]{optimal}. Olkoon $I$ identtinen kuvaus, ja merkitään $(I, \tau) : [0, 1] \times \Rp \to [0, 1] \times \Rp $  kuvausta $(I, \tau)(\omega, t) = (\omega, \tau(\omega, t))$. Tällöin $\tilde \chi$ on kuvausten $(I, \tau)$ ja $\chi$ yhdistetty kuvaus, sillä
+    Todistus mukailee lähdettä \cite[s.44]{optimal}. Tarkennettakoon alkuun, että oletus kuvauksen $\tau$ mitallisuudesta tarkoittaa, että lähtösigma-algebrana on Lebesgue mitallisista joukoista koostuva sigma-algebra $\lambda_t \times \lambda_\omega$ ja maalisigma-algebrana on Borelin sigma-algebra $\mathcal{B}$.
+    
+    Olkoon $I$ identtinen kuvaus, ja merkitään $(I, \tau) : [0, 1] \times \Rp \to [0, 1] \times \Rp $  kuvausta $(I, \tau)(\omega, t) = (\omega, \tau(\omega, t))$. Tällöin $\tilde \chi$ on kuvausten $(I, \tau)$ ja $\chi$ yhdistetty kuvaus, sillä
     \begin{align*}
         \chi((I, \tau)(\omega, t)) = \chi(\omega, \tau(\omega, t)) = \tilde \chi(\omega, t)
     \end{align*}
-    kaikille $(\omega, t) \in [0, 1] \times \Rp$. Tällöin kuvaus $\tilde \chi$ on mitallinen, jos $\chi$ on mitallinen ja $(I, \tau)$ on mitallinen. Oletuksen mukaan $\chi$ ja $\tau$ ovat mitallisia. 
+    kaikille $(\omega, t) \in [0, 1] \times \Rp$. Tällöin kuvaus $\tilde \chi$ on mitallinen, jos $\chi$ on mitallinen ja $(I, \tau)$ on mitallinen. Oletuksen mukaan $\chi$ on mitallinen, joten osoitetaan kuvaus $(I, \tau)$ mitalliseksi.
     
-    Kuvauksen $(I, \tau)$ mitallisuuden osoittamiseksi käytetään tietoa, että jokainen Lebesgue-mitallinen joukko on nollamittaisen joukon ja Borel-joukon yhdiste. Olkoon mitalliset joukot $A$ ja $B$ joille $A\times B \subset [0,1] \times \Rp$. Tällöin
+    Osoitetaan, että $(I, \tau)$ on mitallinen Lebesgue-mitallisten joukkojen tulon virittämältä sigma-algebralta samalle sigma-algebralle. Riittää siis tutkia Lebesgue-mitallisten $A$ ja $B$ tulon $A \times B$ alkukuvia. \define{Käytetään tietoa}, että jokainen Lebesgue-mitallinen joukko on Borel-joukon ja nollamittaisen joukon yhdiste. Tällöin
     \begin{align*}
         A &= N_A \cup \mathcal{B}_A \text{ ja } \\
         B &= N_B \cup \mathcal{B}_B,
     \end{align*}
-    kun $N_A$ ja $N_B$ ovat nollamittaiset osat, ja $\mathcal{B}_A$ ja $\mathcal{B}_B$ ovat joukkojen Borel-osat. Tutkitaan tulojoukon $A\times B$ alkukuvaa. Alkukuvalle pätee
+    kun $N_A$ ja $N_B$ ovat nollamittaiset osat, ja $\mathcal{B}_A$ ja $\mathcal{B}_B$ ovat joukkojen Borel-osat. Alkukuvalle pätee myös
+    \begin{align}\label{eq:paramLemma1}
+        (I, \tau)^{-1}(A\times B) &= (A \times \Rp) \cap \tau^{-1}(B).
+    \end{align}
+    Lisäksi, koska 
+    \begin{align}
+        A \times B &= A \times N_B \cup N_A \times B \cup B_A \times B_B,
+    \end{align}
+    niin riittää osoittaa, että yhdisteen jokaisen tulojoukon alkukuva on mitallinen. Yhtälön \eqref{eq:paramLemma1} nojalla joukolle $B_A \times B_B$ saadaan
     \begin{align*}
-        (I, \tau)^{-1}(A\times B) &= (A \cap \Rp) \times \tau^{-1}(B) \\
-        &= \left(\left(N_A \cup \mathcal{B}_A\right) \cap \Rp\right) \times \tau^{-1}(N_B \cup \mathcal{B}_B)
+        (I, \tau)^{-1}(B_A\times B_B) &= (B_A \times \Rp) \cap \tau^{-1}(B_B).
     \end{align*}
+    Joukko $B_A \times \Rp$ on mitallinen kahden Borel-joukon tulona ja $\tau^{-1}(B_B)$ on mitallinen kuvauksen $\tau$ mitallisuuden nojalla. Siispä leikkaus on mitallinen.
+    
+    Merkitään $N:= (A \times N_B \cup N_A \times B)$. Joukko $N$ on nollamittainen, joten osoittamalla nollamittaisen joukon $N$ alkukuva nollamittaiseksi väite seuraa, sillä nollamittainen joukko on mitallinen.
     
     Olkoon $N \subset [0, 1] \times \Rp$ nollamittainen ja $\varepsilon > 0$. Olkoon $B$ Borelin joukko, joka sisältää joukon $N$ ja jonka mitta on pienempää kuin $\varepsilon$. Määritellään mitallinen kuvaus $F(\omega, s) = \indfct{B}(\omega, \tau(\omega, s))$. Melkein kaikille $\omega \in [0,1]$ pätee tällöin
     \begin{align}
