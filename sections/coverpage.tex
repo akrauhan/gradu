@@ -13,7 +13,7 @@
 \begin{center}                          % \\ pakottaa rivinvaihdot
 \null\vspace{3cm}                       % alkuun 3cm tyhjä tila
 \Large                                  % tekstikoko
-Liikennesuunnitelmat\\[2cm]                     % 2cm tyhjä tila otsikon jälkeen
+Optimaalisten liikennesuunnitelmien olemassaolo \\[2cm]                     % 2cm tyhjä tila otsikon jälkeen
 \large                                  % tekstikoko
 A. Rauhansalo\\[1cm]                    % 1cm tyhjä tila tekijän nimen jälkeen
 \vfill                                  % tyhjää
@@ -28,10 +28,23 @@ Kevät 2020                              % ty\"on ajankohta
 \frontmatter
 
 \noindent
-\textbf{Tiivistelmä:} Akseli Rauhansalo, \define{Otsikko}, matematiikan pro gradu tutkielma, \define{sivumäärä} sivua, Jyväskylän yliopisto, Matematiikan ja tilastotieteen laitos, kevät 2020.
+\textbf{Tiivistelmä:} Akseli Rauhansalo, Optimaalisten liikennesuunnitelmien olemassaolo, matematiikan pro gradu tutkielma, \define{sivumäärä} sivua, Jyväskylän yliopisto, Matematiikan ja tilastotieteen laitos, kevät 2020.
 
 \vspace{1pc}
-Tämän tutkielman tarkoituksena on\dots
+Tässä tutkielmassa perehdytään massansiirtoteorian perusteisiin, erityisesti niin kutsuttujen liikennesuunnitelmien kautta. Tutkielman päätuloksena osoitetaan, että liikennesuunnitelman energialle on olemassa optimaalinen liikennesuunnitelma, joka minimoi energian. 
+
+Käsiteltävässä massansiirto-ongelmassa tavoitteena on siirtää massaa yhdeltä mitalta toiselle mahdollisimman pienellä kokonaiskustannuksella. Mahdolliset kuljetusreitit määritellään Lipschitz-jatkuvina polkuina. Lipschitz-polkujen muodostama metrinen avaruus osoitetaan kompaktiksi sopivalla etäisyyden valinnalla. Metristä avaruutta kutsutaan kompaktiksi, jos sen jokaisella peitteellä on olemassa äärellinen osapeite. 
+
+Mahdollisista kuljetusreiteistä rakennetaan niin kutsuttu liikennesuunnitelma, joka painottaa polkujen avaruutta siten, että painotetut polut kuljettavat massaa suhteessa annettuun painoon. Liikennesuunnitelma on tällöin luonnollista määritellä mittana Lipschitz-avaruuteen. Liikennesuunnitelmalta vaaditaan, että äärettömän pitkät polut saavat painokseen nollan, toisin sanoen äärettömän pitkien polkujen osajoukko on nollamittainen liikennesuunnitelman suhteen.
+
+
+Liikennesuunnitelmalle määritellään energia, joka on yhdenmukainen diskreettien massansiirto-ongelmien kanssa. Energia tulee riippumaan käytettyjen liikennesuunnitelman painottamien polkujen pituuksista ja kertaluvuista. Kertaluku kuvastaa sitä, kuinka usein polku käy samassa pisteessä. Energian minimoimiseksi pituus ja kertaluku halutaan luonnollisesti minimoida optimaalisen liikennesuunnitelman löytämisellä.
+
+Optimaalisen liikennesuunnitelman olemassaolo seuraa polkuavaruuden kompaktiudesta sekä energian alhaalta puolijatkuvuudesta. Alhaalta puolijatkuvuuden osoittaminen on yleinen strategia minimointiongelmien ratkaisemisessa. Puolijatkuvuus on yhdenmukainen reaalifunktion toispuoleisen jatkuvuuden kanssa. Rakenteeltaan optimaalinen liikennesuunnitelma tulee olemaan haarautunut eli puumainen, mutta tämän perustelu sivuutetaan.
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sisällysluettelo
@@ -39,7 +52,8 @@ Tämän tutkielman tarkoituksena on\dots
 \newpage
 %\setcounter{page}{1}
 %\renewcommand{\thepage}{\roman{page}}
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
+
 \thispagestyle{empty}
 \tableofcontents
 

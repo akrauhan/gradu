@@ -1,16 +1,10 @@
+
 TODO:
-- Yleinen Muuttujanvaihto?
-- Ketjusääntö?
-- Jokainen Lebesgue-mitallinen joukko on Borelin ja 0-mittaisen yhdiste?
+Ulkoasusta
+- Sisällysluettelo
 
 Mahdollisia lähteitä:
-
 Löytyy JYU:
 Markovin epäyhtälöön https://jyu.finna.fi/Record/jykdok.985388
 
 Kysy:
-Lemma 1.37 muotoilu.
-
-Lemman 1.28 muotoilussa pitäisi olla Borelin sigma-algebrat mukana.
-
-Muotoilin uudestaan. En ole ihan täysin sisäistänyt tuota Borel-mitallisuutta, joten sen muotoilussa saattaa vielä olla jotakin häikkää. 
