@@ -601,18 +601,26 @@ Tärkeässä osassa tulee esiintymään monotonisen konvergenssin lause, joka an
         \int_A t\indfct{B} \, d\mu = t\int_A \indfct{B} \, d\mu, = t\mu(B).
     \end{equation}
     Yhdistämällä tulokset \eqref{eq:markov1} ja \eqref{eq:markov2}, saadaan
-    \begin{align*}
-        \mu(B) \le \frac{1}{t}\int_A |f| \, d\mu.
-    \end{align*}
+    %\begin{align*}
+        $\mu(B) \le \frac{1}{t}\int_A |f| \, d\mu.$
+    %\end{align*}
 \end{proof}
 
 \begin{definition}
-    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Sigma_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Sigma_2 \to \R^+$, kun määritellään
-    $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Sigma_2.$$
+    Olkoon Borelin avaruudet $(X_1, \Borel_1)$ ja $(X_2, \Borel_2)$, mitallinen funktio $f:X_1 \to X_2$ ja mitta $\mu: \Borel_1 \to \R^+$. Mitan $\mu$ \textit{pusku} on mitta $f_\#\mu: \Borel_2 \to \R^+$, kun määritellään
+    $$f_\# \mu (B) = \mu(f^{-1}(B)) \text{ kaikilla } B\in \Borel_2.$$
 \end{definition}
+Mitan $\mu$ puskun määritelmää on havainnollistettu kuvassa \ref{fig:push-forward}. Puskun määritelmää tarvitaan reaalifunktioista tutun muuttujanvaihtolauseen vastineeseen mitta-avaruuksissa.
+
+\begin{figure}
+    \centering
+    \includegraphics{graphics/push-forward.png}
+    \caption{Puskun määritelmän havainnollistus. Mitallisen funktion $f: (X_1, \Borel_1) \to (X_2, \Borel_2)$ puskeminen joukon $X_1$ määritellään joukon $X_2$ mittana $\tilde \mu$.}
+    \label{fig:push-forward}
+\end{figure}
 
 \begin{theorem}\label{thm:push-cov}
-    Olkoon Borelin avaruudet $(X_1, \Sigma_1)$ ja $(X_2, \Sigma_2)$, mitalliset kuvaukset $f: X_1 \to X_2$ ja $g: X_2 \to \R^+$, sekä mitta $\mu:\Sigma_1 \to [0, \infty]$. Mikäli $g$ on $f_\#\mu$-integroituva, niin  $g \circ f$ on $\mu$-integroituva. Lisäksi
+    Olkoon Borelin avaruudet $(X_1, \Borel_1)$ ja $(X_2, \Borel_2)$, mitalliset kuvaukset $f: X_1 \to X_2$ ja $g: X_2 \to \R^+$, sekä mitta $\mu:\Borel_1 \to [0, \infty]$. Mikäli $g$ on $f_\#\mu$-integroituva, niin  $g \circ f$ on $\mu$-integroituva. Lisäksi
     \begin{equation*}
         \int_{X_2} g \, d(f_{\#} \mu) = \int_{X_1} g \circ f \, d\mu.
     \end{equation*}
