@@ -7,10 +7,9 @@
 
 \chapter{Johdanto}
 %
-Tämän kirjoitelman tarkoituksena on perehtyä massansiirtoteorian perusteisiin ja erityisesti niin kutsuttuihin liikennesuunnitelmiin. 
-
+Tämän kirjoitelman tarkoituksena on perehtyä massansiirtoteorian perusteisiin ja erityisesti niin kutsuttuihin liikennesuunnitelmiin.
 Ihmiset ovat kautta aikojen ratkoneet ongelmia liittyen tavaran kuljettamiseen paikasta toiseen. Kaupat tarvitsevat tuotteita useista tehtaista. Koko kaupungin kattava vesijohtoverkosto pyrkii kuljettamaan jokaiselle asukkaalle riittävästi vettä. Julkisen liikenteen tehtävä on kuljettaa ihmisiä ympäri maan paikasta toiseen. Kaikille näistä ongelmista on oleellista kustannusten minimointi; tavara tai ihminen halutaan kuljettaa mahdollisimman tehokkaasti. 
-% Kuvitellaan, että jokin kauppa saa tuotteensa kahdelta tehtaalta. Kaupan tehtävänä on ratkaista, onko esimerkiksi tehokkaampaa tuoda tavara molemmista kaupoista erikseen vai kuljettaa tavara ensin johonkin paikkaan kauppojen ja tehtaiden väliin, josta riittää vain yksi kuljetus kauppaan?
+Kuvitellaan, että jokin kauppa saa tuotteensa kahdelta tehtaalta. Kaupan tehtävänä on ratkaista, onko esimerkiksi tehokkaampaa tuoda tavara molemmista kaupoista erikseen vai kuljettaa tavara ensin johonkin paikkaan kauppojen ja tehtaiden väliin, josta riittää vain yksi kuljetus kauppaan?
 
 Mielenkiintoista on, että ihmisen suunnittelemat verkostoratkaisut tämän kaltaisiin logistisiin ongelmiin muistuttavat vahvasti luonnossa esiintyviä ratkaisuja samankaltaisiin ongelmiin. Esimerkiksi Suomen tieverkostossa ja ihmisen verisuonistossa voidaan nähdä samankaltaista haarautuvaa systemaattisuutta. Suomen tieverkoston tehtävä on siirtää liikennettä paikasta toiseen siten, että se kattaa mahdollisimman ison asuinalueen, mutta kustannusten minimoimiseksi teitä rakennetaan mahdollisimman vähän. Verisuoniston tehtävänä on siirtää verta sydämestä koko kehoon mahdollisimman vähällä energialla. Molemmat verkostot pyrkivät ratkomaan saman ongelman: miten siirtää massa mahdollisimman vähillä kustannuksilla paikasta toiseen? 
 
@@ -71,7 +70,6 @@ Joukon halkaisija määritellään joukon kahden alkion suurimman mahdollisen et
         \diam(A) = \sup\{d(x, y) : x,y \in A\}.
     \end{equation*}
 \end{definition}
-
 Seuraava Cauchyn jonon määritelmä mukailee lähdettä  \cite[s. 52]{rudin}. Jonoa kutsutaan Cauchyn-jonoksi, jos jonon edetessä alkiot pääsevät mielivaltaisen lähelle toisiaan.
 
 \begin{definition}
@@ -141,8 +139,8 @@ Joukossa $A\subset M$ äärellisiä sup-normin arvoja saavien funktioiden avaruu
 Merkinnällä $||f||_{L^\infty(B)}$ rajoitetaan funktion määrittelyjoukon tarkastelu joukkoon $B$.
 \end{definition}
 
-\subsection{Puolijatkuvuus ja Lipschitz-jatkuvuus}
-Olkoon $(X, d_x)$ ja $(Y, d_y)$ metrisiä avaruuksia.
+\subsection{Jatkuvuus}
+Olkoon $(X, d_x)$ ja $(Y, d_y)$ metrisiä avaruuksia. Määritellään tarvittavat jatkuvuuden käsitteet.
 
 \begin{definition}Funktio $f: X \to Y$ on jatkuva pisteessä $x_0 \in X$, jos kaikilla $\varepsilon > 0$ on olemassa $\delta > 0$ siten, että
 \begin{equation*}
@@ -409,7 +407,7 @@ Määritellään funktion mitallisuus. Mitallisuuden lisäksi tarvitaan aputulok
 \end{definition}
 Merkinnällä $f: (X, \Sigma) \to (Y, \Gamma)$ tarkoitetaan funktiota $f:X \to Y$, jonka määrittelyjoukko on varustettu sigma-algebralla $\Sigma$ ja maalijoukko sigma-algebralla $\Gamma$.
 \begin{definition}
-Funktiota $f:(X, \Borel_X) \to (Y, \Borel_Y)$ kutsutaan Borel-mitalliseksi, jos funktio on mitallinen, ja $(X, \Borel_X)$ sekä $(Y, \Borel_Y)$ ovat Borelin avaruuksia.
+Funktio $f:(X, \Borel_X) \to (Y, \Borel_Y)$ on Borel-mitallinen, jos funktio on mitallinen, ja $(X, \Borel_X)$ sekä $(Y, \Borel_Y)$ ovat Borelin avaruuksia.
 \end{definition}
 \begin{corollary}\label{co:LSCimpliesMeasurable}
     Alhaalta ja ylhäältä puolijatkuvat kuvaukset ovat Borel-mitallisia.
@@ -556,7 +554,7 @@ Yleisen mitta-avaruuden integraalille pätevät samat perusominaisuudet, kuten L
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    Todistetaan vastaavasti, kuten Lebesgue-integraalille. Todistuksen idea on esitelty lähteessä \cite[s. 113]{lehrbäck}.
+    Todistetaan, kuten Lebesgue-integraalille, ks. \cite[s. 113]{lehrbäck}.
 \end{proof}
 
 Tärkeässä osassa tulee esiintymään monotonisen konvergenssin lause, joka antaa ehdot sille, milloin funktiojonon alkioiden integraalien raja-arvo on raja-arvon integraali.
@@ -763,7 +761,7 @@ Nopeuden määritteleminen yläraja-arvolla tavallisen raja-arvon sijaan takaa s
 
 
 Rajataan tarkasteltavien kuljetusreittien eli polkujen avaruus
-joukkoon 1-Lipschitz-kuvauksia, jotka kuvautuvat johonkin kompaktiin $\R^n$ osajoukkoon $X$. Merkitään kaikkien tällaisten 1-Lipschitz kuvauksien $\gamma: \Rp \to X$  joukkoa $K$. 
+Lipschitz-jatkuviin polkuihin, jotka kuvautuvat johonkin kompaktiin $\R^n$ osajoukkoon $X$. Merkitään kaikkien tällaisten 1-Lipschitz kuvauksien $\gamma: \Rp \to X$  joukkoa $K$. 
 
 \begin{definition}
     Määritellään etäisyys joukossa $K$ siten, että
@@ -776,7 +774,7 @@ Etäisyyden määritteleminen tällä tavoin takaa sen, että metrinen avaruus $
     Metrinen avaruus $(K, d)$ on kompakti.
 \end{theorem}
 \begin{proof}
-    Todistus mukailee lähdettä \cite[s. 26]{optimal}. \\
+    Todistus mukailee lähdettä \cite[s. 26]{optimal}. 
     Osoitetaan väite todistamalla, että avaruus $K$ täydellinen ja täysin rajoitettu, jolloin kompaktius seuraa Lauseesta $\ref{thm:compactness}$.
     
     Osoitetaan ensin, että avaruus $K$ on täydellinen, eli että kaikki avaruuden $K$ Cauchyn jonot suppenevat johonkin joukon $K$ alkioon. Olkoon $(\gamma_i)$ Cauchyn jono joukossa K ja $t\in \Rp$. Osoitetaan, että tällöin myös $(\gamma_i(t))$ on Cauchyn jono joukossa $X$. Olkoon kokonaisluku $k \ge t$. Koska $\gamma_i$ on Cauchyn jono, on kaikille $\varepsilon > 0$ olemassa $n \in \N$ siten, että $d(\gamma_i, \gamma_j) < \varepsilon$ jos $i, j \ge n$. Olkoon $\varepsilon > 0$. Tällöin on siis olemassa $n \in \N$, jolle
@@ -860,23 +858,22 @@ Otetaan käyttöön kuvaukset, jotka palauttavat polun lähtöpisteen, päätepi
 \begin{definition}
     Olkoon $\pi_0, \pi_\infty: K\to X$ ja $\pi:K\to X \times X$ kuvauksia, jotka määritellään polulle $\gamma \in K$ siten, että 
     \begin{align*}
-        \pi_0(\gamma) &= \gamma(0), &&\Big| \text{ Polun lähtöpiste. }\\
-        \pi_\infty(\gamma) &= \gamma(T(\gamma)), &&\Big| \text{ Polun päätepiste. }\\
-        \pi(\gamma) &= (\gamma(0), \gamma(T(\gamma)), &&\Big| \text{ Polun lähtöpiste ja päätepiste. }
+        \pi_0(\gamma) &= \gamma(0), &&\Big| \textit{ polun lähtöpiste }\\
+        \pi_\infty(\gamma) &= \gamma(T(\gamma)), &&\Big| \textit{ polun päätepiste }\\
+        \pi(\gamma) &= (\gamma(0), \gamma(T(\gamma))), &&\Big| \textit{ polun lähtöpiste ja päätepiste }
     \end{align*}
     jos $T(\gamma) < \infty$. Jos $T(\gamma) = \infty$, niin kuvaukset määritellään vastaavasti, korvaamalla määritelmässä $\gamma(T(\gamma))$ alkupisteellä $\gamma(0).$
 \end{definition}
 Tilanteessa $T(\gamma) = \infty$ erillinen määritelmä tehdään vain merkintöjen takia. Liikennesuunnitelman määritelmän nojalla äärettömille poluille tulee mitaksi nolla.
 
-Näiden kuvausten avulla voidaan määritellä mitat, jotka toimivat massojen mallintamisessa. Massa, joka halutaan siirtää, tullaan mallintamaan niin kutsutulla irrigoivalla mitalla, kun taas massa joka on jo siirretty mallinnetaan vastaavasti irrigoidulla mitalla. Näiden lisäksi määritellään siirtosuunnitelma, joka sisältää tiedon siitä, minne mikäkin massa halutaan siirtää.
+Näiden kuvausten avulla voidaan määritellä mitat, jotka toimivat massojen mallintamisessa. Massa, joka halutaan siirtää, tullaan mallintamaan niin kutsutulla irrigoivalla mitalla, kun taas massa joka on jo siirretty mallinnetaan vastaavasti irrigoidulla mitalla. Mitat saavat nimensä englanninkielisistä vastineistaan, \textit{irrigating} ja \textit{irrigated} measure, suorilta käännöksiltään kasteleva ja kasteltu mitta. Näiden lisäksi määritellään siirtosuunnitelma, joka sisältää tiedon siitä, minne mikäkin massa halutaan siirtää.
 
 \begin{definition}
-    Olkoon $\P$ liikennesuunnitelma. Määritellään mitat $\mu^+, \mu^- : X \to \mathbf{R}_+$ ja $\pi: X\times X \to \mathbf{R}_+$ siten, että
+    Olkoon $\P$ liikennesuunnitelma. Määritellään \textit{irrigoitu} ja \textit{irrigoiva} mitta $\mu^+, \mu^- : X \to \mathbf{R}_+$ ja \textit{liikennesuunnitelman $\P$ siirtosuunnitelma} $\pi: X\times X \to \mathbf{R}_+$ siten, että
     \begin{align*}
-        \mu^+(\P) &= \pi_{0\#} \P,  &&\Big| \text{ Irrigoiva mitta, \textit{irrigating measure} }\\
-        \mu^-(\P) &= \pi_{\infty \#} \P,  &&\Big| \text{ Irrigoitu mitta, \textit{irrigating measure} }\\
-        \pi(\P) &= \pi_\# \P.  &&\Big| \text{ Siirtosuunnitelma liikennesuunnitelmalle $\P$,}\\ 
-        & &&\hphantom{\Big|} \text{ \textit{transference plan of $\P$}}
+        \mu^+(\P) &= \pi_{0\#} \P,  \\
+        \mu^-(\P) &= \pi_{\infty \#} \P,  \\
+        \pi(\P) &= \pi_\# \P.
     \end{align*}
 \end{definition}
 
@@ -886,12 +883,12 @@ Testaamalla näiden mittojen määritelmää sopiville joukoille, saadaan niist�
     Kaikille Borelin joukoille $A, B \subset X$ pätee
     \begin{align*}
         \mu^+(\P)(A) &= \P(\pi_0^{-1}(A)) = \P(\{\gamma \in K : \gamma(0) \in A\}), \\
-        \mu^-(\P)(B) &= \P(\pi_\infty^{-1}(B)) = \P(\{\gamma \in K : \gamma(\infty) \in B\}), \\
-        \pi(\P)(A\times B) &= \P(\pi(A\times B)) = \P(\{\gamma \in K: \gamma(0) \in A\text{ ja } \gamma(\infty) \in B)\}.
+        \mu^-(\P)(B) &= \P(\pi_\infty^{-1}(B)) = \P(\{\gamma \in K : \gamma(T(\gamma)) \in B\}), \\
+        \pi(\P)(A\times B) &= \P(\pi(A\times B)) = \P(\{\gamma \in K: \gamma(0) \in A\text{ ja } \gamma(T(\gamma)) \in B\}).
     \end{align*}
 \end{remark}
 
-Edellistä huomautusta tullaan käyttämään myöhemmin siirtyessä joukkojen $X$ ja $K$ muodostamien metristen avaruuksien välillä.
+Edellistä huomautusta tullaan käyttämään myöhemmin siirryttäessä joukkojen $X$ ja $K$ muodostamien metristen avaruuksien välillä.
 
 \section{Parametrisoidut liikennesuunnitelmat}
 
@@ -911,14 +908,14 @@ Merkitään nyt $\chi(\omega, t) :=  \chi(\omega)(t)$ kaikille $\omega \in \Omeg
 \begin{lemma}\label{le:caratheodoryIsMeasurable}
     Olkoon $f:\Omega \times \Rp \to \R$ funktio, jolle
     \begin{itemize}
-        \item $\omega \mapsto f(\omega, t)$  on mitallinen kaikilla $t \in \Rp$.
-        \item $t \mapsto f(\omega, t)$ on jatkuva kaikilla $\omega \in \Omega$
+        \item $\omega \mapsto f(\omega, t)$  on mitallinen kaikilla $t \in \Rp$ ja
+        \item $t \mapsto f(\omega, t)$ on jatkuva kaikilla $\omega \in \Omega$.
     \end{itemize}
     Tällöin $f$ on mitallinen sigma-algebran suhteen, joka saadaan joukon $\Omega \times \Rp$ mitallisten joukkojen virittämästä sigma-algebrasta.
 \end{lemma}
 \begin{proof}
-    Todistus mukailee lähdettä \cite{optimal}.
-    Olkoon $\Qp = \Q \cap \Rp$ ja $a, b \in \Qp$. Määritellään kaikille $c > 0$ ja $\varepsilon$ joukot 
+    Todistus mukailee lähdettä \cite[s. 28]{optimal}.
+    Merkitään $\Qp = \Q \cap \Rp$ ja olkoon $a, b \in \Qp$. Määritellään kaikille $c > 0$ ja $\varepsilon > 0$ joukot 
     \begin{align*}
         U &= \{(\omega, t) \in \Omega\times \Rp : f(\omega, t) > c\}, \\
         V_\varepsilon(a, b) &= \{\omega \in \Omega : f(\omega, s) > c + \varepsilon \text{ kaikilla } s \in [a,b]\cap \Qp\}.
@@ -933,7 +930,7 @@ Osoitetaan inkluusio $\supset$. Olkoon $(\omega, t) \in [a, b] \times V_\varepsi
     \end{equation*}
 mikä osoittaa inkluusion. 
 
-Osoitetaan inkluusio $\subset$. Olkoon $(\omega, t) \in \Omega \times \Rp $ jolle $f(\omega, t) > c$. Tällöin on olemassa $\varepsilon > 0$ jolla $f(\omega, t) > c + 2\varepsilon$. Funktion $f$ jatkuvuuden nojalla voidaan valita $a$ ja $b$ siten, että kaikilla $s \in [a, b]$ pätee $f(\omega, s) > c + \varepsilon$ ja $t\in [a,b]$, mikä osoittaa inkluusion.
+Osoitetaan inkluusio $\subset$. Olkoon $(\omega, t) \in \Omega \times \Rp $, jolle $f(\omega, t) > c$. Tällöin on olemassa $\varepsilon > 0$, jolla $f(\omega, t) > c + 2\varepsilon$. Funktion $f$ jatkuvuuden nojalla voidaan valita $a$ ja $b$ siten, että kaikilla $s \in [a, b]$ pätee $f(\omega, s) > c + \varepsilon$ ja $t\in [a,b]$, mikä osoittaa inkluusion.
 
 Osoitetaan lopulta, että $V_\varepsilon(a,b)$ on mitallinen. Huomataan, että
 \begin{equation*}
@@ -947,7 +944,7 @@ Koska funktio $t \mapsto f(\omega, t)$ on mitallinen kaikilla $t \in D$, niin ka
 \end{lemma}
 \begin{proof}
 Todistus seuraa lähdettä \cite[s. 27]{optimal}.
-Määritellään jatkuva funktio $\pi_t:K \to X$, $\pi_t(\gamma) = \gamma(t)$. Tällöin yhdistetty kuvaus $\omega \mapsto \pi_t \circ \chi (\omega, \cdot)$ on mitallinen, joten $\omega \mapsto \chi(\omega, t)$ on mitallinen kaikilla $t$. Olkoon $B(x, r) \subset X$. Lemman \ref{le:caratheodoryIsMeasurable} nojalla funktio $f(\omega, t) = ||\chi(\omega, t) - x||$ on mitallinen. Siispä $f^{-1}([0,r[) = \chi^{-1}(B(x,r))$ on mitallinen joukon $\Omega \times \Rp$ osajoukko. Siispä kuvauksen $\chi:\Omega \times \Rp \to X $ alkukuva jokaiselle pallolle $B(x, r) \subset \R^n$ on mitallinen, joten Lemman $\ref{le:measurableIfBallMeasurable}$ nojalla kuvaus on mitallinen.
+Määritellään funktio $\pi_t:K \to X$, $\pi_t(\gamma) = \gamma(t)$, joka on jatkuva. Tällöin yhdistetty kuvaus $\omega \mapsto \pi_t \circ \chi (\omega, \cdot)$ on mitallinen, joten $\omega \mapsto \chi(\omega, t)$ on mitallinen kaikilla $t$. Olkoon $B(x, r) \subset X$. Lemman \ref{le:caratheodoryIsMeasurable} nojalla funktio $f(\omega, t) = ||\chi(\omega, t) - x||$ on mitallinen. Siispä $f^{-1}([0,r[) = \chi^{-1}(B(x,r))$ on mitallinen joukon $\Omega \times \Rp$ osajoukko. Siispä kuvauksen $\chi:\Omega \times \Rp \to X $ alkukuva jokaiselle pallolle $B(x, r) \subset \R^n$ on mitallinen, joten Lemman $\ref{le:measurableIfBallMeasurable}$ nojalla kuvaus on mitallinen.
 \end{proof}
 Funktion $\chi$ pysähdysaika määritellään vastaavasti, kuten liikennesuunnitelman $\P$ pysähdysaika.
 \begin{definition}
@@ -1022,7 +1019,7 @@ Osoitetaan pysähtymisaika ja keskipysähtymisaika alhaalta puolijatkuviksi. Tä
         \int_K f(\gamma) \, d\P(\gamma) = \lim_{k\to \infty}\int_K f_k(\gamma)\, d\P(\gamma)  \le \liminf_n \int_K f(\gamma) \, d\P_n(\gamma).
     \end{equation*}
 \end{proof}
-Osoitetaan, että pysähtymisaika ja pituus ovat alhaalta puolijatkuvia.
+Osoitetaan, että pysähtymisaika on alhaalta puolijatkuva.
 \begin{lemma}\label{le:pysahtymisajan&pituudenLSC}
     Olkoon jono polkuja $\gamma_n \in K$ Jos jono $(\gamma_n)$ suppenee polkuun $\gamma \in K$ etäisyyden $d$ suhteen, niin
     \begin{equation*}
@@ -1038,13 +1035,13 @@ Osoitetaan, että pysähtymisaika ja pituus ovat alhaalta puolijatkuvia.
     \begin{align*}
         \lim_{n\to \infty} \gamma_{n_k}(t) = \gamma(t) \text{ ja } \lim_{n\to \infty} \gamma_{n_k}(s) = \gamma(s),
     \end{align*}
-    joten $\gamma(t) = \gamma(s)$. Siispä $\gamma$ on vakio välillä $]\liminf T(\gamma_n), \infty[$, joten polun $\gamma$ pysähtymisaika on korkeintaan $\liminf T(\gamma_n)$, eli $T(\gamma) \le \liminf T(\gamma_n)$.
+    joten $\gamma(t) = \gamma(s)$. Siispä $\gamma$ on vakio välillä $\left]\liminf_n T(\gamma_n), \infty\right[$, joten polun $\gamma$ pysähtymisaika on korkeintaan $\liminf T(\gamma_n)$, eli $T(\gamma) \le \liminf T(\gamma_n)$.
     
     %\what{Pituuden LSC ei ilmeisesti tarvita..? Voisi riisua pois.}
 \end{proof}
 
 \begin{corollary}\label{le:keskipysahtymisajan&pituudenLSC}
-    Jos jono liikennesuunnitelmia $\P_n$ suppenee liikennesuunnitelmaan $\P$, niin 
+    Jos kompaktin metrisen avaruuden $K$ jono mittoja $\P_n$ suppenee heikosti mittaan $\P$, niin 
     \begin{equation*}
         \int_K T(\gamma) \, d\P(\gamma) \le \liminf_n \int_K T(\gamma) \, d\P_n(\gamma).
     \end{equation*}
@@ -1073,7 +1070,7 @@ ja alkion $x$ kertaluvuksi
 Alkion $x\in \R^n$ polkuluokka sisältää ne kaikki säikeiden $\chi$ indeksit $\omega$, jotka kulkevat alkion $x$ kautta. Kertaluku kuvastaa taas sitä, kuinka useasti säie $\chi$ kulkee alkion $x$ kautta.
 
 \begin{theorem} \label{thm:multiplicityXnLeX}
-    Olkoon $(\chi_n)$ jono liikennesuunnitelmia, jotka suppenevat liikennesuunnitelmaan $\chi$. Oletetaan, että $\int_\Omega T(\chi_n(\omega))\, d\omega \le C$ jollekin $C$. Tällöin melkein-kaikille $\omega$ pätee
+    Olkoon $(\chi_n)$ jono liikennesuunnitelmia, jotka suppenevat liikennesuunnitelmaan $\chi$. Oletetaan, että $\int_\Omega T(\chi_n(\omega))\, d\omega \le C$ jollekin $C$. Tällöin melkein kaikille $\omega$ pätee
     \begin{equation*}
         \limsup |\chi_n(\omega, t)|_{\chi_n} \le |\chi(\omega, t)|_\chi.
     \end{equation*}
@@ -1087,7 +1084,7 @@ Alkion $x\in \R^n$ polkuluokka sisältää ne kaikki säikeiden $\chi$ indeksit 
     \begin{equation*}
         [\chi(\omega,t)]_\chi^\varepsilon := \left\{\omega' \in [\chi(\omega, t)]_\chi : T(\chi(\omega')) \le M = \frac{\varepsilon|\Omega|}{C}\right\}.
     \end{equation*}
-    Olkoon $\omega' \in \cap_k \cup_{n > k} [\chi_n(\omega, t)]_{\chi_n}$. Tällöin on olemassa jono  indeksejä $(n_i)$, joka lähestyy ääretöntä, ja ajat $s_i$, joille $\chi_{n_i}(\omega',s_i) = \chi_{n_i}(\omega, t)$. Toisin sanoen, koska $\omega'$ kuuluu samaan polkuluokkaan kuin $\omega$, löydetään ajanhetkelle $t$ ajanhetki $s_i$ siten, että $\chi_{n_i}(\omega',s_i) = \chi_{n_i}(\omega, t)$. Koska $s_i\le T(\chi_{n_i}(\omega) \le M$ on $(s_i)$ rajoitettu jono, on olemassa suppeneva osajono, joka suppenee johonkin $s$. Koska $(\chi_{n_i}(\omega', \cdot))$ on jono 1-Lipschitz-polkuja kompaktilla välillä $[0, M]$, niin se suppenee tasaisesti välillä $[0, M]$, jolloin saadaan $\chi(\omega', s) = \chi(\omega, t)$, koska $\omega' \in [\chi(\omega, t)]_\chi$. Tämä osoittaa sen, että 
+    Olkoon $\omega' \in \cap_k \cup_{n > k} [\chi_n(\omega, t)]_{\chi_n}$. Tällöin on olemassa jono  indeksejä $(n_i)$, joka lähestyy ääretöntä, ja ajat $s_i$, joille $\chi_{n_i}(\omega',s_i) = \chi_{n_i}(\omega, t)$. Toisin sanoen, koska $\omega'$ kuuluu samaan polkuluokkaan kuin $\omega$, löydetään ajanhetkelle $t$ ajanhetki $s_i$ siten, että $\chi_{n_i}(\omega',s_i) = \chi_{n_i}(\omega, t)$. Koska $s_i\le T(\chi_{n_i}(\omega) \le M$, on $(s_i)$ rajoitettu jono, joten on olemassa suppeneva osajono, joka suppenee johonkin $s$. Koska $(\chi_{n_i}(\omega', \cdot))$ on jono 1-Lipschitz-polkuja kompaktilla välillä $[0, M]$, niin se suppenee tasaisesti välillä $[0, M]$, jolloin saadaan $\chi(\omega', s) = \chi(\omega, t)$, koska $\omega' \in [\chi(\omega, t)]_\chi$. Tämä osoittaa sen, että 
     \begin{equation}\label{eq:multiplicityOfXn1}
         \bigcap_k \bigcup_{n > k} [\chi_n(\omega, t)]_{\chi_n}^\varepsilon \subset [\chi(\omega, t)]_\chi.
     \end{equation}
@@ -1129,7 +1126,7 @@ Kertaluvun mitallisuuden osoittamiseksi osoitetaan se ylhäältä puolijatkuvaks
     \begin{equation*}
         \tilde{\Omega} = \bigcap_n \bigcup_{m \ge n} [y_m]_\chi,
     \end{equation*}
-    merkitsemällä $[y_m] = \Omega_{y_m}^\chi$ kuten edellisessä todistuksessa. Poistamalla tarvittaessa nollamittainen joukko, saadaan $\tilde{\Omega} \subset [x]_\chi$, joten $\lambda(\tilde{\Omega}) \le \lambda([x]_\chi) = |x|_\chi$ Jos $\omega \in \tilde{\Omega}$, niin kaikille $n$ on olemassa $m \ge n$ siten, että $\omega \in [y_m]_\chi$. Tällöin on olemassa $t_m$ jolle $\chi(\omega, t_m) = y_m$. 
+    merkitsemällä $[y_m]_\chi = \Omega_{y_m}^\chi$ kuten edellisessä todistuksessa. Poistamalla tarvittaessa nollamittainen joukko, saadaan $\tilde{\Omega} \subset [x]_\chi$, joten $\lambda(\tilde{\Omega}) \le \lambda([x]_\chi) = |x|_\chi$ Jos $\omega \in \tilde{\Omega}$, niin kaikille $n$ on olemassa $m \ge n$ siten, että $\omega \in [y_m]_\chi$. Tällöin on olemassa $t_m$ jolle $\chi(\omega, t_m) = y_m$. 
     
     Koska melkein kaikille $\omega$ pätee $T(\chi(\omega)) < \infty$, jono $(t_m)$ voidaan olettaa rajoitetuksi. Tällöin on olemassa jonon $(t_m)$ osajono $(t_{m_k})$ jolle $t_{m_k} \to t$ siten, että $\chi(\omega, t) = x$, eli $\omega \in [x]_\chi$. 
     
@@ -1364,7 +1361,7 @@ Siispä $(I, \tau)^{-1}(N)$ on nollamittainen.
     \end{align*}
     kaikille $s, s+h \in \Rp$. Siispä $\tilde \chi(\omega, \cdot)$ on 1-Lipschitz-funktio, joten $|\dot{\tilde \chi}(\omega, t)| \le 1$. Toisaalta, jos $s > 0$, niin
     \begin{align}
-        \label{eq:paramByL3} \int_0^s |\dot{\tilde \chi}(\omega, t)| \, dt = L(\tilde\chi_{|_{[0, s]}})= \int_0^{T(\omega, s)} |\dot \chi(\omega, r)| \, dr = s
+        \label{eq:paramByL3} \int_0^s |\dot{\tilde \chi}(\omega, t)| \, dt = L(\tilde\chi_{|_{[0, s]}})= \int_0^{T(\omega, s)} |\dot \chi(\omega, r)| \, dr = s,
     \end{align}
     joten oltava $|\dot{\tilde \chi}(\omega, t)| \ge 1$ melkein kaikilla $t$ ja siten $|\dot{\tilde \chi}(\omega, t)| = 1$. Jos näin ei olisi, löytyisi $0 < r < 1$ jolle joukko $R = \{t \in [0, s] : |\dot{\tilde \chi}(\omega, t)|< r\}$ on mitaltaan positiivinen. Tällöin
     \begin{align*}
@@ -1391,7 +1388,7 @@ Siispä $(I, \tau)^{-1}(N)$ on nollamittainen.
     
     Siispä $|\tilde \chi(\omega, s)|_{\tilde \chi} = |\chi(\omega, T(\omega, s))|_\chi$. Ketjusäännöllä ja kuvauksen $T(\omega, \cdot)$ kasvavuudella saadaan 
     \begin{align*}
-       |\tilde \chi(\omega, t)| = |\dot \chi(\omega, T(\omega, t)) \frac{\partial T}{\partial t}(\omega, s)| = |\dot \chi(\omega, T(\omega, t))| \frac{\partial T}{\partial t}(\omega, s)
+       |\tilde \chi(\omega, t)| = |\dot \chi(\omega, T(\omega, t)) \frac{\partial T}{\partial t}(\omega, s)| = |\dot \chi(\omega, T(\omega, t))| \frac{\partial T}{\partial t}(\omega, s),
     \end{align*}
     joten energia saadaan muotoon 
     \begin{align*}
@@ -1428,7 +1425,7 @@ Tämän tutkielman päätulos, optimaalisen liikennesuunnitelman olemassaolo, to
     \end{align*}
 \end{proof}
 
-Seuraavia lemmoja tarvitaan osoittamaan energia alhaalta puolijatkuvaksi.
+Seuraavia lemmoja tarvitaan energian alhaalta puolijatkuvuuden osoittamiseen.
 \begin{lemma} \label{le:indFct}
     Olkoon $(t_n)$ jono reaalilukuja ja $t\in \R$.
     Jos $\displaystyle 0 \le t \le \liminf_{n\to\infty} t_n < \infty$, niin kaikilla $s \in \Rp$ pätee
@@ -1492,7 +1489,7 @@ Osoitetaan lopulta energia alhaalta puolijatkuvaksi.
         &=\lim_{n\to \infty} \int_\Rp \inf_{k \ge n} |\chi_k(\omega, t)|_{\chi_k}^{\alpha-1} \indfct{[0, L(\chi_k(\omega))[}(t) \, dt \\
         &=: \lim_{n \to \infty}  \int_\Rp f_n(t) \, dt,
     \end{align*}
-    kun määritellään $f_n: \Rp \to [0, \infty]$, $f_n(t) = \inf_{k \ge n} |\chi_k(\omega, t)|_{\chi_k}^{\alpha-1} \indfct{[0, L(\chi_k(\omega))[}(t)$ kaikilla $t \in \Rp$ ja $n \in \N$. Funktiojono $(f_n)$ on kasvava ja jonon alkiot ovat mitallisia, jotenMonotonisen konvergenssilauseen \ref{thm:monoConvThm} nojalla 
+    kun määritellään $f_n: \Rp \to [0, \infty]$, $f_n(t) = \inf_{k \ge n} |\chi_k(\omega, t)|_{\chi_k}^{\alpha-1} \indfct{[0, L(\chi_k(\omega))[}(t)$ kaikilla $t \in \Rp$ ja $n \in \N$. Funktiojono $(f_n)$ on kasvava ja jonon alkiot ovat mitallisia, joten Monotonisen konvergenssin Lauseen \ref{thm:monoConvThm} nojalla 
     \begin{align*}
         \lim_{n \to \infty}  \int_\Rp f_n(t) \, dt &= \int_\Rp \lim_{n\to\infty}f_n(t) \, dt \\
         &= \int_\Rp \lim_{n \to \infty}  \inf_{k \ge n} |\chi_k(\omega, t)|_{\chi_k}^{\alpha-1} \indfct{[0, L(\chi_k(\omega))[}(t) \, dt \\
