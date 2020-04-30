@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="168.33136"
+     inkscape:cx="148.12831"
      inkscape:cy="86.043265"
      inkscape:document-units="mm"
      inkscape:current-layer="ltx-render-layer"
@@ -40,7 +40,13 @@
      inkscape:window-height="837"
      inkscape:window-x="-8"
      inkscape:window-y="892"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       position="52.919366,6.5481035"
+       orientation="0,1"
+       id="guide5894"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
   <defs
      id="defs2">
     <marker
@@ -146,12 +152,12 @@
        inkscape:connector-curvature="0"
        id="path1813"
        d="m 107.30871,39.010364 9.08717,-9.087165 10.01652,5.783043 c 0,0 -9.44307,10.0473 -10.26846,10.26846 -0.82539,0.221163 -8.83523,-6.964338 -8.83523,-6.964338 z"
-       style="fill:none;stroke:#ff6600;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:#ff6600;stroke:#ff6600;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.557" />
     <path
        inkscape:connector-curvature="0"
        id="path1819"
        d="m 32.411025,37.235067 8.289396,-6.481286 17.325923,7.82121 -17.230069,7.777938 z"
-       style="fill:none;stroke:#ff00ff;stroke-width:0.2992219px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:#ff00ff;stroke:#ff00ff;stroke-width:0.2992219px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.527" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot1624"
@@ -162,7 +168,17 @@
            height="15.152288"
            x="369.21075"
            y="278.03214" /></flowRegion><flowPara
-         id="flowPara1630" /></flowRoot>  </g>
+         id="flowPara1630" /></flowRoot>    <path
+       inkscape:connector-curvature="0"
+       id="path1813-8"
+       d="m 107.34582,39.036846 9.08717,-9.087165 10.01652,5.783043 c 0,0 -9.44307,10.047301 -10.26846,10.268461 -0.82539,0.221163 -8.83523,-6.964339 -8.83523,-6.964339 z"
+       style="opacity:0.55699978;fill:none;stroke:#ff6600;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path1819-9"
+       d="m 32.265461,37.17494 8.289396,-6.481286 17.325923,7.82121 -17.230069,7.777938 z"
+       style="opacity:0.5270004;fill:none;stroke:#ff00ff;stroke-width:0.499;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
   <g
      rendltx:math="False"
      rendltx:newline="False"
@@ -1279,7 +1295,7 @@
     </g>
     <g
        id="lx-text2494"
-       transform="matrix(0.352778,0,0,0.352778,29.538651,57.008066)">
+       transform="matrix(0.352778,0,0,0.352778,29.538651,56.874431)">
       <defs
          id="defs2862">
         <g
@@ -1582,7 +1598,7 @@
     </g>
     <g
        id="lx-text2498"
-       transform="matrix(0.352778,0,0,0.352778,101.95795,56.687751)">
+       transform="matrix(0.352778,0,0,0.352778,101.95795,56.821386)">
       <defs
          id="defs2962">
         <g
@@ -1906,7 +1922,7 @@
     </g>
     <g
        id="lx-text2502"
-       transform="matrix(0.352778,0,0,0.352778,58.853017,63.005516)">
+       transform="matrix(0.352778,0,0,0.352778,60.440518,63.005516)">
       <defs
          id="defs3057">
         <g
@@ -2590,7 +2606,7 @@
     </g>
     <g
        id="lx-text4741"
-       transform="matrix(0.37033519,0,0,0.37033519,87.881011,63.255268)">
+       transform="matrix(0.37033519,0,0,0.37033519,89.468512,63.255268)">
       <defs
          id="defs5259">
         <g
