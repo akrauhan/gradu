@@ -851,8 +851,13 @@ Polun pysähtymisaika kuvastaa sitä, mistä parametrin arvosta $t$ lähtien pol
     \end{equation*}
     Merkitään lisäksi joukon $X$ liikennesuunnitelmien kokoelmaa $TP = TP(X)$.
 \end{definition}
-
-Edellistä integraalia voi ajatella joukon $K$ polkujen painotettuna pysähtymisaikana. Koska oletetaan, että painotettu pysähtymisaika on äärellinen, on sille olemassa jokin yläraja $C$. Määritellään vielä niiden liikennesuunnitelmien kokoelma, joiden painotettu pysähtymisaika on pienempää kuin jokin $C$.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.2]{graphics/trafficplan.png}
+    \caption{Kolme mittaa $\P_1, \P_2$ ja $\P_3$ joukkoon $X$ kuvautuvien polkujen avaruudessa. Polun paksuus kuvastaa liikennesuunnitelman antamaa painoa. Mitat $P_1$ ja $P_2$ ovat liikennesuunnitelmia, mutta mitta $P_3$ painottaa kahta pysähtymätöntä polkua.}
+    \label{fig:my_label}
+\end{figure}
+Edellistä integraalia voi ajatella joukon $K$ polkujen painotettuna pysähtymisaikana. Liikennesuunnitelma on siis sellainen mitta, joka painottaa polkuja, joiden painotettu pysähtymisaika on äärellinen. Tätä on havainnollistettu kuvassa \ref{fig:irrigated-irrigating-tp}. Koska oletetaan, että painotettu pysähtymisaika on äärellinen, on sille olemassa jokin yläraja $C$. Määritellään vielä niiden liikennesuunnitelmien kokoelma, joiden painotettu pysähtymisaika on pienempää kuin jokin $C$.
 
 \begin{definition}
     Olkoon $\P$ liikennesuunnitelma. Merkitään $TP_C = TP_C(X)$ kaikkia joukon $X$ liikennesuunnitelmia $\P$ joille
@@ -1004,7 +1009,7 @@ Sovitaan, että jono liikennesuunnitelmia suppenee, jos se suppenee heikosti, ta
 
 \section{Pysähtymisajan alhaalta puolijatkuvuus}
 
-Osoitetaan pysähtymisaika ja keskipysähtymisaika alhaalta puolijatkuviksi. Tätä ennen osoitetaan hyödyllinen aputulos, josta on apua alhaalta puolijatkuvuuksien osoittamisessa.
+Osoitetaan pysähtymisaika ja painotettu pysähtymisaika alhaalta puolijatkuviksi. Tätä ennen osoitetaan hyödyllinen aputulos, josta on apua alhaalta puolijatkuvuuksien osoittamisessa.
 
 \begin{lemma}\label{le:fdPLeLiminf}
     Olkoon $(\P_n)$ jono positiivisia mittoja kompaktissa metrisessä avaruudessa $K$ siten, että $\P_n \rightharpoonup \P$. Olkoon $\gamma \mapsto f(\gamma)$ alhaalta puolijatkuva funktio avaruudessa $K$. Tällöin
